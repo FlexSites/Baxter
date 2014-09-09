@@ -1,0 +1,55 @@
+<@>ngHead@>
+<@>adminHeader@>
+
+<style>
+	#events img {
+		width: 100px;
+		height: 100px;
+	}
+</style>
+<h1 style="margin: 32px; width: auto;"><@title@></h1>
+<@#events.length@>
+<table id="events" class="">
+	<thead>
+		<tr>
+			<td></td>
+			<td>Name</td>
+			<td>Dates</td>
+			<td>Price</td>
+			<td>Actions</td>
+		</tr>
+	</thead>
+	<tbody>
+	<@#events@>
+		<tr>
+			<td>
+				<img src="/media/entertainer/<@slug@>/thumb.jpg">
+			</td>
+			<td>
+				<h4><@name@></h4>
+				<h5><@credits@></h5>
+			</td>
+			<td>
+				<p><@range@></p>
+				<p><@showtimes.length@> shows</p>
+			</td>
+			<td>
+				$<@price@>
+			</td>
+			<td>
+				<a href="/event/<@id@>" class="btn gray">View</a>
+				<a href="/admin/event/<@id@>" class="btn gray">Edit</a>
+				<a href="/admin/event/<@id@>/delete" class="btn red icon-trash"></a>
+			</td>
+		</tr>
+	<@/events@>
+	</tbody>
+</table>
+<@/events.length@>
+<@^events@>
+<h1>No upcoming events</h1>
+<@/events@>
+<a href="/admin/event" class="grid-full btn orange">Create New Event</a>
+
+<@>footer@>
+<@>foot@>

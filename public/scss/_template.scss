@@ -1,0 +1,42 @@
+
+// Template
+
+html {
+    
+}
+body {
+
+}
+#header {
+    @extend .flush-full;
+    height: 100px;
+    text-shadow: 0px 1px 2px lighten($mainColor, 20%);
+    background-color: $mainColor;
+    background-image: -webkit-linear-gradient($mainColor,$dkMainColor);
+    background-image: linear-gradient($mainColor, $dkMainColor);
+    > a {
+        @extend .fl, .mt;
+    color: #fff;    
+        padding: $space/2;
+        font-size: 1.5em;
+        &:hover, &:last-child {
+            background-color: lighten($mainColor, 10%);
+        }
+        &:last-child {
+            @extend .fr, .mr;
+            color: #fff;
+            &:hover {
+                background-color: $dkMainColor;
+            }
+        }
+    }
+}
+#logo {
+    @extend .no-m;
+    font-size: 48px !important;
+    line-height: 1em; 
+    padding: 0 $space;
+    &:hover {
+        background-color: none !important;
+    }
+}

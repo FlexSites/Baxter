@@ -1,0 +1,243 @@
+<@>ngHead@>
+<@>adminHeader@>
+
+<style>
+.typeahead {
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+}
+.typeahead > li > a {
+    display: block;
+    width: 100%;
+    float: left;
+}
+.typeahead > li {
+    width: 100%;
+    list-style-type: none;
+    background: #f0f0f0;
+    border-bottom: solid 1px #999;
+    border-top: solid 1px #333;
+    min-height: 52px;
+    line-height: 42px;
+    float: left;
+}
+.typeahead > li:hover {
+    background: #fbfbfb;
+}
+</style>
+<h1 style="margin: 32px; width: auto;"><@title@></h1>
+
+<form name="eventForm" class="flex" method="post">
+    <input type="hidden" name="id" value="<@event.id@>" />
+    <input type="hidden" name="entertainer" id="entertainerId" value="<@event.entertainer.id@>">
+
+    <div class="flush-full" style="background: #333;">
+        <@^event._name@>
+        <div class="grid-9 entertainerEvent" style="padding: 30px 5%">
+            <h3><@^event.entertainer@>Choose an <@/event.entertainer@>Entertainer</h3>
+            <label for="entertainer" class="grid-full">
+             <input type="text" placeholder="Entertainer" id="entertainer" value="<@event.entertainer.name@>" autocomplete="off">
+             <span>
+             </span>
+         </label>
+     </div>
+     <@/event._name@>
+     <div class="grid-2 tc entertainerEvent customEvent" style="padding-top: 64px;">
+        <h2>
+            -OR-
+        </h2>
+    </div>
+    <div class="grid-9 customEvent" style="padding: 30px 5%">
+        <h3>Create a custom title</h3>
+        <label for="title" class="grid-full">
+         <input type="text" placeholder="Custom title" name="_name" id="customTitle" value="<@event._name@>">
+         <span data-errormessage="You must enter a title for the event"><b>100</b> characters left.</span>
+     </label>
+ </div>
+ <div id="entertainerSlot" class="grid-20 entertainerEvent" style="padding: 0 5% 30px">
+    <img src="<@event.image.profile@>" class="grid-3">
+    <h2 class="grid-17"><@ event.entertainer.name @></h2>
+    <h4 class="grid-17"><@{ event.entertainer.description @>}</h4>
+</div>
+</div>
+<div class="flush-full customEvent" style="padding: 30px;">
+    <div class="dropzone grid-5" id="profileUpload">
+        <img src="/media/event/<@event.slug@>/profile.jpg" id="profilePreview" class="flush-full">
+        <input type="hidden" name="profileImage" id="profileValue">
+    </div>
+    <div class="dropzone grid-15" id="heroUpload">
+        <@#event.hero.externalURL@>
+        <!-- Found -->
+        <img src="<@event.hero.externalURL@>" id="heroPreview" class="flush-full">
+        <input type="hidden" name="heroImage" id="heroValue" value="<@event.hero.externalURL@>">
+        <@/event.hero.externalURL@>
+        <@^event.hero.externalURL@>
+        <!-- Not found -->
+        <img src="/media/event/<@event.slug@>/hero.jpg" id="heroPreview" class="flush-full">
+        <input type="hidden" name="heroImage" id="heroValue" value="/media/event/<@event.slug@>/hero.jpg">
+        <@/event.hero.externalURL@>
+    </div>
+    <label for="textAlign" class="grid-5 fr">
+        <select name="heroTextAlign" id="textAlign" data-value="<@event.hero.textAlign@>">
+            <option value="left">Left</option>
+                <option value="center">Center</option>
+                    <option value="right">Right</option>
+                    </select>
+                </label>
+
+                <label for="isDark" class="grid-5 fr">
+                    <select name="heroIsDark" id="isDark" data-value="<@event.hero.isDark@>">
+                        <option value="false">Light</option>
+                        <option value="true">Dark</option>
+                    </select>
+                </label>
+                </div>
+                    <div class="flush-full" style="padding: 30px;">
+                        <label for="description" class="grid-full customEvent">
+                            <textarea placeholder="Description" name="description"><@event._description@></textarea>
+                            <span data-errormessage="You must enter a description for the event">Description</span>
+                        </label>
+                        <label for="type" class="grid-full">
+                            <select id="type" name="_type" data-value="<@event._type@>">
+                             <option value="general">General Admission</option>
+                             <option value="special">Special Event</option>
+                         </select>
+                         <span>Event type</span>
+                     </label>
+                     <fieldset class="pill grid-8" data-value="<@event.venue.id@>">
+                        <@#venues@>
+                        <label for="<@slug@>">
+                          <input type="radio" name="venue" id="<@slug@>" class="venue" value="<@id@>">
+                          <span><@address.city@></span>
+                      </label>
+                      <@/venues@>
+                  </fieldset>
+                  <label for="price" class="grid-2">
+                     <input name="price" value="<@event.price@>" id="price" autocomplete="off" placeholder="Price">
+                     <span data-errormessage="You must enter a price for the event"></span>
+                 </label>
+             </div>
+             <div id="showtimes" class="flush-full" style="padding: 30px; background: #333;">
+                <h3 class="c">Showtimes</h3>
+                <@#event.showtimes@>
+                <div class="showtime">
+                    <label for="">
+                        <input type="text" class="stDate" value="<@date@>">
+                    </label>
+                    <label>
+                        <select class="stTime" data-value="<@time@>">
+                            <option value="18:00">6:00</option>
+                            <option value="18:30">6:30</option>
+                            <option value="19:00">7:00</option>
+                            <option value="19:30">7:30</option>
+                            <option value="20:00">8:00</option>
+                            <option value="20:30">8:30</option>
+                            <option value="21:00">9:00</option>
+                            <option value="21:30">9:30</option>
+                            <option value="22:00">10:00</option>
+                            <option value="22:30">10:30</option>
+                        </select>
+                    </label>
+                    <input type="hidden" name="showtimes" class="datetime" value="<@datetime@>">
+                </div>
+                <@/event.showtimes@>
+                <@^event.showtimes@>
+                <div class="showtime">
+                    <label for="">
+                        <input type="text" class="stDate">
+                    </label>
+                    <label>
+                        <select class="stTime" data-value="<@time@>">
+                            <option value="18:00">6:00</option>
+                            <option value="18:30">6:30</option>
+                            <option value="19:00">7:00</option>
+                            <option value="19:30">7:30</option>
+                            <option value="20:00">8:00</option>
+                            <option value="20:30">8:30</option>
+                            <option value="21:00">9:00</option>
+                            <option value="21:30">9:30</option>
+                            <option value="22:00">10:00</option>
+                            <option value="22:30">10:30</option>
+                        </select>
+                    </label>
+                    <input type="hidden" name="showtimes" class="datetime" value="<@datetime@>">
+                </div>
+                <@/event.showtimes@>
+                <label for="recurring">
+                    <input type="checkbox" name="isRecurring" checked="<@event.isRecurring@>" id="recurring">
+                    <span>Is Recurring</span>
+                </label>
+                <button id="addShowtime">Add Show</button>
+            </div>
+            <label for="eventLink" style="width: 100%;">
+                <input type="text" name="link" value="<@ event.link @>" id="eventLink" />
+                <span>TicketBiscuit Link</span>
+            </label>
+            <hr />
+
+            <div id="actions">
+                <button class="btn">Add show</button>
+                <button class="btn">Remove show</button>
+                <button type="submit" class="btn">Save</button>
+                <button type="submit" class="btn">Save & Next</button>
+            </div>
+
+        </form>
+
+
+
+        <@>footer@>
+
+        <script>
+        $(function(){
+            $(document).on('keyup keypress','#customTitle',function(){
+                $('.entertainerEvent').remove();
+            }).on('change keypress keyup keydown','.showtime .stDate, .showtime .stTime',function(){
+                var $parent = $(this).parents('.showtime'), $date = $parent.find('.stDate'), $time = $parent.find('.stTime'), $datetime = $parent.find('.datetime');
+                $datetime.val($date.val() + ' ' + $time.val());
+                console.log($datetime.val(), new Date($datetime.val()));
+            }).on('click','#addShowtime',function(){
+                $(this).before($('#showtimes .showtime').first().clone());
+                return false;
+            });
+            var showtimeCount = 0;
+        // $('.showtime').each(function(){
+        //     var name = 'showtime'+(++showtimeCount);
+        //     $(this).attr({name: name, id: name}).removeClass('showtime').parent('label').attr('for',name);
+        // });
+$.getJSON('/api/entertainers').success(function(entertainers){
+    var entertainerNames = [], entertainerMap = {};
+    $.each(entertainers,function(i,entertainer){
+        entertainer.credits = (entertainer.credits||'').replace(/[^a-z0-9-, ]/gi,'');
+        if(entertainer.name) entertainerNames.push(entertainer.name);
+        entertainerMap[entertainer.slug] = entertainer;
+    });
+
+    $('#entertainer').typeahead({
+        source:entertainerNames,
+        highlighter:function(name){
+            var item = entertainerMap[slugify(name)];
+            if(!item)return'';
+            var query = this.query.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g,'\\$&')
+            return '<img src="/media/entertainer/'+item.slug+'/thumb.jpg" class="grid-4"><span class="grid-16">'+item.name.replace(new RegExp('('+query+')','ig'),function($1,match){
+                return '<u>'+match+'</u>'
+            })+'</span>';
+        },
+        updater:function(name){
+            $('.customEvent').remove();
+            var item = entertainerMap[slugify(name)];
+            $('#entertainerId').val(item.id);
+            $('#entertainerSlot').find('img').attr('src','/media/entertainer/'+item.slug+'/thumb.jpg');
+            $('#entertainerSlot').find('h2').text(item.name);
+            $('#entertainerSlot').find('h4').text(item.credits||item.description);
+            return item.name;
+        }
+    });
+});
+
+});
+</script>
+<@>foot@>

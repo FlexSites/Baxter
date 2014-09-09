@@ -1,0 +1,79 @@
+{{>head}}
+{{>adminHeader}}
+
+<style>
+	#entertainers img {
+		width: 100px;
+		height: 100px;
+	}
+	#contents > a {
+		width: 32px;
+		height: 32px;
+		text-align: center;
+		display: inline-block;
+	}
+</style>
+<h1 style="margin: 30px 30px 10px;">{{title}}</h1>
+<h2 style="margin: 0 30px 30px;">Showing {{entertainers.length}} entertainers</h2>
+
+<div id="contents" style="font-size: 32px;">
+</div>
+
+{{#entertainers.length}}
+<table id="entertainers" class="">
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>Start</td>
+			<td>End</td>
+			<td>Price</td>
+			<td>Actions</td>
+		</tr>
+	</thead>
+	<tbody>
+	{{#entertainers}}
+		<tr data-name="{{name}}">
+			<td>
+				<img src="/media/entertainer/{{slug}}/thumb.jpg">
+				{{name}}
+			</td>
+			<td>
+				{{start}}
+			</td>
+			<td>
+				{{end}}
+			</td>
+			<td>
+				{{price}}
+			</td>
+			<td>
+				<a href="/entertainer/{{id}}" class="btn">View</a>
+				<a href="/admin/entertainer/{{id}}" class="btn">Edit</a>
+				<a href="/admin/entertainer/{{id}}/delete" class="btn">Delete</a>
+			</td>
+		</tr>
+	{{/entertainers}}
+	</tbody>
+</table>
+{{/entertainers.length}}
+{{^entertainers}}
+<h1>No saved entertainers</h1>
+{{/entertainers}}
+<a href="/admin/entertainer" class="grid-full btn orange">Create New Entertainers</a>
+
+{{>footer}}
+<script>
+	$(function(){
+		var letter;
+		$('tr[data-name]').each(function(){
+			var l = $(this).attr('data-name').charAt(0);
+			console.log('Letter:',l);
+			if(l !== letter){
+				$(this).before('<tr><td colspan="5"><h2><a name="letter'+l+'"></a>'+l+'</h2></td></tr>');
+				$('#contents').append('<a href="#letter'+l+'">'+l+'</a>');
+				letter = l;
+			}
+		});
+	});
+</script>
+{{>foot}}

@@ -1,0 +1,13 @@
+{
+	"title": "Comedian.IO | Websites for comedians",
+	"host": "comedian.io",
+	"description": "",
+	"keywords": "",
+	"analytics": "",
+	"styles": ["//fonts.googleapis.com/css?family=Roboto"],
+	"scripts": ["/ng/angular-route.js","/ng/global.js"],
+	"contact": {
+		"email":"",
+		"twitter": ""
+	}
+}

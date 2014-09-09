@@ -1,0 +1,18 @@
+<header id="header">
+	<a href="/" id="logo">Comedian.IO</a>
+	<a href="/">Home</a>
+	<a href="/features">Features</a>
+	<a href="/pricing">Pricing</a>
+	<a href="/about">About</a>
+	<a href="/sign-up">Sign Up</a>
+
+	<@#user@>
+		<a href="#">Welcome, <@user.name@></a>
+		<a href="/account">My Account</a>
+	<@/user@>
+	<@^user@>
+		<a href="/login">Login</a>
+	<@/user@>
+</header>
+<ng-view></ng-view>
+<div id="bodyContent">
