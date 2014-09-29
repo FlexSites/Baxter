@@ -4,7 +4,7 @@
 //Global Vars   
 $prefix: '.';
 $space: 40px; 
-$verticalBlock: 48px;
+$verticalBlock: 48px;   
 
 $baseFontSize: 17px;
 $baseLineHeight: 1.4em; 
@@ -13,39 +13,25 @@ $headerFontFamily: $baseFontFamily;
   
 // Colors
 $mainColor: #FF6700;
-$dkMainColor: #C55000;
+$dkMainColor: #C55000; 
+ 
+$subColor: #104BA9;  
 
-// $subColor: #328700;
-// $dkSubColor: darken($subColor,20%);
-$subColor: #104BA9;
-
+$link-color: #C55000;
+  
 // Define fonts 
-// @import "partials/font/comedicon"; 
-// @import "partials/font/pacifico";
+@import "partials/font/comedicon"; 
 
 // Base styles 
-@import "partials/base";
-
-ng-view + #bodyContent {
-	display: none;
-}
+@import "partials/base"; 
  
 
-//@import "typography"; 
-//@import "partials/backgroundColor";
+// @import "typography"; 
+// @import "partials/backgroundColor"; 
 
 //Element partials. Order doesn't matter.
-//@import "partials/product";
-//@import "partials/table";
-//@import "partials/sidebar";
-//@import "partials/button";
-//@import "partials/tab";
-//@import "partials/box";
-//@import "partials/list";
-//@import "partials/misc";
-//@import "partials/shame";
-//@import "partials/form";
-//@import "partials/sprint";
+ @import "partials/form";  
+ @import "partials/button";
 
 //Specific template
 @import "template";

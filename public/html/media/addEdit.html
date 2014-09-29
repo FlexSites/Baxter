@@ -1,0 +1,23 @@
+
+<h1>{{medium.id?'Edit':'New'}} Medium</h1>
+<form name="medium-form" ng-submit="save()" novalidate>
+	<label for="name" class="grid-full">
+		<input type="text" id="name" ng-model="medium.name" placeholder="Medium name" required>
+		<span></span>
+	</label>
+
+	<label for="src" class="grid-full">
+		<input type="text" id="src" ng-model="medium.src" placeholder="Source">
+		<span></span>
+	</label>
+
+	<label for="desc" class="grid-full">
+		<textarea id="desc" ng-model="medium.description" placeholder="Description"></textarea>
+		<span></span>
+	</label>
+
+	<div class="buttons">
+		<a href="/" class="btn">Cancel</a>
+		<button>Save</button>
+	</div>
+</form>

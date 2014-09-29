@@ -1,0 +1,37 @@
+<h1>Edit Profile</h1>
+
+<form name="profileForm" ng-submit="profileForm.$valid && save()" novalidate>
+    <label for="name" class="grid-full">
+        <input type="text" id="name" ng-model="entertainer.name" placeholder="Name">
+    </label>
+
+    <label for="credits" class="grid-full">
+        <input type="text" id="credits" ng-model="entertainer.credits" placeholder="Credits">
+    </label>
+
+    <label for="description" class="grid-full">
+        <textarea id="description" ng-model="entertainer.description" placeholder="Bio" rows="10"></textarea>
+    </label>
+
+
+    <label for="facebook">
+        <input type="text" id="facebook" ng-model="entertainer.facebook" placeholder="Facebook">
+    </label>
+
+    <label for="twitter">
+        <input type="text" id="twitter" ng-model="entertainer.twitter" placeholder="Twitter">
+    </label>
+
+    <label for="link">
+        <input type="text" id="link" ng-model="entertainer.link" placeholder="Link">
+    </label>
+
+    <label for="video">
+        <input type="text" id="video" ng-model="entertainer.video" placeholder="Video">
+    </label>
+
+    <div class="buttons">
+        <a class="btn gray">Cancel</a>
+        <button class="orange">Submit</button>
+    </div>
+</form>

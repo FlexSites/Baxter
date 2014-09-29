@@ -1,0 +1,18 @@
+
+<header class="header">
+	<a href="/" class="header_logo"></a>
+	<nav class="header_nav">
+		<a href="/">Home</a>
+		<a href="/events">Events</a>
+		<a href="/media">Videos</a>
+		<!-- <a href="/pages">Pages</a> -->
+		<!-- <a href="/products">Products</a> -->
+		<a href="/profile">Profile</a>
+	</nav>
+
+	<div class="header_settings flush-5 fr">
+		<a ng-href="{{user.loggedIn?'/account':'/login'}}">My Account</a>
+	</div>
+</header>
+
+<ng-view class="fullBar"></ng-view>
