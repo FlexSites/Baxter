@@ -15,9 +15,9 @@ function itemPromise($q, $route, Model) {
     }
 }
 
-var hosts = <@&hosts@>;
+//var hosts = <@&hosts@>;
 
-console.log("host type", hosts[window.location.hostname]);
+//console.log("host type", hosts[window.location.hostname]);
 
 var app = angular.module("app", [ "ngResource", "ngRoute" ]).config([ "$routeProvider", "$locationProvider", "$httpProvider", function($routeProvider, $locationProvider, $httpProvider) {
 
