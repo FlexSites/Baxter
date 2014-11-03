@@ -15,6 +15,48 @@ function itemPromise($q, $route, Model) {
     }
 }
 
+var resolutions = {
+    "/users": {
+        items: [ "User", function(User) {
+            var users = User.query(function() {
+                console.log(users);
+            });
+            return users.$promise;
+        } ]
+    },
+    "/profile": {
+        entertainer: [ "$q", "$route", "Entertainer", function($q, $route, Entertainer) {
+            var obj = Entertainer.get(function() {
+                console.log(obj);
+            });
+            return obj.$promise;
+        } ]
+    },
+    "/media": {
+        items: [ "Medium", function(Medium) {
+            var media = Medium.query(function() {
+                console.log(media);
+            });
+            return media.$promise;
+        } ]
+    },
+    "/medium/:id?": {
+        medium: [ "$q", "$route", "Medium", itemPromise ]
+    },
+    "/events": {
+        items: [ "Event", function(Event) {
+            var events = Event.query();
+            return events.$promise;
+        } ]
+    },
+    "/event/:id?": {
+        event: [ "$q", "$route", "Event", itemPromise ]
+    },
+    "/venue/:id?": {
+        venue: [ "$q", "$route", "Venue", itemPromise ]
+    }
+};
+
 //var hosts = <@&hosts@>;
 
 //console.log("host type", hosts[window.location.hostname]);
@@ -22,96 +64,12 @@ function itemPromise($q, $route, Model) {
 var app = angular.module("app", [ "ngResource", "ngRoute" ]).config([ "$routeProvider", "$locationProvider", "$httpProvider", function($routeProvider, $locationProvider, $httpProvider) {
 
     $httpProvider.defaults.withCredentials = true;
-    angular.forEach([ {
-        url: "/",
-        templateUrl: "/html/home.html",
-        title: "Site Admin"
-    }, {
-        url: "/login",
-        templateUrl: "/html/login.html",
-        title: "Comedian Login"
-    }, {
-        url: "/users",
-        templateUrl: "/html/user/list.html",
-        title: "User List",
-        controller: "ListController",
-        resolve: {
-            items: [ "User", function(User) {
-                var users = User.query(function() {
-                    console.log(users);
-                });
-                return users.$promise;
-            } ]
-        }
-    }, {
-        url: "/admin/user/:id?",
-        templateUrl: "/html/admin/userAddEdit.html",
-        title: "Edit User",
-        controller: "UserController"
-    }, {
-        url: "/profile",
-        templateUrl: "/html/profile/addEdit.html",
-        title: "Edit Profile",
-        controller: "EntertainerController",
-        resolve: {
-            entertainer: [ "$q", "$route", "Entertainer", function($q, $route, Entertainer) {
-                var obj = Entertainer.get(function() {
-                    console.log(obj);
-                });
-                return obj.$promise;
-            } ]
-        }
-    }, {
-        url: "/media",
-        templateUrl: "/html/media/list.html",
-        title: "Edit Media",
-        controller: "ListController",
-        resolve: {
-            items: [ "Medium", function(Medium) {
-                var media = Medium.query(function() {
-                    console.log(media);
-                });
-                return media.$promise;
-            } ]
-        }
-    }, {
-        url: "/medium/:id?",
-        templateUrl: "/html/media/addEdit.html",
-        title: "Edit Medium",
-        controller: "MediumController",
-        resolve: {
-            medium: [ "$q", "$route", "Medium", itemPromise ]
-        }
-    }, {
-        url: "/events",
-        templateUrl: "/html/event/list.html",
-        title: "Event List",
-        controller: "ListController",
-        resolve: {
-            items: [ "Event", function(Event) {
-                var events = Event.query();
-                return events.$promise;
-            } ]
-        }
-    }, {
-        url: "/event/:id?",
-        templateUrl: "/html/event/addEdit.html",
-        title: "Edit Event",
-        controller: "EventController",
-        resolve: {
-            event: [ "$q", "$route", "Event", itemPromise ]
-        }
-    }, {
-        url: "/venue/:id?",
-        templateUrl: "/html/venue/addEdit.html",
-        title: "Edit Venue",
-        controller: "VenueController",
-        resolve: {
-            venue: [ "$q", "$route", "Venue", itemPromise ]
-        }
-    } ], function(route) {
+    angular.forEach(<@&routes@>, function(route) {
         var url = route.url;
         delete route.url;
+        if(resolutions[url]){
+            route.resolve = resolutions[url];
+        }
         if (!route.controller) route.controller = "AdminController";
         $routeProvider.when(url, route);
     });
