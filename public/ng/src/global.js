@@ -79,25 +79,25 @@ var app = angular.module("app", [ "ngResource", "ngRoute" ]).config([ "$routePro
     });
     $locationProvider.html5Mode(true);
 } ]).factory("User", [ "$resource", function($resource) {
-    return $resource("http://api.comedian.io/users/:id"), {
+    return $resource("http://<@env@>api.comedian.io/users/:id"), {
         id: "@id"
     };
 } ]).factory("Event", [ "$resource", function($resource) {
-    return $resource("http://api.comedian.io/events/:id", {
+    return $resource("http://<@env@>api.comedian.io/events/:id", {
         id: "@id"
     });
 } ]).factory("Venue", [ "$resource", function($resource) {
-    return $resource("http://api.comedian.io/venues/:id", {
+    return $resource("http://<@env@>api.comedian.io/venues/:id", {
         id: "@id"
     });
 } ]).factory("Medium", [ "$resource", function($resource) {
-    return $resource("http://api.comedian.io/media/:id", {
+    return $resource("http://<@env@>api.comedian.io/media/:id", {
         id: "@id"
     });
 } ]).factory("Entertainer", [ "$resource", function($resource) {
-    return $resource("http://api.comedian.io/entertainers/53d1db2b562cdbef37fe0a48");
+    return $resource("http://<@env@>api.comedian.io/entertainers/53d1db2b562cdbef37fe0a48");
 } ]).controller("ListController", [ "$http", "$scope", "$routeParams", "items", function($http, $scope, $routeParams, items) {
-    $http.get("http://api.comedian.io/auth").success(function() {
+    $http.get("http://<@env@>api.comedian.io/auth").success(function() {
         console.log("success", arguments);
     }).error(function() {
         console.log("error", arguments);
@@ -245,7 +245,7 @@ app.controller("AdminController", [ "$rootScope", "$scope", "$http", function($r
                 console.log("Local cache");
                 deferred.resolve(_user);
             } else {
-                $http.get("http://api.comedian.io/auth").success(function(user) {
+                $http.get("http://<@env@>api.comedian.io/auth").success(function(user) {
                     console.log("Hit server");
                     if (user.loggedIn) {
                         _user = user;

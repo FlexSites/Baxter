@@ -1,5 +1,5 @@
 {
 	"title": "Comedian.IO | Websites for comedians",
 	"styles": ["//fonts.googleapis.com/css?family=Roboto","/css/style.css"],
-	"scripts": ["/ng/global.js"]
+	"scripts": ["/js/lodash.js", "/ng/global.js"]
 }
