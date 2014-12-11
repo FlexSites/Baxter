@@ -1,4 +1,4 @@
-<@>ngHead@>
+<<>ngHead>>
 
 <header class="header">
 	<a href="/" class="header_logo"></a>
@@ -9,13 +9,14 @@
 		<!-- <a href="/pages">Pages</a> -->
 		<!-- <a href="/products">Products</a> -->
 		<a href="/profile">Profile</a>
+		<a href="/settings">Settings</a>
 	</nav>
 
 	<div class="header_settings flush-5 fr">
-		<a ng-href="{{user.loggedIn?'/account':'/login'}}">My Account</a>
+		<a href="/account">My Account</a>
 	</div>
 </header>
 
 <ng-view class="fullBar"></ng-view>
 
-<@>foot@>
+<<>foot>>
