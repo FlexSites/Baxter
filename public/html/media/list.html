@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="MediaController">
 	<h1>Media</h1>
 	<div class="m">
 		<a href="/medium" class="btn">New Medium</a>
@@ -39,8 +39,8 @@
 				<td>{{medium.name}}</td>
 				<td>{{medium.description}}</td>
 				<td>
-					<a href="/medium/{{medium.id}}" class="btn mini">Edit</a>
-					<a href="/medium/{{medium.id}}/delete" class="btn mini">Delete</a>
+					<a ng-href="/medium/{{medium.id}}" class="btn mini">Edit</a>
+					<a ng-click="delete(medium)" class="btn mini">Delete</a>
 				</td>
 			</tr>
 		</tbody>
