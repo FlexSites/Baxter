@@ -1,0 +1,84 @@
+<form>
+    <label for="title">
+        <input id="title">
+        <span></span>
+    </label>
+</form>
+
+
+<label for="abbr">
+    <input type="text" id="abbr" ng-model="site.abbr">
+    <span></span>
+</label>,
+<label for="host">
+    <input type="text" id="host" ng-model="site.host">
+    <span></span>
+</label>,
+<label for="title">
+    <input type="text" id="title" ng-model="site.title">
+    <span></span>
+</label>,
+<label for="description">
+    <input type="text" id="description" ng-model="site.description">
+    <span></span>
+</label>,
+<label for="type">
+    <input type="text" id="type" ng-model="site.type">
+    <span></span>
+</label>,
+<label for="subType">
+    <input type="text" id="subType" ng-model="site.subType">
+    <span></span>
+</label>,
+<label for="rootId">
+    <input type="text" id="rootId" ng-model="site.rootId">
+    <span></span>
+</label>
+
+<label for="styles{{$index}}" ng-repeat="style in styles">
+	<input type="text" ng-model="style">
+	<span></span>
+</label>
+
+"styles": [ "/css/style.css", "http://fonts.googleapis.com/css?family=Pacifico" ], "scripts": [ "/ng/global.js" ], "aliases": [ "steve.omniorders.com" ],
+
+<!-- Redirects -->
+
+<label for="src">
+    <input type="text" ng-model="site.src">
+    <span></span>
+</label>
+<label for="dest">
+    <input type="text" ng-model="site.dest">
+    <span></span>
+</label>
+<label for="type">
+    <input type="text" ng-model="site.type">
+    <span></span>
+</label>
+
+
+<label for="analytics">
+    <input type="text" ng-model="site.analytics">
+    <span></span>
+</label>
+<label for="email">
+    <input type="text" ng-model="site.contact.email">
+    <span></span>
+</label>
+<label for="url">
+    <input type="text" ng-model="site.url">
+    <span></span>
+</label>,
+<label for="templateUrl">
+    <input type="text" ng-model="site.templateUrl">
+    <span></span>
+</label>,
+<label for="bgClass">
+    <input type="text" ng-model="site.bgClass">
+    <span></span>
+</label>,
+<label for="title">
+    <input type="text" ng-model="site.title">
+    <span></span>
+</label>
