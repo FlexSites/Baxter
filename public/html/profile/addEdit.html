@@ -1,6 +1,7 @@
 <h1>Edit Profile</h1>
 
-<form name="profileForm" ng-submit="profileForm.$valid && save()" novalidate>
+<form name="profileForm" ng-submit="profileForm.$valid && save()" entertainer="'53d1db2b562cdbef37fe0a48'" novalidate>
+
     <label for="name" class="grid-full">
         <input type="text" id="name" ng-model="entertainer.name" placeholder="Name">
     </label>
@@ -12,7 +13,6 @@
     <label for="description" class="grid-full">
         <textarea id="description" ng-model="entertainer.description" placeholder="Bio" rows="10"></textarea>
     </label>
-
 
     <label for="facebook">
         <input type="text" id="facebook" ng-model="entertainer.facebook" placeholder="Facebook">
