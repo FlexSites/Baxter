@@ -26,7 +26,7 @@ var resolutions = {
     },
     "/profile": {
         entertainer: [ "$q", "$route", "Entertainer", function($q, $route, Entertainer) {
-            var obj = Entertainer.get(function() {
+            var obj = Entertainer.get({id: function() {
                 console.log(obj);
             });
             return obj.$promise;
@@ -38,7 +38,8 @@ var resolutions = {
                 console.log(media);
             });
             return media.$promise;
-        } ]
+        } ],
+        type: function(){return 'Medium';}
     },
     "/medium/:id?": {
         medium: [ "$q", "$route", "Medium", itemPromise ]
@@ -57,14 +58,14 @@ var resolutions = {
     }
 };
 
-//var hosts = <@&hosts@>;
+//var hosts = <<&hosts>>;
 
 //console.log("host type", hosts[window.location.hostname]);
 
-var app = angular.module("app", [ "ngResource", "ngRoute" ]).config([ "$routeProvider", "$locationProvider", "$httpProvider", function($routeProvider, $locationProvider, $httpProvider) {
+var app = angular.module("app", [ "ngResource", "ngRoute", "interceptors"]).config([ "$routeProvider", "$locationProvider", "$httpProvider", function($routeProvider, $locationProvider, $httpProvider) {
 
     $httpProvider.defaults.withCredentials = true;
-    angular.forEach(<@&routes@>, function(route) {
+    angular.forEach(<<&routes>>, function(route) {
         var url = route.url;
         delete route.url;
         if(resolutions[url]){
@@ -78,34 +79,49 @@ var app = angular.module("app", [ "ngResource", "ngRoute" ]).config([ "$routePro
         title: "Page not found"
     });
     $locationProvider.html5Mode(true);
-} ]).factory("User", [ "$resource", function($resource) {
-    return $resource("http://<@env@>api.comedian.io/users/:id"), {
+} ])
+
+.run(['$rootScope', '$location', function($rootScope, $location){
+    $rootScope.host = $location.hostname;
+}])
+// Auth interceptor
+.config(['$httpProvider',function($httpProvider){
+    $httpProvider.interceptors.push('authInterceptor');
+}])
+
+.factory("User", [ "$resource", function($resource) {
+    return $resource("http://<<env>>api.comedian.io/users/:id"), {
         id: "@id"
     };
-} ]).factory("Event", [ "$resource", function($resource) {
-    return $resource("http://<@env@>api.comedian.io/events/:id", {
-        id: "@id"
-    });
-} ]).factory("Venue", [ "$resource", function($resource) {
-    return $resource("http://<@env@>api.comedian.io/venues/:id", {
+}]).factory("Venue", [ "$resource", function($resource) {
+    return $resource("http://<<env>>api.comedian.io/venues/:id", {
         id: "@id"
     });
 } ]).factory("Medium", [ "$resource", function($resource) {
-    return $resource("http://<@env@>api.comedian.io/media/:id", {
+    return $resource("http://<<env>>api.comedian.io/media/:id", {
         id: "@id"
     });
-} ]).factory("Entertainer", [ "$resource", function($resource) {
-    return $resource("http://<@env@>api.comedian.io/entertainers/53d1db2b562cdbef37fe0a48");
-} ]).controller("ListController", [ "$http", "$scope", "$routeParams", "items", function($http, $scope, $routeParams, items) {
-    $http.get("http://<@env@>api.comedian.io/auth").success(function() {
-        console.log("success", arguments);
-    }).error(function() {
-        console.log("error", arguments);
-    });
+} ]).controller("ListController", [ "$http", "$scope", "$routeParams", "items", 'type', function($http, $scope, $routeParams, items, type) {
     $scope.items = items;
+    $scope.delete = function(item){
+        if(window.confirm('Are you sure you want to delete this video?')){
+            item.$delete(function(item){
+                _.each($scope.items,function(obj,i){
+                    if(obj.id === item.id){
+                        $scope.items.splice(i,1);
+                        return false;
+                    }
+                })
+            });
+        }
+    }
 } ]);
 
-_.each([ "User", "Venue", "Medium", "Entertainer" ], function(ctrl) {
+app.controller('MainController', [function(){
+
+}]);
+
+_.each([ "User", "Venue", "Medium" ], function(ctrl) {
     app.controller(ctrl + "Controller", [ "$scope", "$location", ctrl, ctrl.toLowerCase(), function($scope, $location, Item, item) {
         console.log("hit controller", ctrl);
         $scope[ctrl.toLowerCase()] = item;
@@ -146,47 +162,8 @@ function parseDate(str) {
     return fin.join("");
 }
 
-app.controller("EventController", [ "$scope", "$filter", "Venue", "event", function($scope, $filter, Venue, event) {
-    $scope.event = _.defaults(event, {
-        _name: "",
-        showtimes: [],
-        isRecurring: false,
-        _type: "general",
-        price: 0,
-        venue: {},
-        _description: "",
-        _facebook: "",
-        link: "",
-        _video: "",
-        _heroes: []
-    });
-    $scope.getVenues = function(val) {
-        console.log("vlah2");
-        var venues = Venue.query(function() {
-            venues.push({
-                name: "New Venue"
-            });
-        });
-        return venues.$promise;
-    };
-    $scope.addShow = function() {
-        $scope.event.showtimes.push({
-            date: $filter("date")(new Date(), "MM/dd/yy"),
-            time: $filter("date")(new Date(), "hh:mm a")
-        });
-    };
-    $scope.save = function() {
-        _.each($scope.event.showtimes, function(showtime, i) {
-            $scope.event.showtimes[i].datetime = parseDate(showtime.date + " " + showtime.time);
-        });
-        console.log("Saving event", $scope.event);
-        $scope.event.$save(function() {
-            console.log("Saved", arguments);
-        }, function(error) {});
-    };
-} ]);
-
-app.controller("AdminController", [ "$rootScope", "$scope", "$http", function($rootScope, $scope, $http) {} ]).controller("Login", [ "$scope", "$http", function($scope, $http) {
+app.controller("AdminController", [ "$rootScope", "$scope", "$http", function($rootScope, $scope, $http) {} ])
+.controller("Login", [ "$scope", "$http", function($scope, $http) {
     console.log("Login controller used");
     $scope.login = function(type) {
         console.log("clicked login", type);
@@ -224,7 +201,7 @@ app.controller("AdminController", [ "$rootScope", "$scope", "$http", function($r
             that.message = data.message;
         });
     };
-} ]).run([ "$location", "$rootScope", "Auth", function($location, $rootScope, Auth) {
+} ]).run([ "$location", "$rootScope", function($location, $rootScope) {
     $rootScope.$on("$routeChangeSuccess", function(event, current, previous) {
         if (current) {
             document.title = current.$$route.title;
@@ -236,37 +213,7 @@ app.controller("AdminController", [ "$rootScope", "$scope", "$http", function($r
             $location.path(rejection.redirect);
         }
     });
-} ]).factory("Auth", function($q, $http) {
-    var _user = {};
-    return {
-        getUser: function() {
-            var deferred = $q.defer();
-            if (_user.loggedIn === true) {
-                console.log("Local cache");
-                deferred.resolve(_user);
-            } else {
-                $http.get("http://<@env@>api.comedian.io/auth").success(function(user) {
-                    console.log("Hit server");
-                    if (user.loggedIn) {
-                        _user = user;
-                        deferred.resolve(user);
-                    } else {
-                        deferred.reject({
-                            redirect: "/login"
-                        });
-                    }
-                });
-            }
-            return deferred.promise;
-        },
-        setUser: function(aUser) {
-            user = aUser;
-        },
-        isLoggedIn: function() {
-            return user ? user : false;
-        }
-    };
-}).factory("AdminInterceptor", [ "$location", "$q", function($location, $q) {
+} ]).factory("AdminInterceptor", [ "$location", "$q", function($location, $q) {
     return {
         request: function(config) {
             console.log("request", config);
