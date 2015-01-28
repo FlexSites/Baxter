@@ -50,6 +50,8 @@ body {
     line-height: 64px;
     display: inline-block;
     float: left;
+    text-decoration: none;
+    color: darken($color-primary,20%);
     &:hover {
         color: $color-white;
         background-color: lighten($color-primary, 10%);

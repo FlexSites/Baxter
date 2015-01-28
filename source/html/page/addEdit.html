@@ -1,0 +1,42 @@
+
+<h1>{{page.id?'Edit':'New'}} Page</h1>
+<form name="page-form" ng-submit="save()" novalidate pages>
+	<pre>{{page | json}}</pre>
+	<div class="flush-7">
+		<label for="name" class="grid-full">
+			<input type="text" id="name" ng-model="page.title" required="true">
+			<span>Name</span>
+		</label>
+		<label for="url" class="grid-full">
+			<input type="text" id="url" ng-model="page.url" required="true">
+			<span>URL</span>
+		</label>
+		<label for="url" class="grid-full" ng-show="isAdmin">
+			<input type="text" id="url" ng-model="page._templateUrl">
+			<span>templateURL</span>
+		</label>
+		<label for="description" class="grid-full">
+			<textarea id="description" ng-model="page.description" rows="10"></textarea>
+			<span>Description</span>
+		</label>		
+		<label for="type" class="grid-full">
+			<select ng-model="page.type" id="type" required>
+				<option value=""> --- Select a type --- </option>
+				<option value="html">HTML</option>
+				<option value="markdown">MarkDown</option>
+			</select>
+			<span>Type</span>
+		</label>
+	</div>
+	<div class="flush-13" class="grid-full">
+		<label for="content" class="grid-full">
+			<textarea id="content" ng-model="page.content" rows="20"></textarea>
+			<span>Content</span>
+		</label>
+	</div>
+
+	<div class="buttons">
+		<a href="/pages" class="btn">Cancel</a>
+		<button>Save</button>
+	</div>
+</form>

@@ -1,0 +1,35 @@
+<<>ngHead>>
+
+<div users="'54b615bfea23e33069a331bc'">
+	<header class="header" ng-controller="HeaderCtrl">
+		<a href="/" class="header_logo"></a>
+		<nav class="header_nav">
+			<a href="/">Home</a>
+			<a href="/events">Events</a>
+			<a href="/media">Media</a>
+			<!-- <a href="/pages">Pages</a> -->
+			<!-- <a href="/products">Products</a> -->
+			<!-- <a href="/profile">Profile</a> -->
+			<a href="/pages">Pages</a>
+			<a href="/venues">Venues</a> 
+			<a href="/settings">Settings</a>
+		</nav>
+
+		
+		<div class="header_settings flush-4 fr">
+			<a href="/account">My Account</a>
+		</div>
+		<label for="sites" ng-show="!!user.sites.length || user.roles[0] === 'admin'" class="grid-4 fr">
+			<select id="sites" ng-options="site.id as site.host for site in user.sites" ng-model="currentSite"  ng-change="changeSite()" ng-show="!!user.sites.length">
+				<option value="">--- Select a site ---</option>
+			</select>
+			<select id="sites" ng-options="site.id as site.host for site in sites | filter:{host: '!!'}" ng-change="changeSite()" ng-model="currentSite" ng-show="user.roles[0] == 'admin'" sites>
+				<option value="">--- Select a site ---</option>
+			</select>
+		</label>
+	</header>
+
+	<ng-view class="fullBar"></ng-view>
+</div>
+
+<<>foot>>

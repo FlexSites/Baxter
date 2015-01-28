@@ -1,0 +1,11 @@
+<h1>Clients</h1>
+
+<form method="post" action="http://localapi.flexhub.io/clients">
+	<input type="text" name="name">
+	<input type="text" name="email">
+
+	<label ng-controller="SiteController">
+		<input type="text" placeholder="Sites" typeahead="host for site in sites | filter:$viewValue | limitTo:8">
+	</label>	
+	<button>Submit</button>
+</form>

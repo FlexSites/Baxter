@@ -1,0 +1,49 @@
+
+
+<h1>Pages</h1>
+<div class="m">
+	<a href="/page/new" class="btn">New Page</a>
+</div>
+<style>
+	.tabular {
+		/*background-color: rgba(255,255,255,0.5);*/
+	}
+	.tabular thead {
+		font-weight: bold;
+		font-size: 1.2em;
+	}
+	.tabular tr:nth-child(even) { 
+		background-color: rgba(200,200,200,0.5);
+	}
+	.tabular td {
+		text-indent: 10px;
+	}
+	.tabular td > * {
+		text-indent: initial;
+	}
+	.tabular .btn {
+		margin: 0;
+	}
+</style>
+<table class="grid-full tabular">
+	<tbody pages>
+		<tr ng-repeat="page in pages">
+			<td>
+				{{page.title}}
+			</td>
+			<td>
+				{{page.url}}
+			</td>
+			<td>
+				{{page.templateUrl}}
+			</td>
+			<td>
+				{{page.type}}
+			</td>
+			<td>
+				<a ng-href="/page/{{page.id}}" class="btn mini">Edit</a>
+				<a ng-click="delete(page)" class="btn mini">Delete</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

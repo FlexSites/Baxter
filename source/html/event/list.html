@@ -24,7 +24,7 @@
 			margin: 0;
 		}
 	</style>
-	<table class="grid-full tabular" style="table-layout: fixed;">
+	<table class="grid-full tabular" style="table-layout: fixed;" ng-show="!!events.length" events>
 		<thead>
 			<tr>
 				<td>Name</td>
@@ -34,7 +34,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="event in items">
+			<tr ng-repeat="event in events">
 				<td>{{event.venue.name}}</td>
 				<td>{{event.venue.address.city}}, {{event.venue.address.state}}</td>
 				<td>{{event.start}}-{{event.end}}</td>
