@@ -27,7 +27,7 @@
 </style>
 <table class="grid-full tabular">
 	<tbody pages>
-		<tr ng-repeat="page in pages">
+		<tr ng-repeat="page in pages | orderBy:'url'">
 			<td>
 				{{page.title}}
 			</td>
