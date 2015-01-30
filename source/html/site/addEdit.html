@@ -1,0 +1,92 @@
+<form sites="'current'" ng-submit="save()">
+    <h1>Settings</h1>
+
+    <label for="title" class="grid-full">
+        <input type="text" id="title" ng-model="site.title" placeholder="Title">
+        <span>Default Title</span>
+    </label>
+    <label for="description" class="grid-full">
+        <textarea id="description" ng-model="site.description" placeholder="Description"></textarea>
+        <span>Default Description</span>
+    </label>  
+    <label for="email">
+        <input type="text" ng-model="site.contact.email" placeholder="you@example.com">
+        <span>Contact Email</span>
+    </label>
+    <label for="host">
+        <input type="text" id="host" ng-model="site.host" placeholder="Host">
+        <span>Host</span>
+    </label>
+
+    <h3 ng-show="isAdmin">Admin Only</h3>
+    <label for="abbr" ng-show="isAdmin">
+        <input type="text" id="abbr" ng-model="site.abbr" placholder="Abbreviation" readonly>
+        <span>Code</span>
+    </label>
+    <label for="analytics" ng-show="isAdmin">
+        <input type="text" ng-model="site.analytics" placeholder="UA-XXXXXXXX-X">
+        <span>Analytics</span>
+    </label>
+    <label for="type" ng-show="isAdmin">
+        <input type="text" id="type" ng-model="site.type" placeholder="Site Type" readonly>
+        <span>Site Type</span>
+    </label>
+    <label for="subType" ng-show="isAdmin">
+        <input type="text" id="subType" ng-model="site.subType" readonly>
+        <span>SubType</span>
+    </label>
+    <label for="rootId" ng-show="isAdmin">
+        <input type="text" id="rootId" ng-model="site.rootId" readonly>
+        <span>Root ID</span>
+    </label>
+
+    <div class="flush-half" ng-show="isAdmin">
+        <h3>Stylesheets</h3>
+        <label for="styles{{$index}}" ng-repeat="style in site.styles">
+            <input type="text" ng-model="style.src" placeholder="Stylesheet">
+            <span>Stylesheet</span>
+        </label>
+        <label for="new-style">
+            <input type="text" id="newStyle" ng-model="style" placeholder="Stylesheet" add-item="site.styles">
+            <span>New Stylesheet</span>
+        </label>
+    </div>
+    
+    <div class="flush-half" ng-show="isAdmin">
+        <h3>Scripts</h3>
+        <label for="scripts{{$index}}" ng-repeat="script in site.scripts">
+            <input type="text" ng-model="script.src" placeholder="Script">
+            <span></span>
+        </label>
+        <label for="new-script">
+            <input type="text" id="newStyle" ng-model="newScript" placeholder="Script" add-item="site.scripts">
+            <span>New Script</span>
+        </label>
+    </div>
+
+    <h3 ng-show="isAdmin">Aliases</h3>
+    <label for="alias{{$index}}" ng-repeat="alias in site.aliases" ng-show="isAdmin">
+        <input type="text" ng-model="alias">
+        <span>Alias</span>
+    </label>
+
+    <!-- Redirects -->
+
+    <div class="grid-half" ng-show="isAdmin">
+        <h3>Redirects</h3>
+        <label for="src">
+            <input type="text" ng-model="site.src" class="grid-full">
+            <span></span>
+        </label>
+        <label for="dest">
+            <input type="text" ng-model="site.dest" class="grid-full">
+            <span></span>
+        </label>
+        <label for="type">
+            <input type="text" ng-model="site.type" class="grid-full">
+            <span></span>
+        </label>
+    </div>
+
+    <a href="/" class="btn gray">Cancel</a><button>Submit</button>
+</form>

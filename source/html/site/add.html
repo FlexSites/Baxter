@@ -1,4 +1,4 @@
-<form sites="'current'" ng-submit="save()">
+<form sites ng-submit="save()">
     <h1>Settings</h1>
 
     <label for="title" class="grid-full">
@@ -8,7 +8,7 @@
     <label for="description" class="grid-full">
         <textarea id="description" ng-model="site.description" placeholder="Description"></textarea>
         <span>Default Description</span>
-    </label>
+    </label>  
     <label for="email">
         <input type="text" ng-model="site.contact.email" placeholder="you@example.com">
         <span>Contact Email</span>
@@ -43,7 +43,7 @@
     <div class="flush-half" ng-show="isAdmin">
         <h3>Stylesheets</h3>
         <label for="styles{{$index}}" ng-repeat="style in site.styles">
-            <input type="text" ng-model="style" placeholder="Stylesheet">
+            <input type="text" ng-model="style.src" placeholder="Stylesheet">
             <span>Stylesheet</span>
         </label>
         <label for="new-style">
@@ -51,10 +51,11 @@
             <span>New Stylesheet</span>
         </label>
     </div>
+    
     <div class="flush-half" ng-show="isAdmin">
         <h3>Scripts</h3>
         <label for="scripts{{$index}}" ng-repeat="script in site.scripts">
-            <input type="text" ng-model="script" placeholder="Script">
+            <input type="text" ng-model="script.src" placeholder="Script">
             <span></span>
         </label>
         <label for="new-script">
@@ -87,25 +88,5 @@
         </label>
     </div>
 
-
-    <h3>Routes</h3>
-    <div class="flush-full" ng-repeat="route in site.routes">
-        <label for="title" class="grid-5">
-            <input type="text" ng-model="route.title">
-            <span>Title</span>
-        </label>
-        <label for="url" class="grid-5">
-            <input type="text" ng-model="route.url">
-            <span>Route</span>
-        </label>
-        <label for="templateUrl" class="grid-5">
-            <input type="text" ng-model="route.templateUrl">
-            <span>Template URL</span>
-        </label>
-        <label for="bgClass" class="grid-5">
-            <input type="text" ng-model="route.bgClass">
-            <span>HTML Class</span>
-        </label>
-    </div>
     <a href="/" class="btn gray">Cancel</a><button>Submit</button>
 </form>

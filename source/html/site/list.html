@@ -1,0 +1,49 @@
+
+
+<h1>Sites</h1>
+<div class="m">
+    <a href="/site/new" class="btn">New Site</a>
+</div>
+<style>
+    .tabular {
+        /*background-color: rgba(255,255,255,0.5);*/
+    }
+    .tabular thead {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    .tabular tr:nth-child(even) { 
+        background-color: rgba(200,200,200,0.5);
+    }
+    .tabular td {
+        text-indent: 10px;
+    }
+    .tabular td > * {
+        text-indent: initial;
+    }
+    .tabular .btn {
+        margin: 0;
+    }
+</style>
+<table class="grid-full tabular">
+    <tbody sites>
+        <tr ng-repeat="site in sites | orderBy:'host'">
+            <td>
+                {{site.title}}
+            </td>
+            <td>
+                {{site.host}}
+            </td>
+            <td>
+                {{site.contact.email}}
+            </td>
+            <td>
+                {{site.type}}
+            </td>
+            <td>
+                <a ng-href="/site/{{site.id}}" class="btn mini">Edit</a>
+                <a ng-click="delete(site)" class="btn mini">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
