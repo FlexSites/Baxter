@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         abbr: __dirname.split('/').pop(),
-        sdk: {
+        render: {
             options: {
                 modules: [
 	               	'AdminApp',
