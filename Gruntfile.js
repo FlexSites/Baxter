@@ -5,22 +5,18 @@ module.exports = function(grunt) {
         abbr: __dirname.split('/').pop(),
         render: {
             options: {
-                modules: [
-	               	'AdminApp',
-
-	               	// Module inclusion
-	               	'AppModule',
-	               	'InterceptorModule',
-	               	'EntertainerModule',
-	               	'MessageModule',
-	               	'SubscriberModule',
-	               	'SiteModule',
-	               	'UserModule',
-	               	'EventModule',
-	               	'VenueModule',
-	               	'MediaModule',
-	               	'PageModule'
-                ]
+            	resources: [
+                    'site',
+            		'entertainer',
+            		'subscriber',
+            		'user',
+            		'event',
+            		'venue',
+            		'medium',
+            		'section',
+            		'page',
+            		'message'
+            	]
             }
         }   
     });
