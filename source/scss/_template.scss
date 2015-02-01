@@ -10,7 +10,25 @@ body {
         padding-top: 64px;
     }
 }
-
+.tabular {
+    /*background-color: rgba(255,255,255,0.5);*/
+}
+.tabular thead {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.tabular tr:nth-child(even) {
+    background-color: rgba(200,200,200,0.5);
+}
+.tabular td {
+    text-indent: 10px;
+}
+.tabular td > * {
+    text-indent: initial;
+}
+.tabular .btn {
+    margin: 0;
+}
 
 %fullWidthSection {
     float: left;
