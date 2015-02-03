@@ -11,7 +11,7 @@
     </label>  
     <label for="email">
         <input type="text" ng-model="site.contact.email" placeholder="you@example.com">
-        <span>Contact Email</span>
+        <span>Contact Email</span> 
     </label>
     <label for="host">
         <input type="text" id="host" ng-model="site.host" placeholder="Host">
@@ -20,23 +20,31 @@
 
     <h3 ng-show="isAdmin">Admin Only</h3>
     <label for="abbr" ng-show="isAdmin">
-        <input type="text" id="abbr" ng-model="site.abbr" placholder="Abbreviation" readonly>
+        <input type="text" id="abbr" ng-model="site.abbr" placholder="Abbreviation" maxlength="5">
         <span>Code</span>
     </label>
+    <label for="repo" ng-show="isAdmin">
+        <input type="text" id="repo" ng-model="site.repo" placholder="git@bitbucket.org:omniorders/<repository-name>.git">
+        <span>Repository URL (SSH-only)</span>
+    </label>
     <label for="analytics" ng-show="isAdmin">
-        <input type="text" ng-model="site.analytics" placeholder="UA-XXXXXXXX-X">
+        <input type="text" ng-model="site.analytics" placeholder="UA-XXXXXXXX-X" ng-readonly="!!site.abbr">
         <span>Analytics</span>
     </label>
     <label for="type" ng-show="isAdmin">
-        <input type="text" id="type" ng-model="site.type" placeholder="Site Type" readonly>
+        <select id="type" ng-model="site.type" placeholder="Site Type">
+            <option value="entertainer">Entertainer</option>
+            <option value="venue">Venue</option>
+            <option value="admin">Admin</option>
+        </select>
         <span>Site Type</span>
     </label>
     <label for="subType" ng-show="isAdmin">
-        <input type="text" id="subType" ng-model="site.subType" readonly>
+        <input type="text" id="subType" ng-model="site.subType" ng-readonly="!!site.abbr">
         <span>SubType</span>
     </label>
     <label for="rootId" ng-show="isAdmin">
-        <input type="text" id="rootId" ng-model="site.rootId" readonly>
+        <input type="text" id="rootId" ng-model="site.rootId" ng-readonly="!!site.rootId">
         <span>Root ID</span>
     </label>
 
