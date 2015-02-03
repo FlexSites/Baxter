@@ -1,0 +1,39 @@
+
+<h1>{{entertainer.id?'Edit':'New'}} Entertainer</h1>
+<form name="entertainer-form" ng-submit="save()" novalidate entertainers>
+	<pre>{{entertainer | json}}</pre>
+
+	<label for="name" class="grid-full">
+		<input type="text" id="name" ng-model="entertainer.name" required="true">
+		<span>Name</span>
+	</label>
+	<label for="name" class="grid-full">
+		<input type="text" id="name" ng-model="entertainer.credits" required="true">
+		<span>Credits</span>
+	</label>
+	<label for="name" class="grid-full">
+		<textarea id="name" ng-model="entertainer.description" required="true"></textarea>
+		<span>Bio</span>
+	</label>
+	<label for="name" class="grid-full">
+		<input type="text" id="name" ng-model="entertainer.facebook" required="true">
+		<span>Facebook</span>
+	</label>
+	<label for="name" class="grid-full">
+		<input type="text" id="name" ng-model="entertainer.link" required="true">
+		<span>Link</span>
+	</label>
+	<label for="name" class="grid-full">
+		<input type="text" id="name" ng-model="entertainer.video" required="true">
+		<span>Video</span>
+	</label>
+	<label for="name" class="grid-full">
+		<input type="text" id="name" ng-model="entertainer.media" required="true">
+		<span>Media</span>
+	</label>
+
+	<div class="buttons">
+		<a href="/entertainers" class="btn">Cancel</a>
+		<button>Save</button>
+	</div>
+</form>

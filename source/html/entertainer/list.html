@@ -1,0 +1,28 @@
+
+
+<h1>Entertainers</h1>
+<div class="m">
+	<a href="/entertainer/new" class="btn">New Entertainer</a>
+</div>
+<table class="grid-full tabular">
+	<tbody entertainers>
+		<tr ng-repeat="entertainer in entertainers | orderBy:'name'">
+			<td>
+				{{entertainer.name}}
+			</td>
+			<td>
+				{{entertainer.url}}
+			</td>
+			<td>
+				{{entertainer.templateUrl}}
+			</td>
+			<td>
+				{{entertainer.type}}
+			</td>
+			<td>
+				<a ng-href="/entertainer/{{entertainer.id}}" class="btn mini">Edit</a>
+				<a ng-click="delete(entertainer)" class="btn mini">Delete</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
