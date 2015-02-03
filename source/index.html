@@ -3,16 +3,24 @@
 <div users="'54b615bfea23e33069a331bc'">
 	<header class="header" ng-controller="HeaderCtrl">
 		<a href="/" class="header_logo"></a>
-		<nav class="header_nav">
-			<a href="/">Home</a>
-			<a href="/events">Events</a>
-			<a href="/media">Media</a>
+		<ul class="header_nav">
+			<li><a href="/events">Events</a>
+				<ul>
+					<li><a href="/entertainers">Entertainers</a></li>
+				</ul>
+			</li>
+			<li><a href="/media">Media</a></li>
 			<!-- <a href="/products">Products</a> -->
 			<!-- <a href="/profile">Profile</a> -->
-			<a href="/pages">Pages</a>
-			<a href="/venues">Venues</a> 
-			<a href="/sites">Sites</a>
-		</nav>
+			<li><a href="/pages">Pages</a></li>
+			<li>
+				<a href="/venues">Venues</a>
+				<ul>
+					<li><a href="/sections">Sections</a></li>
+				</ul>
+			</li>
+			<li><a href="/sites">Sites</a></li>
+		</ul>
 
 		
 		<div class="header_settings flush-4 fr">
