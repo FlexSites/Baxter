@@ -1,42 +1,51 @@
 <<>ngHead>>
 
-<div users="'54b615bfea23e33069a331bc'">
-	<header class="header" ng-controller="HeaderCtrl">
-		<a href="/" class="header_logo"></a>
-		<ul class="header_nav">
-			<li><a href="/events">Events</a>
-				<ul>
-					<li><a href="/entertainers">Entertainers</a></li>
-				</ul>
-			</li>
-			<li><a href="/media">Media</a></li>
-			<!-- <a href="/products">Products</a> -->
-			<!-- <a href="/profile">Profile</a> -->
-			<li><a href="/pages">Pages</a></li>
-			<li>
-				<a href="/venues">Venues</a>
-				<ul>
-					<li><a href="/sections">Sections</a></li>
-				</ul>
-			</li>
-			<li><a href="/sites">Sites</a></li>
-		</ul>
+<header class="header" ng-controller="HeaderCtrl">
+	<a href="/" class="header_logo"></a>
+	
+	<div class="header_settings flush-4 fr">
+		<a href="/account">My Account</a>
+	</div>
+	<label for="sites" ng-show="isAdmin" class="grid-4 fr no-pt">
+		<select id="sites" ng-options="site.id as site.host for site in user.sites" ng-model="currentSite"  ng-change="changeSite()" ng-show="!!user.sites.length">
+			<option value="">--- Select a site ---</option>
+		</select>
+		<select id="sites" ng-options="site.id as site.host for site in sites" ng-change="changeSite()" ng-model="currentSite" ng-show="isAdmin" sites>
+			<option value="">--- Select a site ---</option>
+		</select>
+	</label>
 
-		
-		<div class="header_settings flush-4 fr">
-			<a href="/account">My Account</a>
-		</div>
-		<label for="sites" ng-show="!!user.sites.length || user.roles[0] === 'admin'" class="grid-4 fr">
-			<select id="sites" ng-options="site.id as site.host for site in user.sites" ng-model="currentSite"  ng-change="changeSite()" ng-show="!!user.sites.length">
-				<option value="">--- Select a site ---</option>
-			</select>
-			<select id="sites" ng-options="site.id as site.host for site in sites" ng-change="changeSite()" ng-model="currentSite" ng-show="user.roles[0] == 'admin'" sites>
-				<option value="">--- Select a site ---</option>
-			</select>
-		</label>
-	</header>
+	<label for="venues" ng-show="!!venues.length" class="grid-4 fr no-pt" venues>
+		<select id="venues" ng-options="venue.id as venue.name for venue in venues" ng-change="changeVenue()" ng-model="currentVenue" ng-show="isAdmin">
+			<option value="">--- Select a venue ---</option>
+		</select>
+	</label>
+</header>
 
-	<ng-view class="fullBar"></ng-view>
-</div>
+<nav class="sidebar flush-4">
+	<ul class="sidebar_nav">
+		<li><a href="/events">Events</a>
+			<ul>
+				<li><a href="/entertainers">Entertainers</a></li>
+			</ul>
+		</li>
+		<li><a href="/media">Media</a></li>
+		<!-- <a href="/products">Products</a> -->
+		<!-- <a href="/profile">Profile</a> -->
+		<li><a href="/pages">Pages</a></li>
+		<li>
+			<a href="/venues">Venues</a>
+			<ul>
+				<li><a href="/sections">Sections</a></li>
+			</ul>
+		</li>
+		<li><a href="/sites">Sites</a>
+			<ul>
+				<li><a href="/subscribers">Subscribers</a></li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+<ng-view class="body-content"></ng-view>
 
 <<>foot>>
