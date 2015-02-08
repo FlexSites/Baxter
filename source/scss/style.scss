@@ -22,6 +22,7 @@ $link-color: #C55000;
 @import "/www/sites/global/source/scss/core/variables/color";
 @import "/www/sites/global/source/scss/core/helper";
 @import "/www/sites/global/source/scss/core/grid";
+@import "/www/sites/global/source/scss/core/typography";
 
 @mixin print(){
 	@media print {
