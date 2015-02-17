@@ -59,18 +59,22 @@
     <div id="showtimes" class="flush-half">
 
     <h3 class="c">Showtimes</h3>
-        <div class="showtime" ng-repeat="showtime in event.showtimes">
+        <div class="showtime" ng-repeat="showtime in showtimes" showtimes="{event: event._id}">
+    ---{{showtimes | json}}----
             <label for="date{{$index}}" ng-class="{'no-pt': !!$index}">
                 <input type="text" id="date{{$index}}" class="stDate" ng-model="showtime.date" placeholder="Date">
                 <span ng-show="!$index">Date</span>
             </label>
             <label for="time{{$index}}" ng-class="{'no-pt': !!$index}">
-                <input type="text" id="time{{$index}}" ng-model="showtime.time" placeholder="Time" required>
+                <input type="text" id="time{{$index}}" ng-model="showtime.time" placeholder="Time" ng-blur="save(showtime, true)" required>
                 <span ng-show="!$index">Time</span>
+            </label>
+            <label for="removeShowtime{{$index}}">
+                <button type="button">Remove</button>
             </label>
         </div>
 
-        <button type="button" class="m" ng-click="event.showtimes.push({})">Add Show</button>
+        <button type="button" class="m" ng-click="showtimes.push({event: event._id})">Add Show</button>
     </div>
     <div class="flush-half">
 

@@ -11,6 +11,7 @@ module.exports = function(grunt) {
             		'subscriber',
             		'user',
             		'event',
+                    'showtime',
             		'venue',
             		'medium',
             		'section',
