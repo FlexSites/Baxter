@@ -12,7 +12,7 @@
 			<span>URL</span>
 		</label>
 		<label for="url" class="grid-full" ng-show="isAdmin">
-			<input type="text" id="url" ng-model="page._templateUrl">
+			<input type="text" id="url" ng-model="page.templateUrl">
 			<span>templateURL</span>
 		</label>
 		<label for="description" class="grid-full">
@@ -26,6 +26,10 @@
 				<option value="markdown">MarkDown</option>
 			</select>
 			<span>Type</span>
+		</label>
+		<label for="isSearchable" class="grid-full">
+			<input type="checkbox" ng-model="page.isSearchable">
+			<span>Searchable</span>
 		</label>
 	</div>
 	<div class="flush-13" class="grid-full">

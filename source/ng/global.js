@@ -3,6 +3,38 @@ angular.module("app")
     .config(['$httpProvider', function($httpProvider){
         // $httpProvider.interceptors.push('AuthInterceptor');
     }])
+    .run(['$location', '$rootScope', '$http', '$window',
+        function($location, $rootScope, $http, $window) {
+            // $rootScope.bgClass = 'bg-home';
+            $rootScope.$on('$routeChangeStart', function(event, current, previous) {
+                var token = JSON.parse($window.localStorage.token||'{}');
+                /*
+                {
+                  "id": "oAeN12yaEqa7Dteyxw40pcmFqjwyvexANI3hzPRSRUoTJf5LrDq3892udhdNT6RV",
+                  "ttl": 1209600,
+                  "created": "2015-02-16T23:53:38.847Z",
+                  "userId": "54e1804b5d10694029c278d7"
+                }
+                */
+                if(!token.id || !token.ttl){
+                    if(current.originalPath !== '/login'){
+                        $window.location.href = '/login';
+                    }
+                }
+            });
+        }
+    ])
+    .controller('LoginCtrl', ['$scope', '$http', '$window', '$location', function($scope, $http, $window, $location){
+        $scope.credentials = {};
+        $scope.login = function(){
+            $http.post('http://localapi.flexhub.io/Users/login', $scope.credentials).then(function(res){
+                if(res.data){
+                    $window.localStorage.token = JSON.stringify(res.data);
+                    $location.path('/');
+                }
+            });
+        }
+    }])
     .controller('HeaderCtrl', ['$scope', '$window', '$location', '$route', '$rootScope', function($scope, $window, $location, $route, $rootScope){
         if(!$window.sessionStorage.bearer){
             // $location.path('/login');
@@ -51,8 +83,9 @@ angular.module("app")
 
         var site = $window.localStorage.currentSite;
         var val = $routeParams.event;
+        console.log('eventroute', val);
         if(val){
-            $scope.event = Event.get(val, function(){
+            $scope.event = Event.get({id: val, site: site}, function(){
 
             });
         }
@@ -74,7 +107,15 @@ angular.module("app")
             if(!$scope.event instanceof Event){
                 $scope.event = new Event($scope.event);
             }
-            $scope.event.$save(function(){
+
+            var event = $scope.event;
+            _.each(event.showtimes, function(showtime){
+                showtime.datetime = showtime.date + ' ' + showtime.time;
+                delete showtime.date;
+                delete showtime.time;
+            });
+            console.log(event.showtimes);
+            event.$save(function(){
                 console.log('Event saved');
             });
           }
