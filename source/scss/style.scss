@@ -19,10 +19,10 @@ $color-secondary: #104BA9;
 
 $link-color: #C55000;
 
-@import "/www/sites/global/source/scss/core/variables/color";
-@import "/www/sites/global/source/scss/core/helper";
-@import "/www/sites/global/source/scss/core/grid";
-@import "/www/sites/global/source/scss/core/typography";
+@import "/www/global/scss/core/variables/color";
+@import "/www/global/scss/core/helper";
+@import "/www/global/scss/core/grid";
+@import "/www/global/scss/core/typography";
 
 @mixin print(){
 	@media print {
@@ -34,15 +34,15 @@ $link-color: #C55000;
 // @import "partials/font/comedicon"; 
 
 // Base styles 
-@import "/www/sites/global/source/scss/core/base"; 
+@import "/www/global/scss/core/base"; 
  
 
 // @import "typography"; 
 // @import "partials/backgroundColor"; 
 
 //Element partials. Order doesn't matter.
- @import "/www/sites/global/source/scss/components/forms/form";  
- @import "/www/sites/global/source/scss/components/buttons/button";
+ @import "/www/global/scss/components/forms/form";  
+ @import "/www/global/scss/components/buttons/button";
 
 //Specific template
 @import "template";
