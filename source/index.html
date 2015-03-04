@@ -1,6 +1,6 @@
 <<>ngHead>>
 
-<header class="header" ng-controller="HeaderCtrl">
+<header class="header">
 	<a href="/" class="header_logo"></a>
 	
 	<div class="header_settings flush-4 fr">
@@ -24,7 +24,7 @@
 
 <nav class="sidebar flush-4">
 	<ul class="sidebar_nav">
-		<li><a href="/events">Events</a>
+		<li><a ui-sref="events">Events</a>
 			<ul>
 				<li><a href="/entertainers">Entertainers</a></li>
 			</ul>
@@ -46,6 +46,6 @@
 		</li>
 	</ul>
 </nav>
-<ng-view class="body-content"></ng-view>
+<div ui-view></div>
 
 <<>foot>>
