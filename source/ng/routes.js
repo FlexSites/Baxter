@@ -10,7 +10,7 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
       url: '/events',
       templateUrl: '/html/event/list.html'
     })
-    .state('entertainer', {
+    .state('entertainers', {
       url: '/entertainer',
       templateUrl: '/html/entertainer/list.html'
     })
@@ -18,20 +18,24 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($
       url: '/media',
       templateUrl: '/html/media/list.html'
     })
+    .state('venues', {
+      url: '/venue',
+      templateUrl: '/html/venue/list.html'
+    })
     .state('pages', {
-      url: '/pages',
-      templateUrl: '/html/pages/list.html'
+      url: '/page',
+      templateUrl: '/html/page/list.html'
     })
     .state('sections', {
-      url: '/sections',
-      templateUrl: '/html/sections/list.html'
+      url: '/section',
+      templateUrl: '/html/section/list.html'
     })
     .state('sites', {
-      url: '/sites',
-      templateUrl: '/html/sites/list.html'
+      url: '/site',
+      templateUrl: '/html/site/list.html'
     })
     .state('subscribers', {
-      url: '/subscribers',
-      templateUrl: '/html/subscribers/list.html'
+      url: '/subscriber',
+      templateUrl: '/html/subscriber/list.html'
     });
 }]);
