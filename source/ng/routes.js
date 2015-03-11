@@ -1,6 +1,6 @@
-angular.module('app').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+angular.module('app').config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('home');
-
+  $locationProvider.html5Mode(true)
   $stateProvider
     .state('home', {
       url: '/',
