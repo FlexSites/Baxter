@@ -1,0 +1,15 @@
+<h1>Login</h1>
+
+<form ng-submit="login()" ng-controller="LoginCtrl" class="grid-half">
+	<label for="username" class="grid-full">
+		<input type="email" ng-model="credentials.email">
+		<span>Username</span>
+	</label>
+	<label for="password" class="grid-full">
+		<input type="password" ng-model="credentials.password">
+		<span>Password</span>
+	</label>
+	<label>
+		<button>Login</button>
+	</label>
+</form>

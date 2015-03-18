@@ -1,0 +1,26 @@
+
+<form name="venue-form" ng-submit="save()" novalidate venues>
+	<div>
+		<h1>Venues</h1>
+		<div class="m">
+			<a href="/venue/new" class="btn">New Venue</a>
+		</div>
+		<table class="grid-full tabular">
+			<tbody media>
+				<tr ng-repeat="venue in venues">
+					<td>
+						{{venue.name}}
+					</td>
+					<td>
+						{{venue.address.street}}<br>
+						{{venue.address.city}} {{venue.address.state}}, {{venue.address.zip}}
+					</td>
+					<td>
+						<a ng-href="/venue/{{venue.id}}" class="btn mini">Edit</a>
+						<a ng-click="delete(venue)" class="btn mini">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</form>

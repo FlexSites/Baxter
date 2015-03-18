@@ -1,0 +1,28 @@
+
+
+<h1>Pages</h1>
+<div class="m">
+	<a href="/page/new" class="btn">New Page</a>
+</div>
+<table class="grid-full tabular">
+	<tbody pages>
+		<tr ng-repeat="page in list | orderBy:'url'">
+			<td>
+				{{page.title}}
+			</td>
+			<td>
+				{{page.url}}
+			</td>
+			<td>
+				{{page.templateUrl}}
+			</td>
+			<td>
+				{{page.type}}
+			</td>
+			<td>
+				<a ng-href="/page/{{page.id}}" class="btn mini">Edit</a>
+				<a ng-click="delete(page)" class="btn mini">Delete</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

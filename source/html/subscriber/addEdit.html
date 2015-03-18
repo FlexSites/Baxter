@@ -1,0 +1,23 @@
+<form subscribers ng-submit="save()">
+    <h1>Add/Edit Subscriber</h1>
+
+    <label for="name">
+        <input type="text" ng-model="subscriber.name">
+        <span>Name</span>
+    </label>
+
+    <label for="email">
+        <input type="email" id="email" ng-model="subscriber.email">
+        <span>Email Address</span>
+    </label>
+    <label for="zip">
+        <input type="text" id="zip" ng-model="subscriber.zip">
+        <span>Zip</span>
+    </label>
+    <label for="status">
+        <input type="text" id="status" ng-model="subscriber.status">
+        <span>Status</span>
+    </label>
+
+    <a href="/" class="btn gray">Cancel</a><button>Submit</button>
+</form>
