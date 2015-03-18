@@ -5,8 +5,8 @@
     <a href="/site/new" class="btn">New Site</a>
 </div>
 <table class="grid-full tabular">
-    <tbody sites>
-        <tr ng-repeat="site in sites | orderBy:'host'">
+    <tbody>
+        <tr ng-repeat="site in list">
             <td>
                 {{site.title}}
             </td>

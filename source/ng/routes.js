@@ -1,10 +1,16 @@
-angular.module('app').config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+angular.module('app').config([
+  '$stateProvider', 
+  '$urlRouterProvider', 
+  '$locationProvider', 
+
+  function($stateProvider, $urlRouterProvider, $locationProvider) {
+
   $urlRouterProvider.otherwise('home');
   $locationProvider.html5Mode(true)
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: '/'
+      templateUrl: '/html/home.html'
     })
     .state('events', {
       url: '/events',
@@ -24,7 +30,13 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', '$location
     })
     .state('pages', {
       url: '/page',
-      templateUrl: '/html/page/list.html'
+      templateUrl: '/html/page/list.html',
+      controller: 'ListCtrl',
+      resolve: {
+        list: ['Page', function(Page){
+          return Page.find({}).$promise;
+        }]
+      }
     })
     .state('sections', {
       url: '/section',
@@ -32,7 +44,13 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider', '$location
     })
     .state('sites', {
       url: '/site',
-      templateUrl: '/html/site/list.html'
+      templateUrl: '/html/site/list.html',
+      controller: 'ListCtrl',
+      resolve: {
+        list: ['Site', function(Site){
+          return Site.find({}).$promise;
+        }]
+      }
     })
     .state('subscribers', {
       url: '/subscriber',

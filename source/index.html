@@ -1,16 +1,16 @@
 <<>ngHead>>
 
-<header class="header">
+<header class="header" ng-controller="HeadCtrl">
 	<a href="/" class="header_logo"></a>
 	
 	<div class="header_settings flush-4 fr">
 		<a href="/account">My Account</a>
 	</div>
 	<label for="sites" ng-show="isAdmin" class="grid-4 fr no-pt">
-		<select id="sites" ng-options="site.id as site.host for site in user.sites" ng-model="currentSite"  ng-change="changeSite()" ng-show="!!user.sites.length">
+		<select id="sites" ng-options="site.id as site.host for site in user.sites" ng-model="currentSite"  ng-change="setSite()" ng-show="!!user.sites.length">
 			<option value="">--- Select a site ---</option>
 		</select>
-		<select id="sites" ng-options="site.id as site.host for site in sites" ng-change="changeSite()" ng-model="currentSite" ng-show="isAdmin" sites>
+		<select id="sites" ng-options="site.id as site.host for site in sites" ng-change="setSite()" ng-model="currentSite" ng-show="isAdmin" sites>
 			<option value="">--- Select a site ---</option>
 		</select>
 	</label>
@@ -46,6 +46,6 @@
 		</li>
 	</ul>
 </nav>
-<div ui-view></div>
+<div ui-view class="body-content"></div>
 
 <<>foot>>
