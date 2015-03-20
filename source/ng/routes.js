@@ -34,12 +34,22 @@ angular.module('app').config([
       templateUrl: '/html/venue/list.html'
     })
     .state('pages', {
-      url: '/page',
+      url: '/pages',
       templateUrl: '/html/page/list.html',
       controller: 'ListCtrl',
       resolve: {
         list: ['Page', function(Page){
           return Page.find({}).$promise;
+        }]
+      }
+    })
+    .state('pageEdit', {
+      url: '/page/:pageID',
+      templateUrl: '/html/page/addEdit.html',
+      controller: 'PageCtrl',
+      resolve: {
+        page: ['$stateParams', 'Page', function($stateParams, Page){
+          return Page.get({id: $stateParams.pageID});
         }]
       }
     })

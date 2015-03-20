@@ -2,10 +2,10 @@
 
 <h1>Pages</h1>
 <div class="m">
-	<a href="/page/new" class="btn">New Page</a>
+	<a ui-sref="pageEdit" class="btn">New Page</a>
 </div>
 <table class="grid-full tabular">
-	<tbody pages>
+	<tbody>
 		<tr ng-repeat="page in list | orderBy:'url'">
 			<td>
 				{{page.title}}
@@ -20,8 +20,8 @@
 				{{page.type}}
 			</td>
 			<td>
-				<a ng-href="/page/{{page.id}}" class="btn mini">Edit</a>
-				<a ng-click="delete(page)" class="btn mini">Delete</a>
+				<a ui-sref="pageEdit({pageID: page.id})" class="btn mini">Edit</a>
+				<a ng-click="remove(page)" class="btn mini">Delete</a>
 			</td>
 		</tr>
 	</tbody>
