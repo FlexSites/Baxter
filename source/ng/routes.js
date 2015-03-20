@@ -5,12 +5,17 @@ angular.module('app').config([
 
   function($stateProvider, $urlRouterProvider, $locationProvider) {
 
-  $urlRouterProvider.otherwise('home');
+  $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true)
   $stateProvider
     .state('home', {
       url: '/',
       templateUrl: '/html/home.html'
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: '/html/login.html',
+      controller: 'LoginCtrl'
     })
     .state('events', {
       url: '/events',
