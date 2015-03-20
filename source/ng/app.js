@@ -17,4 +17,7 @@ angular.module('app', ['FlexSite', 'ui.router'])
         delete $window.sessionStorage.returnTo;
       }
     });
+    $rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, err) {
+      $state.go('error', {err: err}, {location: false});
+    });
   }]);

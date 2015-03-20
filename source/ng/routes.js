@@ -90,5 +90,12 @@ angular.module('app').config([
     .state('subscribers', {
       url: '/subscriber',
       templateUrl: '/html/subscriber/list.html'
+    })
+
+    // ERROR STATES
+    .state('error', {
+      url: '/error',
+      templateUrl: '/html/error/404.html'
     });
+
 }]);
