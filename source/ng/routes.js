@@ -5,6 +5,14 @@ angular.module('app').config([
 
   function($stateProvider, $urlRouterProvider, $locationProvider) {
 
+    function resolve($stateParams, Resource){
+      var id = $stateParams.id;
+      return id?Resource.get({id: id}).$promise:new Resource();
+    }
+    function resolveList(Resource){
+      return Resource.find({}).$promise;
+    }
+
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true)
   $stateProvider
@@ -30,8 +38,20 @@ angular.module('app').config([
       templateUrl: '/html/media/list.html'
     })
     .state('venues', {
-      url: '/venue',
-      templateUrl: '/html/venue/list.html'
+      url: '/venues',
+      templateUrl: '/html/venue/list.html',
+      controller: 'ListCtrl',
+      resolve: {
+        list: ['Venue', resolveList]
+      }
+    })
+    .state('venueEdit', {
+      url: '/venue/:id?',
+      templateUrl: '/html/venue/addEdit.html',
+      controller: 'VenueCtrl',
+      resolve: {
+        venue: ['$stateParams', 'Venue', resolve]
+      }
     })
     .state('pages', {
       url: '/pages',
