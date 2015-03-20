@@ -4,11 +4,13 @@
 	<img src="/img/google-sign-in.png">
 </a> -->
 
-<form login>
+<form ng-submit="login()">
+  {{me}}
 	<label for="username">
-		<input type="text" ng-model="login.name" placeholder="Username">
+		<input type="text" ng-model="user.email" placeholder="Username/Email">
 	</label>
 	<label for="password">
-		<input type="password" ng-model="login.password" placeholder="Password">
+		<input type="password" ng-model="user.password" placeholder="Password">
 	</label>
+  <button>Login</button>
 </form>
