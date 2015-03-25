@@ -18,6 +18,13 @@ angular.module('app', ['FlexSite', 'ui.router'])
       }
     });
     $rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, err) {
+      console.log(err);
       $state.go('error', {err: err}, {location: false});
+    });
+    $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams, fromState, fromParams, err) {
+      var title = toState.title;
+      $rootScope.header = title;
+      if(title) title += ' | FlexSites.io';
+      $rootScope.title = title;
     });
   }]);

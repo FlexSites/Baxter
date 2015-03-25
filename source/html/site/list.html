@@ -1,8 +1,5 @@
-
-
-<h1>Sites</h1>
 <div class="m">
-    <a href="/site/new" class="btn">New Site</a>
+    <a ui-sref="siteEdit" class="btn">New Site</a>
 </div>
 <table class="grid-full tabular">
     <tbody>
@@ -17,8 +14,8 @@
                 {{site.type}}
             </td>
             <td>
-                <a ng-href="/site/{{site.id}}" class="btn mini">Edit</a>
-                <a ng-click="delete(site)" class="btn mini">Delete</a>
+                <a ui-sref="siteEdit({id: site.id})" class="btn mini">Edit</a>
+                <a ng-click="remove(site)" class="btn mini">Delete</a>
             </td>
         </tr>
     </tbody>

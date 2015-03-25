@@ -1,6 +1,4 @@
-
-<h1>{{page.id?'Edit':'New'}} Page</h1>
-<form name="page-form" ng-submit="save(page)" novalidate pages>
+<form name="page-form" ng-submit="savePage(page)" novalidate pages>
 	<div class="flush-7">
 		<label for="name" class="grid-full">
 			<input type="text" id="name" ng-model="page.title" required="true">

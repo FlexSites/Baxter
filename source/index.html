@@ -3,9 +3,6 @@
 <header class="header" ng-controller="HeadCtrl">
 	<a href="/" class="header_logo"></a>
 	
-	<div class="header_settings flush-4 fr">
-		<a href="/account">My Account</a>
-	</div>
 	<label for="sites" ng-show="isAdmin" class="grid-4 fr no-pt">
 		<select id="sites" ng-options="site.id as site.host for site in user.sites" ng-model="currentSite"  ng-change="setSite()" ng-show="!!user.sites.length">
 			<option value="">--- Select a site ---</option>
@@ -20,6 +17,7 @@
 			<option value="">--- Select a venue ---</option>
 		</select>
 	</label>
+	<h2 class="grid-5 tr fr">{{header}}</h2>
 </header>
 
 <nav class="sidebar flush-4">
