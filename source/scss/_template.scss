@@ -151,6 +151,7 @@ body {
         > a {
             &:last-child {
                 @extend %header_link, %header_link:hover, .fr;
+                padding: 0 15px;
                 &:hover {
                     background-color: $dkMainColor;
                 }
