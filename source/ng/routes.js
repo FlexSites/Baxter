@@ -25,7 +25,7 @@ angular.module('app').config([
       return ['$scope', name, lower, function($scope, Resource, item){
         $scope[lower] = item || new Resource();
         $scope['save'+name] = function(item){
-          item[item.id?'$update':'$create'](function(){
+          item.$upsert(function(){
             console.log('saving',name,arguments);
           });
         };
@@ -34,7 +34,7 @@ angular.module('app').config([
 
 
   $urlRouterProvider.otherwise('/');
-  $locationProvider.html5Mode(true)
+  
   $stateProvider
     .state('home', {
       url: '/',
