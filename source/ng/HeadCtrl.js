@@ -5,18 +5,29 @@ angular.module('app')
     '$log', 
     '$window', 
     '$state',
+    '$rootScope',
     'Site', 
     'session', 
+    'User',
 
-    function($scope, $log, $window, $state, Site, session){
+    function($scope, $log, $window, $state, $rootScope, Site, session, User){
 
     Site.find({}, function(sites){
       $scope.sites = sites;
+      for(var i = 0; i < sites.length; i++) {
+        if(sites[i].id == session.site) $scope.currentSite = sites[i];
+      }
     });
     $scope.isAdmin = true;
-    $scope.currentSite = session.site = $window.localStorage.site;
+    $rootScope.user.$promise.then(function(user){
+      $scope.gravatar = encodeURIComponent(user.email);
+    });
+    $log.log($rootScope.user);
+    
+    $scope.currentSiteId = session.site = $window.localStorage.site;
+
     $scope.setSite = function(){
-      session.site = $window.localStorage.site = $scope.currentSite;
+      session.site = $window.localStorage.site = $scope.currentSiteId;
       $state.reload();
     };
 

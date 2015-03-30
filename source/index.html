@@ -1,23 +1,39 @@
 <<>ngHead>>
 
 <header class="header" ng-controller="HeadCtrl">
-	<a href="/" class="header_logo"></a>
-	
-	<label for="sites" ng-show="isAdmin" class="grid-4 fr no-pt">
-		<select id="sites" ng-options="site.id as site.host for site in user.sites" ng-model="currentSite"  ng-change="setSite()" ng-show="!!user.sites.length">
-			<option value="">--- Select a site ---</option>
-		</select>
-		<select id="sites" ng-options="site.id as site.host for site in sites" ng-change="setSite()" ng-model="currentSite" ng-show="isAdmin" sites>
-			<option value="">--- Select a site ---</option>
-		</select>
-	</label>
+	<div class="header-bar">
 
-	<label for="venues" ng-show="!!venues.length" class="grid-4 fr no-pt" venues>
-		<select id="venues" ng-options="venue.id as venue.name for venue in venues" ng-change="changeVenue()" ng-model="currentVenue" ng-show="isAdmin">
-			<option value="">--- Select a venue ---</option>
-		</select>
-	</label>
-	<h2 class="grid-5 tr fr">{{header}}</h2>
+		<a href="/" class="header_logo"></a>
+		<div class="site-select">
+			<label for="sites" ng-show="isAdmin" class="fr no-pt select-wrapper">
+				<select class="select" id="sites" ng-options="site.id as site.host for site in user.sites" ng-model="currentSiteId"  ng-change="setSite()" ng-show="!!user.sites.length">
+					<option value="">--- Select a site ---</option>
+				</select>
+				<select class="select" id="sites" ng-options="site.id as site.host for site in sites" ng-change="setSite()" ng-model="currentSiteId" ng-show="isAdmin" sites>
+					<option value="">--- Select a site ---</option>
+				</select>
+			</label>
+
+			<label for="venues" ng-show="!!venues.length" class="fr no-pt select-wrapper" venues>
+				<select id="venues" ng-options="venue.id as venue.name for venue in venues" ng-change="changeVenue()" ng-model="currentVenue" ng-show="isAdmin">
+					<option value="">--- Select a venue ---</option>
+				</select>
+			</label>
+		</div>
+		<div class="user">
+			<span><b>Site Owner:</b> {{user.email}}</span>
+			<img src="http://www.gravatar.com/avatar/{{gravatar}}"/>
+		</div>
+	</div>
+	<div class="title-bar">
+		<div class="header-words">
+			<span class="current-host" ng-hide="!currentSite">{{currentSite.host}}</span>
+			<span class="current-header">{{header}}</span>
+		</div>
+		<div class="header-actions no-pr">
+			<a class="button outline">Button Action <i>+</i></a>
+		</div>
+	</div>
 </header>
 
 <nav class="sidebar flush-4">

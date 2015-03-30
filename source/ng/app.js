@@ -17,6 +17,7 @@ angular.module('app', ['FlexSite', 'ui.router'])
         delete $window.sessionStorage.returnTo;
       }
     });
+    $rootScope.user = User.get({id: $window.localStorage.$FlexSite$currentUserId});
     $rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, err) {
       console.log(err);
       $state.go('error', {err: err}, {location: false});

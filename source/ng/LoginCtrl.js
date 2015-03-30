@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('LoginCtrl', ['$window', '$scope', '$state', 'User',function($window, $scope, $state, User){
+  .controller('LoginCtrl', ['$window', '$scope', '$state', '$rootScope', 'User' ,function($window, $scope, $state, $rootScope, User ){
     $scope.user = new User();
     $scope.login = function(){
       $scope.user.$login(function(user){
@@ -7,4 +7,5 @@ angular.module('app')
         delete $window.sessionStorage.returnTo;
       });
     };
+    $rootScope.user = user;
   }]);
