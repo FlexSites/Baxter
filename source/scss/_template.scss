@@ -6,8 +6,8 @@ html {
 }
 body {
     color: $color-black;  
-    overflow: hidden;
-    font-family: $baseFontFamily;
+    overflow: hidden;   
+    font-family: $baseFontFamily; 
 }
 .splash {
     display: none;
@@ -37,19 +37,17 @@ body {
     width: 100%;
     margin: 0 auto;
 }
+@mixin calc($property, $expression) { 
+  #{$property}: -webkit-calc(#{$expression}); 
+  #{$property}: calc(#{$expression}); 
+} 
 %gridLock {
     @extend %fullWidthSection;
-    padding: $space/2 -moz-calc(50% -  490px);
-    padding: $space/2 -o-calc(50% -  490px);
-    padding: $space/2 -webkit-calc(50% -  490px);
-    padding: $space/2 calc(50% - 490px);
+    @include calc("padding", "50% -  490px");
 }
 %largeLock {
     @extend %fullWidthSection;
-    padding: $space/2 -moz-calc(50% -  600px);
-    padding: $space/2 -o-calc(50% -  600px);
-    padding: $space/2 -webkit-calc(50% -  600px);
-    padding: $space/2 calc(50% - 600px);
+    @include calc("padding", "50% -  600px");
 }
 .fullBar {
     @extend %largeLock;
@@ -66,7 +64,7 @@ body {
 .body-content {
     width: 80%;
     overflow-y: scroll;
-    height: calc(100% - 64px);
+    height: calc(100% - 140px);
     margin-top: 0;
     padding-top: $space/2;
     background-color: #e8e8e8;
@@ -151,7 +149,9 @@ body {
     &_settings {
         > a {
             &:last-child {
-                @extend %header_link, %header_link:hover, .fr;
+                @extend %header_link;
+                @extend %header_link:hover;
+                @extend .fr;
                 padding: 0 15px;
                 &:hover {
                     background-color: $dkMainColor;

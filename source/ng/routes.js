@@ -32,7 +32,7 @@ angular.module('app').config([
       }];
     }
 
-
+    $urlRouterProvider.when('/pages', '/pages/new');
   $urlRouterProvider.otherwise('/');
   
   $stateProvider
@@ -109,7 +109,7 @@ angular.module('app').config([
         venue: ['$stateParams', 'Venue', resolve]
       }
     })
-    .state('pages', {
+    .state('pages', { 
       title: 'Page List',
       url: '/pages',
       templateUrl: '/html/page/list.html',
@@ -118,9 +118,18 @@ angular.module('app').config([
         list: ['Page', resolveList]
       }
     })
-    .state('pageEdit', {
-      title: 'Add/Edit Pages',
-      url: '/page/:id?',
+    .state('pages.add', {
+      title: 'New Page',
+      url: '/new',
+      templateUrl: '/html/page/addEdit.html',
+      controller: instanceCtrl('Page'),
+      resolve: {
+        page: ['$stateParams', 'Page', resolve]
+      }
+    })
+    .state('pages.edit', {
+      title: 'Edit Page',
+      url: '/:id',
       templateUrl: '/html/page/addEdit.html',
       controller: instanceCtrl('Page'),
       resolve: {

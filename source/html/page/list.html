@@ -1,25 +1,15 @@
-<div class="m">
-	<a ui-sref="pageEdit" class="btn">New Page</a>
-</div>
-<table class="grid-full tabular">
+<table class="grid-8 tabular">
 	<tbody>
 		<tr ng-repeat="page in list | orderBy:'url'">
 			<td>
 				{{page.title}}
 			</td>
 			<td>
-				{{page.url}}
-			</td>
-			<td>
-				{{page.templateUrl}}
-			</td>
-			<td>
-				{{page.type}}
-			</td>
-			<td>
-				<a ui-sref="pageEdit({pageID: page.id})" class="btn mini">Edit</a>
-				<a ng-click="remove(page)" class="btn mini">Delete</a>
+				<a ui-sref="pages.edit({id: page.id})" class="btn mini">✎</a>
+				<a ng-click="remove(page)" class="btn mini">✖</a>
 			</td>
 		</tr>
 	</tbody>
 </table>
+
+<ui-view class="grid-12"></ui-view>
