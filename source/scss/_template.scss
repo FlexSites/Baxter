@@ -229,6 +229,16 @@ body {
         padding: 10px;
         border-radius: 3px;
         color: $color-primary;
+        &:hover{
+            background-color: darken($color-primary, 10%);
+            color: #333;
+            border-color: transparent;
+        }
+        &:active{
+            background-color: $color-primary;
+            color: #333;
+            border-color: transparent;
+        }
     }
     i{
         font-style: normal;
