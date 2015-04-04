@@ -103,12 +103,21 @@ form{
     }
 }
 .body-content {
-    width: 80%;
+    width: calc(100% - 60px);
+    float: right;
     overflow-y: scroll;
     height: calc(100% - 140px);
     margin-top: 0;
     padding-top: $space/2;
     background-color: #e8e8e8;
+    position: relative;
+    right: 0px;
+    @extend .a250;
+    &.sidebar-expanded{
+        
+        right: -140px;
+
+    }
 }
 %header_link {
     font-size: 1.5em;
@@ -121,9 +130,23 @@ form{
         background-color: lighten($color-primary, 10%);
     }
 }
+.sidebar-content{
+    height: 100%;
+    position: relative;
+}
 .sidebar {
+    position: absolute;
+    left: -140px;
+    width: 200px;
+    float: left;
     height: calc(100% - 64px);
     background-color: #555;
+    top: 140px;
+    text-align: right;
+    @extend .a250;
+    &.sidebar-expanded{
+        left: 0px;
+    }
     ul {
         width: 100%;
         margin: 0;
@@ -143,6 +166,9 @@ form{
                 text-decoration: none;
                 color: #888;
                 line-height: 32px;
+                i{
+                    padding-left: 20px;
+                }
                 &:hover {
                     color: darken($color-primary,20%);
                     background-color: #fff;

@@ -27,7 +27,7 @@
 	</div>
 	<div class="title-bar">
 		<div class="header-words">
-			<span class="current-host" ng-hide="!currentSite">{{currentSite.host}}</span>
+			<!-- <span class="current-host" ng-hide="!currentSite">{{currentSite.host}}</span> -->
 			<span class="current-header">{{header}}</span>
 		</div>
 		<div class="header-actions no-pr">
@@ -35,31 +35,31 @@
 		</div>
 	</div>
 </header>
-
-<nav class="sidebar flush-4">
-	<ul class="sidebar_nav">
-		<li><a ui-sref="events">Events</a>
-			<ul>
-				<li><a ui-sref="entertainers">Entertainers</a></li>
-			</ul>
-		</li>
-		<li><a ui-sref="media">Media</a></li>
-		<!-- <a href="/products">Products</a> -->
-		<!-- <a href="/profile">Profile</a> -->
-		<li><a ui-sref="pages">Pages</a></li>
-		<li>
-			<a ui-sref="venues">Venues</a>
-			<ul>
-				<li><a ui-sref="sections">Sections</a></li>
-			</ul>
-		</li>
-		<li><a ui-sref="sites">Sites</a>
-			<ul>
-				<li><a ui-sref="subscribers">Subscribers</a></li>
-			</ul>
-		</li>
-	</ul>
-</nav>
-<div ui-view class="body-content"></div>
-
+<div class="sidebar-content">
+	<nav class="sidebar" ng-class="{'sidebar-expanded' : showSidebar}" ng-mouseenter="showSidebar = true" ng-mouseleave="showSidebar = false">
+		<ul class="sidebar_nav">
+			<li><a ui-sref="events">Events<i class="icon-ticket"></i></a></li>
+				<ul>
+					<li><a ui-sref="entertainers">Entertainers<i class="icon-user-tie"></i></a></li>
+				</ul>
+			</li>
+			<li><a ui-sref="media">Media<i class="icon-images"></i></a></li>
+			<!-- <a href="/products">Products</a> -->
+			<!-- <a href="/profile">Profile</a> -->
+			<li><a ui-sref="pages">Pages<i class="icon-files-empty"></i></a></li>
+			<li>
+				<a ui-sref="venues">Venues<i class="icon-files-empty"></i></a>
+				<ul>
+					<li><a ui-sref="sections">Sections<i class="icon-stack"></i></a></li>
+				</ul>
+			</li>
+			<li><a ui-sref="sites">Sites<i class="icon-users"></i></a>
+				<ul>
+					<li><a ui-sref="subscribers">Subscribers<i class="icon-file-text"></i></a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<div ui-view class="body-content" ng-class="{'sidebar-expanded' : showSidebar}"></div>
+</div>
 <<>foot>>
