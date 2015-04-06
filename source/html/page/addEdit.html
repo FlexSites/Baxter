@@ -13,8 +13,8 @@
 	</label>
 	<label for="description" class="grid-full">
 		<textarea id="description" ng-model="page.description" rows="5"></textarea>
-		<span>Description</span>
-	</label>	
+		<span class="icon-left-circle">Description</span>
+	</label>
 	<label for="content" class="grid-full">
 		<textarea id="content" ng-model="page.content" rows="20"></textarea>
 		<span>Content</span>
@@ -22,7 +22,7 @@
 	<label for="url" ng-show="isAdmin">
 		<input type="text" id="url" ng-model="page.templateUrl">
 		<span>templateURL</span>
-	</label>	
+	</label>
 	<label for="type">
 		<select ng-model="page.type" id="type" required>
 			<option value=""> --- Select a type --- </option>
@@ -32,8 +32,7 @@
 		<span>Type</span>
 	</label>
 
-	<div class="buttons">
-		<a href="/pages" class="btn">Cancel</a>
-		<button>Save</button>
-	</div>
+  <div class="form-actions">
+    <button>Save</button><a href="/pages" class="btn gray">Cancel</a>
+  </div>
 </form>

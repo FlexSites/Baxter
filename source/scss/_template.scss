@@ -12,9 +12,9 @@ html {
     background-color: #f0f0f0;
 }
 body {
-    color: $color-black;  
-    overflow: hidden;   
-    font-family: $baseFontFamily; 
+    color: $color-black;
+    overflow: hidden;
+    font-family: $baseFontFamily;
 }
 input, textarea, button {
     border-radius: 3px !important;
@@ -78,10 +78,10 @@ form{
     width: 100%;
     margin: 0 auto;
 }
-@mixin calc($property, $expression) { 
-  #{$property}: -webkit-calc(#{$expression}); 
-  #{$property}: calc(#{$expression}); 
-} 
+@mixin calc($property, $expression) {
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
 %gridLock {
     @extend %fullWidthSection;
     @include calc("padding", "50% -  490px");
@@ -106,15 +106,15 @@ form{
     width: calc(100% - 60px);
     float: right;
     overflow-y: scroll;
-    height: calc(100% - 140px);
+    height: calc(100% - 48px);
     margin-top: 0;
-    padding-top: $space/2;
     background-color: #e8e8e8;
     position: relative;
     right: 0px;
+    padding-bottom: 20px;
     @extend .a250;
     &.sidebar-expanded{
-        
+
         right: -140px;
 
     }
@@ -139,9 +139,10 @@ form{
     left: -140px;
     width: 200px;
     float: left;
-    height: calc(100% - 64px);
+    height: calc(100% - 48px);
     background-color: #555;
-    top: 140px;
+    top: 48px;
+    padding-top: 10px;
     text-align: right;
     @extend .a250;
     &.sidebar-expanded{
@@ -182,17 +183,17 @@ form{
     top: 0;
     background-color: $color-white;
     &_logo {
-        width: 230px;
-        display: block;
-        float: left;
-        background-size: 200px;
-        background-image: url(/img/logo.svg) !important;
-        height: 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-        &:hover {
-            background-color: none !important;
-        }
+      width: 180px;
+      display: block;
+      float: left;
+      background-size: 100% 32px;
+      background-image: url(/img/logo.svg) !important;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      &:hover {
+          background-color: none !important;
+      }
     }
     &_nav {
         padding: 0;
@@ -227,58 +228,75 @@ form{
         }
     }
     .header-bar{
-        height: 70px;
+        height: 48px;
         background-color: #fff;
         .user{
-            height: 70px;
-            padding: 15px;
-            img{
-                width: 40px;
-                height: 40px;
-                border-radius: 40px;
+            padding: 10px 0;
+            font-size: 12px;
+            float: right;
+            &_image {
+              margin: -10px 0 -10px 10px;
+              width: 48px;
+              height: 48px;
+              float: right;
+            }
+            &_name {
+              font-weight: bold;
+              margin-top: 10px;
+            }
+            &_actions {
+              display: block;
+              > a {
+                float: left;
+                margin: 5px;
+              }
             }
             span{
                 font-size: 12px;
             }
         }
     }
-    .title-bar{
-        height: 70px;
-        background-color: #333;
-        color: $color-primary;
-        padding: 0px 20px;
-        .header-words{
-            float: left;
-            position: relative;
-            .current-host{
-                position: absolute;
-                font-size: 12px;
-                font-weight: bold;
-                color: #DDD;
-                text-transform: uppercase;
-                top: 0px;
-            }
-            .current-header{
-                font-size: 30px;
-                line-height: 70px;
+}
+.title-bar{
+  height: 48px;
+  background-color: #333;
+  color: $color-primary;
+  padding: 0px 20px;
+  margin-bottom: 15px;
+  float: right;
+  width: 100%;
+  .header-words{
+      float: left;
+      position: relative;
+      .current-host{
+          position: absolute;
+          font-size: 12px;
+          font-weight: bold;
+          color: #DDD;
+          text-transform: uppercase;
+          top: 0px;
+      }
+      .current-header{
+          font-size: 30px;
+          line-height: 48px;
 
-            }
-        }
-        .header-actions{
-            float: right;
-            height: 70px;
-            padding: 20px;
-            .button{
-                margin-top: 5px;
-            }
-        }
-        h1{
-            height: 60px;
-            line-height: 60px;
-            margin: 0px;
-            padding: 0px 0px 0px 20px;
-        }
-    }
+      }
+  }
+  .header-actions{
+      float: right;
+      height: 48px;
+      padding: 10px;
+      .button{
+        font-size: 10px;
+          margin-top: 5px;
+      }
+  }
+  h1{
+      height: 60px;
+      line-height: 60px;
+      margin: 0px;
+      padding: 0px 0px 0px 20px;
+  }
 }
 .right{
     float: right;
@@ -320,7 +338,11 @@ input, textarea, select{
 .site-select{
     width: 250px;
     display: inline-block;
-    float: right;
+    float: left;
+    padding-left: 20px;
+    label {
+      margin: 9px;
+    }
 }
 select.select {
     background-color: transparent;
@@ -374,7 +396,7 @@ select.select {
     bottom: 0px;
     right: 0px;
     height: 60px;
-    width: 100%;
+    width: calc(100% - 60px);
 
     a, button{
         float: right;

@@ -18,6 +18,13 @@ angular.module('app')
         if(sites[i].id == session.site) $scope.currentSite = sites[i];
       }
     });
+
+    $scope.logout = function(){
+      $rootScope.user.signOut(function(){
+        console.log('Sign Out');
+        $state.go('login');
+      });
+    };
     $scope.isAdmin = true;
     $rootScope.user.$promise.then(function(user){
       $scope.gravatar = encodeURIComponent(user.email);

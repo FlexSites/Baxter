@@ -1,7 +1,7 @@
 angular.module('app').config([
-  '$stateProvider', 
-  '$urlRouterProvider', 
-  '$locationProvider', 
+  '$stateProvider',
+  '$urlRouterProvider',
+  '$locationProvider',
 
   function($stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -10,6 +10,7 @@ angular.module('app').config([
       return id?Resource.get({id: id}).$promise:new Resource();
     }
     function resolveList(Resource){
+      console.log('resolve list', Resource);
       return Resource.find({}).$promise;
     }
     var listCtrl = ['$scope', 'list', function($scope, list){
@@ -34,7 +35,7 @@ angular.module('app').config([
 
     $urlRouterProvider.when('/pages', '/pages/new');
   $urlRouterProvider.otherwise('/');
-  
+
   $stateProvider
     .state('home', {
       url: '/',
@@ -86,10 +87,19 @@ angular.module('app').config([
         list: ['Medium', resolveList]
       }
     })
-    .state('mediumEdit', {
-      title: 'Add/Edit Medium',
-      url: '/medium/:id',
+    .state('media.add', {
+      title: 'Add Medium',
+      url: '/add',
       templateUrl: '/html/media/addEdit.html'
+    })
+    .state('media.edit', {
+      title: 'Edit Medium',
+      controller: instanceCtrl('Medium'),
+      url: '/:id',
+      templateUrl: '/html/media/addEdit.html',
+      resolve: {
+        medium: ['$stateParams', 'Medium', resolve]
+      }
     })
     .state('venues', {
       title: 'Venue List',
@@ -109,7 +119,7 @@ angular.module('app').config([
         venue: ['$stateParams', 'Venue', resolve]
       }
     })
-    .state('pages', { 
+    .state('pages', {
       title: 'Page List',
       url: '/pages',
       templateUrl: '/html/page/list.html',
@@ -146,7 +156,7 @@ angular.module('app').config([
       }
     })
     .state('sites', {
-      title: 'Add/Edit Section',
+      title: 'Site List',
       url: '/sites',
       templateUrl: '/html/site/list.html',
       controller: listCtrl,
@@ -155,7 +165,7 @@ angular.module('app').config([
       }
     })
     .state('siteEdit', {
-      title: 'Site List',
+      title: 'Site Edit',
       url: '/site/:id?',
       templateUrl: '/html/site/add.html',
       controller: instanceCtrl('Site'),

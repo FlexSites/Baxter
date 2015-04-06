@@ -21,17 +21,10 @@
 			</label>
 		</div>
 		<div class="user">
-			<span><b>Site Owner:</b> {{user.email}}</span>
-			<img src="http://www.gravatar.com/avatar/{{gravatar}}"/>
-		</div>
-	</div>
-	<div class="title-bar">
-		<div class="header-words">
-			<!-- <span class="current-host" ng-hide="!currentSite">{{currentSite.host}}</span> -->
-			<span class="current-header">{{header}}</span>
-		</div>
-		<div class="header-actions no-pr">
-			<a class="button outline">Button Action <i>+</i></a>
+			<img src="http://www.gravatar.com/avatar/{{gravatar}}" class="user_image">
+			<b class="user_name">{{user.email}}</b><br>
+			<a ui-sref="entertainer">Profile</a> |
+			<a ng-click="signOut()">Sign Out</a>
 		</div>
 	</div>
 </header>

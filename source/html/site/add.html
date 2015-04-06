@@ -1,3 +1,5 @@
+<div ng-include="'/html/sub-header.html'"></div>
+
 <form sites ng-submit="saveSite(site)">
     <label for="title" class="grid-full">
         <input type="text" id="title" ng-model="site.title" placeholder="Title">
@@ -6,10 +8,10 @@
     <label for="description" class="grid-full">
         <textarea id="description" ng-model="site.description" placeholder="Description"></textarea>
         <span>Default Description</span>
-    </label>  
+    </label>
     <label for="email">
         <input type="text" ng-model="site.contact.email" placeholder="you@example.com">
-        <span>Contact Email</span> 
+        <span>Contact Email</span>
     </label>
     <label for="host">
         <input type="text" id="host" ng-model="site.host" placeholder="Host">
@@ -57,7 +59,7 @@
             <span>New Stylesheet</span>
         </label>
     </div>
-    
+
     <div class="flush-half" ng-show="isAdmin">
         <h3>Scripts</h3>
         <label for="scripts{{$index}}" ng-repeat="script in site.scripts">

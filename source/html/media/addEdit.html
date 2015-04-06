@@ -1,7 +1,5 @@
 
-<form name="medium-form" ng-submit="save()" media novalidate>
-	<h1>{{medium.id?'Edit':'New'}} Medium</h1>
-	<pre>{{medium | json}}</pre>
+<form name="medium-form" ng-submit="saveMedium()" novalidate>
 	<label for="name" class="grid-full">
 		<input type="text" id="name" ng-model="medium.name" placeholder="Medium name" required>
 		<span></span>
