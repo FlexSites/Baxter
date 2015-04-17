@@ -1,6 +1,7 @@
 <div ng-include="'/html/sub-header.html'"></div>
 
 <form sites="'current'" ng-submit="saveSite(site)">
+    <div>
     <label for="title" class="grid-full">
         <input type="text" id="title" ng-model="site.title" placeholder="Title">
         <span>Default Title</span>
@@ -17,9 +18,9 @@
         <input type="text" id="host" ng-model="site.host" placeholder="Host">
         <span>Host</span>
     </label>
-
+    </div>
     <h3 ng-show="isAdmin">Admin Only</h3>
-    <label for="abbr" ng-show="isAdmin">
+    <label class="no-mt" for="abbr" ng-show="isAdmin">
         <input type="text" id="abbr" ng-model="site.abbr" placholder="Abbreviation" ng-readonly="!!site.abbr">
         <span>Code {{!!site.abbr}}</span>
     </label>
@@ -27,7 +28,7 @@
         <input type="text" ng-model="site.analytics" placeholder="UA-XXXXXXXX-X" ng-readonly="!!site.abbr">
         <span>Analytics</span>
     </label>
-    <label for="repo" ng-show="isAdmin">
+    <label class="no-mt" for="repo" ng-show="isAdmin">
         <input type="text" id="repo" ng-model="site.repo" placholder="git@bitbucket.org:omniorders/<repository-name>.git">
         <span>Repository URL (SSH-only)</span>
     </label>
@@ -91,6 +92,7 @@
             <span></span>
         </label>
     </div>
-
-    <a href="/" class="btn gray">Cancel</a><button>Submit</button>
+    <div class="form-actions">
+        <a href="/" class="btn gray">Cancel</a><button>Submit</button>
+    </div>
 </form>

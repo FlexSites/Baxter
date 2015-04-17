@@ -1,3 +1,67 @@
+@font-face {
+  font-family: 'baxter';
+  src: url('../fonts/baxter.eot?-mo02vo');
+  src: url('../fonts/baxter.eot?#iefix-mo02vo') format('embedded-opentype'), url('../fonts/baxter.woff?-mo02vo') format('woff'), url('../fonts/baxter.ttf?-mo02vo') format('truetype'), url('../fonts/baxter.svg?-mo02vo#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'baxter';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-images:before {
+  content: "\e90e"; }
+
+.icon-file-text:before {
+  content: "\e922"; }
+
+.icon-files-empty:before {
+  content: "\e925"; }
+
+.icon-stack:before {
+  content: "\e92e"; }
+
+.icon-ticket:before {
+  content: "\e939"; }
+
+.icon-address-book:before {
+  content: "\e944"; }
+
+.icon-location2:before {
+  content: "\e948"; }
+
+.icon-calendar:before {
+  content: "\e953"; }
+
+.icon-floppy-disk:before {
+  content: "\e962"; }
+
+.icon-bubbles2:before {
+  content: "\e96d"; }
+
+.icon-users:before {
+  content: "\e972"; }
+
+.icon-user-tie:before {
+  content: "\e976"; }
+
+.icon-plus:before {
+  content: "\ea0a"; }
+
+.icon-minus:before {
+  content: "\ea0b"; }
+
+.icon-arrow-right2:before {
+  content: "\ea3c"; }
+
 /** HELPER **/
 .disabled {
   position: relative;
@@ -164,9 +228,9 @@ a.bs:active, a.btn:active {
 @media (min-height: 700px) and (min-width: 768px) {
   .affix {
     position: fixed !important; }
-
   .affix-bottom {
     position: absolute !important; } }
+
 .a {
   -webkit-transition: all 500ms ease-in-out;
   -moz-transition: all 500ms ease-in-out;
@@ -174,7 +238,7 @@ a.bs:active, a.btn:active {
   -ms-transition: all 500ms ease-in-out;
   transition: all 500ms ease-in-out; }
 
-.a250, .zoom {
+.a250, .zoom, .body-content, .sidebar {
   -webkit-transition: all 250ms ease-in-out;
   -moz-transition: all 250ms ease-in-out;
   -o-transition: all 250ms ease-in-out;
@@ -255,10 +319,10 @@ a.bs:active, a.btn:active {
   .hideOnPrint, button, .btn {
     visibility: collapse !important;
     display: none !important; }
-
   .printOnly {
     display: inherit;
     opacity: 1; } }
+
 /** GRID **/
 .full-bar {
   max-width: 960px;
@@ -466,378 +530,310 @@ a.bs:active, a.btn:active {
 @media (min-width: 1200px) {
   .no-large {
     display: none !important; }
-
   .large-20, .large-full, .large-19, .large-18, .large-17, .large-16, .large-15, .large-14, .large-13, .large-12, .large-11, .large-10, .large-half, .large-9, .large-8, .large-7, .large-6, .large-5, .large-fourth, .large-4, .large-fifth, .large-3, .large-2, .large-1, .large-third {
     float: left;
     margin: 20px; }
-
   .large-20, .large-full {
     width: 100%;
     width: -webkit-calc( 100% - 40px );
     width: calc( 100% - 40px ); }
-
   .large-19 {
     width: 95%;
     width: -webkit-calc( 95% - 40px );
     width: calc( 95% - 40px ); }
-
   .large-18 {
     width: 90%;
     width: -webkit-calc( 90% - 40px );
     width: calc( 90% - 40px ); }
-
   .large-17 {
     width: 85%;
     width: -webkit-calc( 85% - 40px );
     width: calc( 85% - 40px ); }
-
   .large-16 {
     width: 80%;
     width: -webkit-calc( 80% - 40px );
     width: calc( 80% - 40px ); }
-
   .large-15 {
     width: 75%;
     width: -webkit-calc( 75% - 40px );
     width: calc( 75% - 40px ); }
-
   .large-14 {
     width: 70%;
     width: -webkit-calc( 70% - 40px );
     width: calc( 70% - 40px ); }
-
   .large-13 {
     width: 65%;
     width: -webkit-calc( 65% - 40px );
     width: calc( 65% - 40px ); }
-
   .large-12 {
     width: 60%;
     width: -webkit-calc( 60% - 40px );
     width: calc( 60% - 40px ); }
-
   .large-11 {
     width: 55%;
     width: -webkit-calc( 55% - 40px );
     width: calc( 55% - 40px ); }
-
   .large-10, .large-half {
     width: 50%;
     width: -webkit-calc( 50% - 40px );
     width: calc( 50% - 40px ); }
-
   .large-9 {
     width: 45%;
     width: -webkit-calc( 45% - 40px );
     width: calc( 45% - 40px ); }
-
   .large-8 {
     width: 40%;
     width: -webkit-calc( 40% - 40px );
     width: calc( 40% - 40px ); }
-
   .large-7 {
     width: 35%;
     width: -webkit-calc( 35% - 40px );
     width: calc( 35% - 40px ); }
-
   .large-6 {
     width: 30%;
     width: -webkit-calc( 30% - 40px );
     width: calc( 30% - 40px ); }
-
   .large-5, .large-fourth {
     width: 25%;
     width: -webkit-calc( 25% - 40px );
     width: calc( 25% - 40px ); }
-
   .large-4, .large-fifth {
     width: 20%;
     width: -webkit-calc( 20% - 40px );
     width: calc( 20% - 40px ); }
-
   .large-3 {
     width: 15%;
     width: -webkit-calc( 15% - 40px );
     width: calc( 15% - 40px ); }
-
   .large-2 {
     width: 10%;
     width: -webkit-calc( 10% - 40px );
     width: calc( 10% - 40px ); }
-
   .large-1 {
     width: 5%;
     width: -webkit-calc( 5% - 40px );
     width: calc( 5% - 40px ); }
-
   .large-third {
     width: 33.33%;
     width: -webkit-calc( 33.33% - 40px );
     width: calc( 33.33% - 40px ); }
-
   .large-2col {
     float: left;
     width: 100%;
     width: -webkit-calc( 100% - 240px );
     width: calc( 100% - 240px ); }
-
   .large-3col {
     float: left;
     width: 100%;
     width: -webkit-calc( 100% - 470px );
     width: calc( 100% - 470px ); } }
+
 @media (min-width: 980px) {
   .no-desktop {
     display: none !important; } }
+
 @media (max-width: 979px), (-webkit-min-device-pixel-ratio: 2) and (max-width: 979px) {
   .no-tablet {
     display: none !important; }
-
   .tablet-20, .tablet-full, .tablet-19, .tablet-18, .tablet-17, .tablet-16, .tablet-15, .tablet-14, .tablet-13, .tablet-12, .tablet-11, .tablet-10, .tablet-half, .tablet-9, .tablet-8, .tablet-7, .tablet-6, .tablet-5, .tablet-fourth, .tablet-4, .tablet-fifth, .tablet-3, .tablet-2, .tablet-1, .tablet-third {
     float: left;
     margin: 20px; }
-
   .tablet-20, .tablet-full {
     width: 100%;
     width: -webkit-calc( 100% - 40px );
     width: calc( 100% - 40px ); }
-
   .tablet-19 {
     width: 95%;
     width: -webkit-calc( 95% - 40px );
     width: calc( 95% - 40px ); }
-
   .tablet-18 {
     width: 90%;
     width: -webkit-calc( 90% - 40px );
     width: calc( 90% - 40px ); }
-
   .tablet-17 {
     width: 85%;
     width: -webkit-calc( 85% - 40px );
     width: calc( 85% - 40px ); }
-
   .tablet-16 {
     width: 80%;
     width: -webkit-calc( 80% - 40px );
     width: calc( 80% - 40px ); }
-
   .tablet-15 {
     width: 75%;
     width: -webkit-calc( 75% - 40px );
     width: calc( 75% - 40px ); }
-
   .tablet-14 {
     width: 70%;
     width: -webkit-calc( 70% - 40px );
     width: calc( 70% - 40px ); }
-
   .tablet-13 {
     width: 65%;
     width: -webkit-calc( 65% - 40px );
     width: calc( 65% - 40px ); }
-
   .tablet-12 {
     width: 60%;
     width: -webkit-calc( 60% - 40px );
     width: calc( 60% - 40px ); }
-
   .tablet-11 {
     width: 55%;
     width: -webkit-calc( 55% - 40px );
     width: calc( 55% - 40px ); }
-
   .tablet-10, .tablet-half {
     width: 50%;
     width: -webkit-calc( 50% - 40px );
     width: calc( 50% - 40px ); }
-
   .tablet-9 {
     width: 45%;
     width: -webkit-calc( 45% - 40px );
     width: calc( 45% - 40px ); }
-
   .tablet-8 {
     width: 40%;
     width: -webkit-calc( 40% - 40px );
     width: calc( 40% - 40px ); }
-
   .tablet-7 {
     width: 35%;
     width: -webkit-calc( 35% - 40px );
     width: calc( 35% - 40px ); }
-
   .tablet-6 {
     width: 30%;
     width: -webkit-calc( 30% - 40px );
     width: calc( 30% - 40px ); }
-
   .tablet-5, .tablet-fourth {
     width: 25%;
     width: -webkit-calc( 25% - 40px );
     width: calc( 25% - 40px ); }
-
   .tablet-4, .tablet-fifth {
     width: 20%;
     width: -webkit-calc( 20% - 40px );
     width: calc( 20% - 40px ); }
-
   .tablet-3 {
     width: 15%;
     width: -webkit-calc( 15% - 40px );
     width: calc( 15% - 40px ); }
-
   .tablet-2 {
     width: 10%;
     width: -webkit-calc( 10% - 40px );
     width: calc( 10% - 40px ); }
-
   .tablet-1 {
     width: 5%;
     width: -webkit-calc( 5% - 40px );
     width: calc( 5% - 40px ); }
-
   .tablet-third {
     width: 33.33%;
     width: -webkit-calc( 33.33% - 40px );
     width: calc( 33.33% - 40px ); }
-
   .tablet-2col {
     float: left;
     width: 100%;
     width: -webkit-calc( 100% - 240px );
     width: calc( 100% - 240px ); }
-
   .tablet-3col {
     float: left;
     width: 100%;
     width: -webkit-calc( 100% - 470px );
     width: calc( 100% - 470px ); } }
+
 @media (max-width: 767px) {
   .no-mobile {
     display: none !important; }
-
   .mobile-20, .mobile-full, .mobile-19, .mobile-18, .mobile-17, .mobile-16, .mobile-15, .mobile-14, .mobile-13, .mobile-12, .mobile-11, .mobile-10, .mobile-half, .mobile-9, .mobile-8, .mobile-7, .mobile-6, .mobile-5, .mobile-fourth, .mobile-4, .mobile-fifth, .mobile-3, .mobile-2, .mobile-1, .mobile-third {
     float: left;
     margin: 20px; }
-
   .mobile-20, .mobile-full {
     width: 100%;
     width: -webkit-calc( 100% - 40px );
     width: calc( 100% - 40px ); }
-
   .mobile-19 {
     width: 95%;
     width: -webkit-calc( 95% - 40px );
     width: calc( 95% - 40px ); }
-
   .mobile-18 {
     width: 90%;
     width: -webkit-calc( 90% - 40px );
     width: calc( 90% - 40px ); }
-
   .mobile-17 {
     width: 85%;
     width: -webkit-calc( 85% - 40px );
     width: calc( 85% - 40px ); }
-
   .mobile-16 {
     width: 80%;
     width: -webkit-calc( 80% - 40px );
     width: calc( 80% - 40px ); }
-
   .mobile-15 {
     width: 75%;
     width: -webkit-calc( 75% - 40px );
     width: calc( 75% - 40px ); }
-
   .mobile-14 {
     width: 70%;
     width: -webkit-calc( 70% - 40px );
     width: calc( 70% - 40px ); }
-
   .mobile-13 {
     width: 65%;
     width: -webkit-calc( 65% - 40px );
     width: calc( 65% - 40px ); }
-
   .mobile-12 {
     width: 60%;
     width: -webkit-calc( 60% - 40px );
     width: calc( 60% - 40px ); }
-
   .mobile-11 {
     width: 55%;
     width: -webkit-calc( 55% - 40px );
     width: calc( 55% - 40px ); }
-
   .mobile-10, .mobile-half {
     width: 50%;
     width: -webkit-calc( 50% - 40px );
     width: calc( 50% - 40px ); }
-
   .mobile-9 {
     width: 45%;
     width: -webkit-calc( 45% - 40px );
     width: calc( 45% - 40px ); }
-
   .mobile-8 {
     width: 40%;
     width: -webkit-calc( 40% - 40px );
     width: calc( 40% - 40px ); }
-
   .mobile-7 {
     width: 35%;
     width: -webkit-calc( 35% - 40px );
     width: calc( 35% - 40px ); }
-
   .mobile-6 {
     width: 30%;
     width: -webkit-calc( 30% - 40px );
     width: calc( 30% - 40px ); }
-
   .mobile-5, .mobile-fourth {
     width: 25%;
     width: -webkit-calc( 25% - 40px );
     width: calc( 25% - 40px ); }
-
   .mobile-4, .mobile-fifth {
     width: 20%;
     width: -webkit-calc( 20% - 40px );
     width: calc( 20% - 40px ); }
-
   .mobile-3 {
     width: 15%;
     width: -webkit-calc( 15% - 40px );
     width: calc( 15% - 40px ); }
-
   .mobile-2 {
     width: 10%;
     width: -webkit-calc( 10% - 40px );
     width: calc( 10% - 40px ); }
-
   .mobile-1 {
     width: 5%;
     width: -webkit-calc( 5% - 40px );
     width: calc( 5% - 40px ); }
-
   .mobile-third {
     width: 33.33%;
     width: -webkit-calc( 33.33% - 40px );
     width: calc( 33.33% - 40px ); }
-
   .mobile-2col {
     float: left;
     width: 100%;
     width: -webkit-calc( 100% - 240px );
     width: calc( 100% - 240px ); }
-
   .mobile-3col {
     float: left;
     width: 100%;
     width: -webkit-calc( 100% - 470px );
     width: calc( 100% - 470px ); } }
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica;
   cursor: default;
@@ -1033,7 +1029,7 @@ button, .btn {
   button.icon-forward:before, .btn.icon-forward:before {
     content: none !important; }
   button.icon-forward:after, .btn.icon-forward:after {
-    content: icon("forward"); }
+    content: icon('forward'); }
 
 .buttons > button, .buttons > .btn {
   float: left;
@@ -1048,13 +1044,17 @@ form .buttons {
 @-webkit-keyframes stripes {
   from {
     background-position: 48px 0; }
+
   to {
     background-position: 0 0; } }
+
 @keyframes stripes {
   from {
     background-position: 48px 0; }
+
   to {
     background-position: 0 0; } }
+
 html {
   background-color: #f0f0f0; }
 
@@ -1062,6 +1062,31 @@ body {
   color: #212121;
   overflow: hidden;
   font-family: "Roboto", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica; }
+
+input, textarea, button {
+  border-radius: 3px !important; }
+
+h3 {
+  padding-bottom: 5px;
+  border-bottom: 1px #777 solid; }
+
+form label {
+  margin: 15px 20px !important; }
+  form label:first-of-type {
+    margin-top: 0px !important; }
+  form label span {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #333; }
+  form label input, form label textarea, form label select {
+    border: 1px transparent solid; }
+    form label input:focus, form label textarea:focus, form label select:focus {
+      border: 1px #993e00 solid; }
+      form label input:focus + span, form label textarea:focus + span, form label select:focus + span {
+        color: #993e00; }
+
+.splash {
+  display: none; }
 
 .tabular {
   /*background-color: rgba(255,255,255,0.5);*/ }
@@ -1088,16 +1113,12 @@ body {
   margin: 0 auto; }
 
 .gridBar {
-  padding: 20px -moz-calc(50% -  490px);
-  padding: 20px -o-calc(50% -  490px);
-  padding: 20px -webkit-calc(50% -  490px);
-  padding: 20px calc(50% - 490px); }
+  padding: -webkit-calc(50% -  490px);
+  padding: calc(50% -  490px); }
 
 .fullBar {
-  padding: 20px -moz-calc(50% -  600px);
-  padding: 20px -o-calc(50% -  600px);
-  padding: 20px -webkit-calc(50% -  600px);
-  padding: 20px calc(50% - 600px); }
+  padding: -webkit-calc(50% -  600px);
+  padding: calc(50% -  600px); }
 
 @media (max-width: 1200px) {
   .fullBar {
@@ -1108,12 +1129,17 @@ body {
     padding: 5px 0; } }
 
 .body-content {
-  width: 80%;
+  width: calc(100% - 60px);
+  float: right;
   overflow-y: scroll;
-  height: calc(100% - 64px);
+  height: calc(100% - 140px);
   margin-top: 0;
   padding-top: 20px;
-  background-color: #e8e8e8; }
+  background-color: #e8e8e8;
+  position: relative;
+  right: 0px; }
+  .body-content.sidebar-expanded {
+    right: -140px; }
 
 .header_nav > li > a, .header_settings > a:last-child {
   font-size: 1.5em;
@@ -1125,13 +1151,25 @@ body {
     color: #fff;
     background-color: #ff8533; }
 
+.sidebar-content {
+  height: 100%;
+  position: relative; }
+
 .sidebar {
+  position: absolute;
+  left: -140px;
+  width: 200px;
+  float: left;
   height: calc(100% - 64px);
-  background-color: #555; }
+  background-color: #fff;
+  top: 140px;
+  text-align: right; }
+  .sidebar.sidebar-expanded {
+    left: 0px; }
   .sidebar ul {
     width: 100%;
     margin: 0;
-    padding: 0; }
+    padding: 10px 0px; }
     .sidebar ul li {
       list-style-type: none; }
   .sidebar_nav li > a {
@@ -1141,11 +1179,13 @@ body {
     width: 100%;
     font-size: 1.25em;
     text-decoration: none;
-    color: #888;
+    color: #333;
     line-height: 32px; }
+    .sidebar_nav li > a i {
+      padding-left: 20px; }
     .sidebar_nav li > a:hover {
       color: #993e00;
-      background-color: #fff; }
+      background-color: #e8e8e8; }
 
 .header {
   top: 0;
@@ -1234,6 +1274,14 @@ body {
   padding: 10px;
   border-radius: 3px;
   color: #FF6700; }
+  .button.outline:hover {
+    background-color: #cc5200;
+    color: #333;
+    border-color: transparent; }
+  .button.outline:active {
+    background-color: #FF6700;
+    color: #333;
+    border-color: transparent; }
 .button i {
   font-style: normal;
   font-size: 20px;
@@ -1290,3 +1338,20 @@ select.select {
   line-height: 30px;
   font-size: 15px;
   -webkit-transform: rotate(90deg); }
+
+.form-actions {
+  padding: 0 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  height: 60px;
+  width: 100%; }
+  .form-actions a, .form-actions button {
+    float: right;
+    height: 60px;
+    line-height: 60px;
+    margin: 0px 10px;
+    border-radius: 0px !important; }
+    .form-actions a.gray, .form-actions button.gray {
+      background-color: #555; }

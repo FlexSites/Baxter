@@ -47,7 +47,7 @@ angular.module('app').config([
       templateUrl: '/html/login.html',
       controller: 'LoginCtrl'
     })
-    .state('events', {
+    .state('event', {
       title: 'Event List',
       url: '/events',
       templateUrl: '/html/event/list.html',

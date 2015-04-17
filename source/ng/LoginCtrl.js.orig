@@ -7,5 +7,8 @@ angular.module('app')
         delete $window.sessionStorage.returnTo;
       });
     };
-    $rootScope.user = user;
+<<<<<<< Updated upstream
+=======
+    $rootScope.user = uuser;
+>>>>>>> Stashed changes
   }]);

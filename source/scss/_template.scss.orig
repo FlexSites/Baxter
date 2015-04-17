@@ -139,10 +139,16 @@ form{
     left: -140px;
     width: 200px;
     float: left;
+<<<<<<< Updated upstream
     height: calc(100% - 48px);
-    background-color: #fff;
+    background-color: #555;
     top: 48px;
     padding-top: 10px;
+=======
+    height: calc(100% - 64px);
+    background-color: #fff;
+    top: 140px;
+>>>>>>> Stashed changes
     text-align: right;
     @extend .a250;
     &.sidebar-expanded{
