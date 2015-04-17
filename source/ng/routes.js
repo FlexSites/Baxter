@@ -10,31 +10,40 @@ angular.module('app').config([
       return id?Resource.get({id: id}).$promise:new Resource();
     }
     function resolveList(Resource){
-      console.log('resolve list', Resource);
       return Resource.find({}).$promise;
     }
-    var listCtrl = ['$scope', 'list', function($scope, list){
-
+    var listCtrl = ['$injector', '$state', '$scope', 'list', function($injector, $state, $scope, list){
+      // if(list.length === 1){
+      //   return $state.go(pluralize(list[0].modelName.toLowerCase()) + '.edit', {id: list[0].id});
+      // }
+      console.log("list", list);
       $scope.list = list;
       $scope.remove = function(item){
-        // TODO: Actually remove things.
-        console.log('REMOVE');
+        item.$delete(function(){
+          // TODO: Actually remove things.
+          console.log('REMOVE');
+        });
       };
     }];
     function instanceCtrl(name){
+      console.log('instance', name);
       var lower = name.toLowerCase();
       return ['$scope', name, lower, function($scope, Resource, item){
+        console.log('instance', name, item);
         $scope[lower] = item || new Resource();
         $scope['save'+name] = function(item){
-          item.$upsert(function(){
-            console.log('saving',name,arguments);
+          if(item.id){
+            return item.$upsert(function(){
+              console.log('saving',name,arguments);
+            });
+          }
+          console.log('creating', item);
+          item.$create(function(){
+            console.log('created',name,arguments);
           });
         };
       }];
     }
-
-    $urlRouterProvider.when('/pages', '/pages/new');
-  $urlRouterProvider.otherwise('/');
 
   $stateProvider
     .state('home', {
@@ -73,10 +82,14 @@ angular.module('app').config([
         list: ['Entertainer', resolveList]
       }
     })
-    .state('entertainerEdit', {
-      title: 'Add/Edit Entertainer',
-      url: '/entertainer/:id',
-      templateUrl: '/html/entertainer/addEdit.html'
+    .state('entertainers.edit', {
+      title: 'Edit Entertainer',
+      url: '/:id',
+      templateUrl: '/html/entertainer/addEdit.html',
+      controller: instanceCtrl('Entertainer'),
+      resolve: {
+        entertainer: ['$stateParams', 'Entertainer', resolve]
+      }
     })
     .state('media', {
       title: 'Media List',

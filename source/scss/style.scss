@@ -5,6 +5,7 @@
 $prefix: '.';
 $space: 40px;
 $verticalBlock: 48px;
+$input-height: 36px;
 
 $baseFontSize: 17px;
 $baseLineHeight: 1.4em;
@@ -41,7 +42,7 @@ $link-color: #C55000;
 // @import "partials/backgroundColor";
 
 //Element partials. Order doesn't matter.
- @import "/www/global/scss/components/forms/form";
+ @import "/www/global/scss/core/form";
  @import "/www/global/scss/components/buttons/button";
 
 //Specific template

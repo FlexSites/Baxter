@@ -3,7 +3,7 @@
 <header class="header" ng-controller="HeadCtrl">
 	<div class="header-bar">
 
-		<a href="/" class="header_logo"></a>
+		<a ui-sref="home" class="header_logo"></a>
 		<div class="site-select">
 			<label for="sites" ng-show="isAdmin" class="fr no-pt select-wrapper">
 				<select class="select" id="sites" ng-options="site.id as site.host for site in user.sites" ng-model="currentSiteId"  ng-change="setSite()" ng-show="!!user.sites.length">

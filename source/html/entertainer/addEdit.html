@@ -1,8 +1,5 @@
 
-<h1>{{entertainer.id?'Edit':'New'}} Entertainer</h1>
 <form name="entertainer-form" ng-submit="save()" novalidate entertainers>
-	<pre>{{entertainer | json}}</pre>
-
 	<label for="name" class="grid-full">
 		<input type="text" id="name" ng-model="entertainer.name" required="true">
 		<span>Name</span>

@@ -1,28 +1,18 @@
+<div ng-include="'/html/sub-header.html'"></div>
 
-
-<h1>Entertainers</h1>
-<div class="m">
-	<a ui-sref="entertainer.edit" href="/entertainer/new" class="btn">New Entertainer</a>
-</div>
-<table class="grid-full tabular">
+<table class="flush-8 tabular">
 	<tbody entertainers>
-		<tr ng-repeat="entertainer in entertainers | orderBy:'name'">
+		<tr ng-repeat="entertainer in list | orderBy:'name'">
 			<td>
 				{{entertainer.name}}
 			</td>
 			<td>
-				{{entertainer.url}}
-			</td>
-			<td>
-				{{entertainer.templateUrl}}
-			</td>
-			<td>
-				{{entertainer.type}}
-			</td>
-			<td>
-				<a ng-href="/entertainer/{{entertainer.id}}" class="btn mini">Edit</a>
-				<a ng-click="delete(entertainer)" class="btn mini">Delete</a>
+				<a ui-sref="entertainers.edit({id: entertainer.id})" class="btn mini">✎</a>
+				<a ng-click="remove(entertainer)" class="btn mini">✖</a>
 			</td>
 		</tr>
 	</tbody>
 </table>
+
+
+<ui-view class="grid-12"></ui-view>
