@@ -9,12 +9,11 @@ angular.module('app', ['FlexSite', 'ui.router'])
       if(!isLoggedIn && toName !== loginState){
         $window.sessionStorage.returnTo = toState.name;
         e.preventDefault();
-        $state.go(loginState); 
+        $state.go(loginState);
       }
-      else if(isLoggedIn && ($window.sessionStorage.returnTo || toName === loginState)){
+      else if(isLoggedIn && toName === loginState){
         e.preventDefault();
-        $state.go($window.sessionStorage.returnTo || 'home');
-        delete $window.sessionStorage.returnTo;
+        $state.go('home');
       }
     });
     $rootScope.user = User.get({id: $window.localStorage.$FlexSite$currentUserId});

@@ -7,5 +7,4 @@ angular.module('app')
         delete $window.sessionStorage.returnTo;
       });
     };
-    $rootScope.user = user;
   }]);
