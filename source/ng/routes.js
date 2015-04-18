@@ -16,7 +16,6 @@ angular.module('app').config([
       // if(list.length === 1){
       //   return $state.go(pluralize(list[0].modelName.toLowerCase()) + '.edit', {id: list[0].id});
       // }
-      console.log("list", list);
       $scope.list = list;
       $scope.remove = function(item){
         item.$delete(function(){
@@ -26,29 +25,37 @@ angular.module('app').config([
       };
     }];
     function instanceCtrl(name){
-      console.log('instance', name);
       var lower = name.toLowerCase();
-      return ['$scope', name, lower, function($scope, Resource, item){
-        console.log('instance', name, item);
+      return ['$scope', '$state', name, lower, function($scope, $state, Resource, item){
         $scope[lower] = item || new Resource();
         $scope['save'+name] = function(item){
           if(item.id){
-            return item.$upsert(function(){
-              console.log('saving',name,arguments);
-            });
+            return item.$upsert(done);
           }
-          console.log('creating', item);
-          item.$create(function(){
-            console.log('created',name,arguments);
-          });
+          item.$create(done);
         };
+        function done(){
+          $state.go(lower+'s');
+        }
       }];
+    }
+
+    function getCount(Resource){
+      return Resource.count().$promise
+        .then(function(res){
+          return res.count;
+        });
     }
 
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: '/html/home.html'
+      templateUrl: '/html/home.html',
+      controller: 'DashboardCtrl',
+      resolve:{
+        eventCount: ['Event', getCount],
+        pageCount: ['Page', getCount]
+      }
     })
     .state('login', {
       title: 'Login',
@@ -63,7 +70,10 @@ angular.module('app').config([
       controller: listCtrl,
       resolve: {
         list: ['Event', resolveList]
-      }
+      },
+      menu: [
+        {action: 'eventEdit({id: "new"})', text: 'New Event +'}
+      ]
     })
     .state('eventEdit', {
       title: 'Add/Edit Event',
@@ -134,7 +144,10 @@ angular.module('app').config([
       controller: listCtrl,
       resolve: {
         list: ['Page', resolveList]
-      }
+      },
+      menu: [
+        {action: 'pageEdit({id: "new"})', text: 'New Page +'}
+      ]
     })
     .state('pageEdit', {
       title: 'Edit Page',

@@ -50,6 +50,43 @@ form{
 .splash {
     display: none;
 }
+
+.module {
+  width: 200px;
+  background-color: rgba(0,0,0,0.15);
+  float: left;
+  height: 200px;
+  margin: 15px;
+  color: #fff !important;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: inset -1px -4px 10px -1px rgba(0,0,0,0.25);
+  position: relative;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+  &:hover {
+  background-color: rgba(0,0,0,0.25);
+  }
+  &-title {
+    float:left;
+    width:100%;
+    margin-top: $space/2;
+    margin-bottom: $space/2;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  &-count {
+    position: absolute;
+    top: 80px;
+    font-size: 50px;
+    width: 100%;
+    left: 0;
+  }
+  &-icon {
+    text-shadow: none;
+    font-size: 120px;
+    color: rgba(0,0,0,0.15);
+  }
+}
 .tabular {
     /*background-color: rgba(255,255,255,0.5);*/
 }
@@ -111,9 +148,7 @@ form{
     padding-bottom: 100px;
     @extend .a250;
     &.sidebar-expanded{
-
-        right: -140px;
-
+        width: calc(100% - 200px);
     }
 }
 %header_link {
@@ -341,6 +376,7 @@ input, textarea, select{
     padding-left: 20px;
     label {
       margin: 9px;
+        padding-top: 0;
     }
 }
 select.select {

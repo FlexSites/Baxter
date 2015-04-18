@@ -4,6 +4,6 @@
     <span class="current-header">{{header}}</span>
   </div>
   <div class="header-actions no-pr">
-    <a class="button outline">Button Action <i>+</i></a>
+    <a ui-sref="{{menuItem.action}}" ng-repeat="menuItem in subHeaderMenu" class="button outline">{{menuItem.text}}</a>
   </div>
 </div>

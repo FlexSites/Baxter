@@ -1,5 +1,10 @@
 
+<h1>Dashboard</h1>
 
-<a href="/event-list" class="btn">All events</a>
-<a href="/event" class="btn">New Event</a>
-
+<div class="dashboard">
+  <a ng-repeat="module in modules" ui-sref="{{module.url}}" class="module">
+    <span class="module-title">{{module.title}}</span>
+    <b class="module-count">{{module.count}}</b>
+    <i ng-class="module.icon" class="module-icon"></i>
+  </a>
+</div>

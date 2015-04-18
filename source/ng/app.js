@@ -22,8 +22,12 @@ angular.module('app', ['FlexSite', 'ui.router'])
       $state.go('error', {err: err}, {location: false});
     });
     $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams, fromState, fromParams, err) {
-      var title = toState.title;
+      var title = toState.title
+        , menu = JSON.parse(JSON.stringify(toState.menu || []));
+      menu.unshift({text: 'Back to Dashboard', action: 'home'});
+
       $rootScope.header = title;
+      $rootScope.subHeaderMenu = menu;
       if(title) title += ' | FlexSites.io';
       $rootScope.title = title;
     });
