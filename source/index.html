@@ -28,8 +28,8 @@
 		</div>
 	</div>
 </header>
-<div class="sidebar-content">
-	<nav class="sidebar" ng-class="{'sidebar-expanded' : showSidebar}" ng-mouseenter="showSidebar = true" ng-mouseleave="showSidebar = false">
+<div class="sidebar-content" ng-controller="SidebarCtrl">
+	<nav class="sidebar" ng-class="{'sidebar-expanded' : showSidebar}">
 		<ul class="sidebar_nav">
 			<li><a ui-sref="events">Events<i class="icon-ticket"></i></a></li>
 				<ul>
@@ -50,6 +50,8 @@
 				<ul>
 					<li><a ui-sref="subscribers">Subscribers<i class="icon-file-text"></i></a></li>
 				</ul>
+			</li>
+			<li><a ng-click="toggleSidebar()">Hide Menu<i class="icon-arrow-right2"></i></a>
 			</li>
 		</ul>
 	</nav>
