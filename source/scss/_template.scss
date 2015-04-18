@@ -128,8 +128,10 @@ form{
     }
 }
 .sidebar-content{
-    height: 100%;
-    position: relative;
+    height: calc(100% - 48px);
+    background-color: #555;
+    top: 48px;
+    padding-top: 10px;
 }
 .sidebar {
     position: absolute;

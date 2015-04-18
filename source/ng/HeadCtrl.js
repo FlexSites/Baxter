@@ -1,13 +1,13 @@
 angular.module('app')
   .value('session', {})
   .controller('HeadCtrl', [
-    '$scope', 
-    '$log', 
-    '$window', 
+    '$scope',
+    '$log',
+    '$window',
     '$state',
     '$rootScope',
-    'Site', 
-    'session', 
+    'Site',
+    'session',
     'User',
 
     function($scope, $log, $window, $state, $rootScope, Site, session, User){
@@ -26,11 +26,8 @@ angular.module('app')
       });
     };
     $scope.isAdmin = true;
-    $rootScope.user.$promise.then(function(user){
-      $scope.gravatar = encodeURIComponent(user.email);
-    });
     $log.log($rootScope.user);
-    
+
     $scope.currentSiteId = session.site = $window.localStorage.site;
 
     $scope.setSite = function(){
