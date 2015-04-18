@@ -4,13 +4,13 @@ angular.module('app')
 
     $scope.site = site || new Site();
 
-    $scope.site.scripts = formatArray(formatValues($scope.site.scripts));
-    $scope.site.styles = formatArray(formatValues($scope.site.styles));
+    $scope.site.scripts = formatArray(formatValues($scope.site.scripts||[]));
+    $scope.site.styles = formatArray(formatValues($scope.site.styles||[]));
 
     $scope.formatArray = formatArray;
     $scope.saveSite = function(site){
-      site.styles = compact(parseValues(site.styles));
-      site.scripts = compact(parseValues(site.scripts));
+      site.styles = compact(parseValues(site.styles||[]));
+      site.scripts = compact(parseValues(site.scripts||[]));
       if(site.id){
         return site.$upsert(function(){
           $state.go('sites');
