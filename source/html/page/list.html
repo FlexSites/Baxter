@@ -1,13 +1,13 @@
 <div ng-include="'/html/sub-header.html'"></div>
 
-<table class="flush-8 tabular">
+<table class="flush-full tabular">
 	<tbody>
 		<tr ng-repeat="page in list | orderBy:'url'">
 			<td>
 				{{page.title}}
 			</td>
 			<td>
-				<a ui-sref="pages.edit({id: page.id})" class="btn mini">✎</a>
+				<a ui-sref="pageEdit({id: page.id})" class="btn mini">✎</a>
 				<a ng-click="remove(page)" class="btn mini">✖</a>
 			</td>
 		</tr>

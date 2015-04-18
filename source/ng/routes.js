@@ -7,7 +7,7 @@ angular.module('app').config([
 
     function resolve($stateParams, Resource){
       var id = $stateParams.id;
-      return id?Resource.get({id: id}).$promise:new Resource();
+      return id!=='new'?Resource.get({id: id}).$promise:new Resource();
     }
     function resolveList(Resource){
       return Resource.find({}).$promise;
@@ -56,7 +56,7 @@ angular.module('app').config([
       templateUrl: '/html/login.html',
       controller: 'LoginCtrl'
     })
-    .state('event', {
+    .state('events', {
       title: 'Event List',
       url: '/events',
       templateUrl: '/html/event/list.html',
@@ -65,9 +65,9 @@ angular.module('app').config([
         list: ['Event', resolveList]
       }
     })
-    .state('event.edit', {
+    .state('eventEdit', {
       title: 'Add/Edit Event',
-      url: '/event/:id',
+      url: '/events/:id',
       templateUrl: '/html/event/addEdit.html',
       resolve: {
         event: ['$stateParams', 'Event', resolve]
@@ -82,9 +82,9 @@ angular.module('app').config([
         list: ['Entertainer', resolveList]
       }
     })
-    .state('entertainers.edit', {
+    .state('entertainerEdit', {
       title: 'Edit Entertainer',
-      url: '/:id',
+      url: '/entertainers/:id',
       templateUrl: '/html/entertainer/addEdit.html',
       controller: instanceCtrl('Entertainer'),
       resolve: {
@@ -100,15 +100,10 @@ angular.module('app').config([
         list: ['Medium', resolveList]
       }
     })
-    .state('media.add', {
-      title: 'Add Medium',
-      url: '/add',
-      templateUrl: '/html/media/addEdit.html'
-    })
-    .state('media.edit', {
-      title: 'Edit Medium',
+    .state('mediaEdit', {
+      title: 'Add/Edit Medium',
       controller: instanceCtrl('Medium'),
-      url: '/:id',
+      url: '/media/:id',
       templateUrl: '/html/media/addEdit.html',
       resolve: {
         medium: ['$stateParams', 'Medium', resolve]
@@ -125,7 +120,7 @@ angular.module('app').config([
     })
     .state('venueEdit', {
       title: 'Add/Edit Venue',
-      url: '/venue/:id?',
+      url: '/venues/:id',
       templateUrl: '/html/venue/addEdit.html',
       controller: instanceCtrl('Venue'),
       resolve: {
@@ -141,18 +136,9 @@ angular.module('app').config([
         list: ['Page', resolveList]
       }
     })
-    .state('pages.add', {
-      title: 'New Page',
-      url: '/new',
-      templateUrl: '/html/page/addEdit.html',
-      controller: instanceCtrl('Page'),
-      resolve: {
-        page: ['$stateParams', 'Page', resolve]
-      }
-    })
-    .state('pages.edit', {
+    .state('pageEdit', {
       title: 'Edit Page',
-      url: '/:id',
+      url: '/pages/:id',
       templateUrl: '/html/page/addEdit.html',
       controller: instanceCtrl('Page'),
       resolve: {
@@ -179,9 +165,9 @@ angular.module('app').config([
     })
     .state('siteEdit', {
       title: 'Site Edit',
-      url: '/site/:id?',
-      templateUrl: '/html/site/add.html',
-      controller: instanceCtrl('Site'),
+      url: '/sites/:id',
+      templateUrl: '/html/site/addEdit.html',
+      controller: 'SiteCtrl',
       resolve: {
         site: ['$stateParams', 'Site', resolve]
       }

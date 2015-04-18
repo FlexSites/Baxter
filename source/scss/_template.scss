@@ -29,9 +29,6 @@ h3{
 form{
     label{
         margin: 15px 20px !important;
-        &:first-of-type{
-            margin-top: 0px !important;
-        }
         span{
             font-size: 12px;
             text-transform: uppercase;
@@ -111,7 +108,7 @@ form{
     background-color: #e8e8e8;
     position: relative;
     right: 0px;
-    padding-bottom: 20px;
+    padding-bottom: 100px;
     @extend .a250;
     &.sidebar-expanded{
 

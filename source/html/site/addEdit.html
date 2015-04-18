@@ -1,98 +1,51 @@
 <div ng-include="'/html/sub-header.html'"></div>
 
-<form sites="'current'" ng-submit="saveSite(site)">
-    <div>
-    <label for="title" class="grid-full">
-        <input type="text" id="title" ng-model="site.title" placeholder="Title">
-        <span>Default Title</span>
+<form ng-submit="saveSite(site)" style="max-width: 980px">
+  <label for="title" class="grid-full">
+    <input type="text" id="title" ng-model="site.title" placeholder="Title" maxlength="60" required>
+    <span>Default Title ({{60 - site.title.length}} characters left)</span>
+  </label>
+  <label for="description" class="grid-half">
+    <textarea id="description" ng-model="site.description" placeholder="Description" rows="5" maxlength="160" required></textarea>
+    <span>Default Description ({{160- site.description.length}} characters left)</span>
+  </label>
+  <label for="email" class="grid-half">
+    <input type="email" ng-model="site.contact.email" placeholder="you@example.com" required>
+    <span>Contact Email</span>
+  </label>
+  <label for="email">
+    <input type="tel" ng-model="site.contact.phone" placeholder="XXX-XXX-XXXX" required>
+    <span>Contact Phone</span>
+  </label>
+  <label for="host">
+    <input type="text" id="host" ng-model="site.host" placeholder="Host" required>
+    <span>Host</span>
+  </label>
+
+  <div ng-show="isAdmin">
+    <h3>Admin Only</h3>
+    <label for="repo" class="grid-half">
+      <input type="text" id="repo" ng-model="site.repo" placholder="git@bitbucket.org:omniorders/<repository-name>.git" required>
+      <span>Repository URL (SSH-only)</span>
     </label>
-    <label for="description" class="grid-full">
-        <textarea id="description" ng-model="site.description" placeholder="Description"></textarea>
-        <span>Default Description</span>
-    </label>
-    <label for="email">
-        <input type="text" ng-model="site.contact.email" placeholder="you@example.com">
-        <span>Contact Email</span>
-    </label>
-    <label for="host">
-        <input type="text" id="host" ng-model="site.host" placeholder="Host">
-        <span>Host</span>
-    </label>
-    </div>
-    <h3 ng-show="isAdmin">Admin Only</h3>
-    <label class="no-mt" for="abbr" ng-show="isAdmin">
-        <input type="text" id="abbr" ng-model="site.abbr" placholder="Abbreviation" ng-readonly="!!site.abbr">
-        <span>Code {{!!site.abbr}}</span>
-    </label>
-    <label for="analytics" ng-show="isAdmin">
-        <input type="text" ng-model="site.analytics" placeholder="UA-XXXXXXXX-X" ng-readonly="!!site.abbr">
-        <span>Analytics</span>
-    </label>
-    <label class="no-mt" for="repo" ng-show="isAdmin">
-        <input type="text" id="repo" ng-model="site.repo" placholder="git@bitbucket.org:omniorders/<repository-name>.git">
-        <span>Repository URL (SSH-only)</span>
-    </label>
-    <label for="type" ng-show="isAdmin">
-        <input type="text" id="type" ng-model="site.type" placeholder="Site Type" ng-readonly="!!site.abbr">
-        <span>Site Type</span>
-    </label>
-    <label for="subType" ng-show="isAdmin">
-        <input type="text" id="subType" ng-model="site.subType" ng-readonly="!!site.abbr">
-        <span>SubType</span>
-    </label>
-    <label for="rootId" ng-show="isAdmin">
-        <input type="text" id="rootId" ng-model="site.rootId" ng-readonly="!!site.rootId">
-        <span>Root ID</span>
+    <label for="analytics">
+      <input type="text" ng-model="site.analytics" placeholder="UA-XXXXXXXX-X" required>
+      <span>Analytics</span>
     </label>
 
-    <div class="flush-half" ng-show="isAdmin">
-        <h3>Stylesheets</h3>
-        <label for="styles{{$index}}" ng-repeat="style in site.styles">
-            <input type="text" ng-model="style.src" placeholder="Stylesheet">
-            <span>Stylesheet</span>
-        </label>
-        <label for="new-style">
-            <input type="text" id="newStyle" ng-model="style" placeholder="Stylesheet" add-item="site.styles">
-            <span>New Stylesheet</span>
-        </label>
-    </div>
-
-    <div class="flush-half" ng-show="isAdmin">
-        <h3>Scripts</h3>
-        <label for="scripts{{$index}}" ng-repeat="script in site.scripts">
-            <input type="text" ng-model="script.src" placeholder="Script">
-            <span></span>
-        </label>
-        <label for="new-script">
-            <input type="text" id="newStyle" ng-model="newScript" placeholder="Script" add-item="site.scripts">
-            <span>New Script</span>
-        </label>
-    </div>
-
-    <h3 ng-show="isAdmin">Aliases</h3>
-    <label for="alias{{$index}}" ng-repeat="alias in site.aliases" ng-show="isAdmin">
-        <input type="text" ng-model="alias">
-        <span>Alias</span>
+    <h3>Stylesheets</h3>
+    <label for="styles{{$index}}" ng-repeat="style in site.styles" class="grid-full">
+      <input type="text" id="styles{{$index}}" ng-model="style.value" placeholder="Stylesheet" ng-blur="site.styles = formatArray(site.styles)">
+      <span></span>
     </label>
 
-    <!-- Redirects -->
-
-    <div class="grid-half" ng-show="isAdmin">
-        <h3>Redirects</h3>
-        <label for="src">
-            <input type="text" ng-model="site.src" class="grid-full">
-            <span></span>
-        </label>
-        <label for="dest">
-            <input type="text" ng-model="site.dest" class="grid-full">
-            <span></span>
-        </label>
-        <label for="type">
-            <input type="text" ng-model="site.type" class="grid-full">
-            <span></span>
-        </label>
-    </div>
-    <div class="form-actions">
-        <a href="/" class="btn gray">Cancel</a><button>Submit</button>
-    </div>
+    <h3>Scripts</h3>
+    <label for="scripts{{$index}}" ng-repeat="script in site.scripts" class="grid-full">
+      <input type="text" id="scripts{{$index}}" ng-model="script.value" placeholder="Script" ng-blur="site.scripts = formatArray(site.scripts)">
+      <span></span>
+    </label>
+  </div>
+  <div class="form-actions">
+    <button>Save</button><a href="/" class="btn gray">Back</a>
+  </div>
 </form>
