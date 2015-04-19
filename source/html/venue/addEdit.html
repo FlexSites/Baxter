@@ -1,63 +1,69 @@
-<form name="venue-form" ng-submit="save()" novalidate>
-	<label for="name">
+<div ng-include="'/html/sub-header.html'"></div>
+
+<form name="venue-form" ng-submit="saveVenue(venue)" novalidate>
+	<label for="name" class="grid-half">
 		<input type="text" id="name" ng-model="venue.name" placeholder="Venue name" required>
 		<span>Name</span>
 	</label>
-
-	<label for="short-name">
+	<label for="short-name" class="grid-half">
 		<input type="text" id="short-name" ng-model="venue.shortName" placeholder="Short name" required>
 		<span>Short name</span>
 	</label>
 
-	<label for="street" class="grid-full">
-		<input type="text" id="street" ng-model="venue.address.street" placeholder="Street" required>
-		<span>Street</span>
-	</label>
+	<div class="flush-7">
 
-	<label for="suite" class="grid-full">
-		<input type="text" id="suite" ng-model="venue.address.suite" placeholder="Suite">
-		<span>Suite</span>
-	</label>
+		<h3>Address</h3>
 
-	<label for="city" class="grid-third">
-		<input type="text" id="city" ng-model="venue.address.city" placeholder="City" required>
-		<span>City</span>
-	</label>
+		<label for="street" class="grid-full">
+			<input type="text" id="street" ng-model="venue.address.street" placeholder="Street" required>
+			<span>Street</span>
+		</label>
 
-	<label for="state" class="grid-third">
-		<input type="text" id="state" ng-model="venue.address.state" placeholder="State" required>
-		<span>State</span>
-	</label>
+		<label for="suite" class="grid-full">
+			<input type="text" id="suite" ng-model="venue.address.suite" placeholder="Suite">
+			<span>Suite</span>
+		</label>
 
-	<label for="zip" class="grid-third">
-		<input type="text" id="zip" ng-model="venue.address.zip" placeholder="Zip code" required>
-		<span>Zip Code</span>
-	</label>
+		<label for="city" class="grid-third">
+			<input type="text" id="city" ng-model="venue.address.city" placeholder="City" required>
+			<span>City</span>
+		</label>
 
-	<label for="phone">
-		<input type="tel" id="phone" ng-model="venue.phone" placeholder="Contact phone" required>
-		<span>Phone</span>
-	</label>
+		<label for="state" class="grid-third">
+			<input type="text" id="state" ng-model="venue.address.state" placeholder="State" required>
+			<span>State</span>
+		</label>
 
-	<label for="email">
-		<input type="email" id="email" ng-model="venue.email" placeholder="Contact email" required>
-		<span>Email</span>
-	</label>
-
-	<label for="brand">
-		<input type="text" id="brand" ng-model="venue.brand" placeholder="Brand name" required>
-		<span>Brand</span>
-	</label>
-
-	<div class="buttons">
-		<a href="/" class="btn">Cancel</a>
-		<button>Save</button>
+		<label for="zip" class="grid-third">
+			<input type="text" id="zip" ng-model="venue.address.zip" placeholder="Zip code" required>
+			<span>Zip Code</span>
+		</label>
 	</div>
-</form>
 
-<hr>
+	<div class="flush-13">
+		<label for="description" class="grid-full">
+			<textarea id="description" ng-model="venue.description" placeholder="Description" rows="12" required></textarea>
+			<span>Description</span>
+		</label>
 
-<form name="section-form" novalidate sections>
+
+
+		<label for="phone" class="grid-third">
+			<input type="tel" id="phone" ng-model="venue.phone" placeholder="Contact phone" required>
+			<span>Phone</span>
+		</label>
+
+		<label for="email" class="grid-third">
+			<input type="email" id="email" ng-model="venue.email" placeholder="Contact email" required>
+			<span>Email</span>
+		</label>
+
+		<label for="brand" class="grid-third">
+			<input type="text" id="brand" ng-model="venue.brand" placeholder="Brand name" required>
+			<span>Brand</span>
+		</label>
+	</div>
+
 	<h3 style="width: 100%; float:left;">Sections</h3>
 
 	<div ng-repeat="section in sections">
@@ -74,4 +80,10 @@
 		</label>
 	</div>
 	<button type="button" class="grid-full" ng-click="sections.push(add())">Add Section</button>
+
+
+	<div class="form-actions">
+		<button>Save</button>
+		<a href="/" class="btn gray">Cancel</a>
+	</div>
 </form>

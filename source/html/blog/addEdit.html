@@ -1,4 +1,6 @@
-<form name="post-form" ng-submit="savePost(post)" novalidate posts>
+<div ng-include="'/html/sub-header.html'"></div>
+
+  <form name="post-form" ng-submit="savePost(post)" novalidate posts>
 	<label for="name">
 		<input type="text" id="name" ng-model="post.title" required="true">
 		<span>Name</span>

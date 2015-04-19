@@ -1,7 +1,6 @@
-<div class="m">
-	<a ui-sref="venueEdit" class="btn">New Venue</a>
-</div>
-<table class="grid-full tabular">
+<div ng-include="'/html/sub-header.html'"></div>
+
+<table class="flush-full tabular">
 	<tbody media>
 		<tr ng-repeat="venue in list">
 			<td>
@@ -14,6 +13,11 @@
 			<td>
 				<a ui-sref="venueEdit({id: venue.id})" class="btn mini">Edit</a>
 				<a ng-click="delete(venue)" class="btn mini">Delete</a>
+			</td>
+		</tr>
+		<tr ng-show="!list.length">
+			<td colspan="3">
+				No venues yet. <a ui-sref="venueEdit({id: 'new'})">Click here to create one!</a>
 			</td>
 		</tr>
 	</tbody>

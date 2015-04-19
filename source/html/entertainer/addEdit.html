@@ -1,36 +1,29 @@
+<div ng-include="'/html/sub-header.html'"></div>
 
-<form name="entertainer-form" ng-submit="save()" novalidate entertainers>
-	<label for="name" class="grid-full">
+<form name="entertainer-form" ng-submit="saveEntertainer(entertainer)" novalidate entertainers>
+	<label for="name" class="grid-half">
 		<input type="text" id="name" ng-model="entertainer.name" required="true">
 		<span>Name</span>
 	</label>
-	<label for="name" class="grid-full">
-		<input type="text" id="name" ng-model="entertainer.credits" required="true">
-		<span>Credits</span>
-	</label>
-	<label for="name" class="grid-full">
-		<textarea id="name" ng-model="entertainer.description" required="true"></textarea>
-		<span>Bio</span>
-	</label>
-	<label for="name" class="grid-full">
-		<input type="text" id="name" ng-model="entertainer.facebook" required="true">
+		<label for="facebook" class="grid-half">
+		<input type="text" id="facebook" ng-model="entertainer.facebook" required="true">
 		<span>Facebook</span>
 	</label>
-	<label for="name" class="grid-full">
-		<input type="text" id="name" ng-model="entertainer.link" required="true">
+	<label for="credits" class="grid-full">
+		<input type="text" id="credits" ng-model="entertainer.credits" required="true">
+		<span>Credits</span>
+	</label>
+	<label for="description" class="grid-full">
+		<textarea id="description" ng-model="entertainer.description" required="true" rows="7"></textarea>
+		<span>Bio</span>
+	</label>
+	<label for="link" class="grid-full">
+		<input type="text" id="link" ng-model="entertainer.link" required="true">
 		<span>Link</span>
 	</label>
-	<label for="name" class="grid-full">
-		<input type="text" id="name" ng-model="entertainer.video" required="true">
-		<span>Video</span>
-	</label>
-	<label for="name" class="grid-full">
-		<input type="text" id="name" ng-model="entertainer.media" required="true">
-		<span>Media</span>
-	</label>
 
-	<div class="buttons">
-		<a href="/entertainers" class="btn">Cancel</a>
+	<div class="form-actions">
 		<button>Save</button>
+		<a ui-sref="entertainers" class="btn gray">Back</a>
 	</div>
 </form>

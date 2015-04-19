@@ -1,6 +1,6 @@
 <div ng-include="'/html/sub-header.html'"></div>
 
-<table class="grid-full tabular">
+<table class="flush-full tabular">
     <tbody>
         <tr ng-repeat="site in list">
             <td>
@@ -15,6 +15,11 @@
             <td>
                 <a ui-sref="siteEdit({id: site.id})" class="btn mini">Edit</a>
                 <a ng-click="remove(site)" class="btn mini">Delete</a>
+            </td>
+        </tr>
+        <tr ng-show="!list.length">
+            <td colspan="4">
+                No sites yet. <a ui-sref="siteEdit({id: 'new'})">Click here to create one!</a>
             </td>
         </tr>
     </tbody>

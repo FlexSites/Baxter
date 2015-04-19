@@ -7,8 +7,13 @@
 				{{entertainer.name}}
 			</td>
 			<td>
-				<a ui-sref="entertainers.edit({id: entertainer.id})" class="btn mini">✎</a>
+				<a ui-sref="entertainerEdit({id: entertainer.id})" class="btn mini">✎</a>
 				<a ng-click="remove(entertainer)" class="btn mini">✖</a>
+			</td>
+		</tr>
+		<tr ng-show="!list.length">
+			<td colspan="2">
+				No entertainers yet. <a ui-sref="entertainerEdit({id: 'new'})">Click here to create one!</a>
 			</td>
 		</tr>
 	</tbody>

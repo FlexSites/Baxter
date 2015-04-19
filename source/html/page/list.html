@@ -11,6 +11,11 @@
 				<a ng-click="remove(page)" class="btn mini">✖</a>
 			</td>
 		</tr>
+		<tr ng-show="!list.length">
+			<td colspan="2">
+				No pages yet. <a ui-sref="pageEdit({id: 'new'})">Click here to create one!</a>
+			</td>
+		</tr>
 	</tbody>
 </table>
 
