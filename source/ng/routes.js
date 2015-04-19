@@ -158,6 +158,27 @@ angular.module('app').config([
         page: ['$stateParams', 'Page', resolve]
       }
     })
+    .state('posts', {
+      title: 'Post List',
+      url: '/posts',
+      templateUrl: '/html/blog/list.html',
+      controller: listCtrl,
+      resolve: {
+        list: ['Post', resolveList]
+      },
+      menu: [
+        {action: 'postEdit({id: "new"})', text: 'New Post +'}
+      ]
+    })
+    .state('postEdit', {
+      title: 'Edit Post',
+      url: '/posts/:id',
+      templateUrl: '/html/blog/addEdit.html',
+      controller: instanceCtrl('Post'),
+      resolve: {
+        post: ['$stateParams', 'Post', resolve]
+      }
+    })
     .state('sections', {
       title: 'Section List',
       url: '/section',

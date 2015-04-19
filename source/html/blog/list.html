@@ -1,0 +1,17 @@
+<div ng-include="'/html/sub-header.html'"></div>
+
+<table class="flush-full tabular">
+	<tbody>
+		<tr ng-repeat="post in list | orderBy:'url'">
+			<td>
+				{{post.title}}
+			</td>
+			<td>
+				<a ui-sref="postEdit({id: post.id})" class="btn mini">✎</a>
+				<a ng-click="remove(post)" class="btn mini">✖</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<ui-view class="grid-12"></ui-view>
