@@ -19,8 +19,8 @@ angular.module('app')
       }
     });
 
-    $scope.logout = function(){
-      $rootScope.user.signOut(function(){
+    $scope.signOut = function(){
+      $rootScope.user.$logout(function(){
         console.log('Sign Out');
         $state.go('login');
       });
