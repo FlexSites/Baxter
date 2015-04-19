@@ -4,8 +4,9 @@ angular.module('app')
     '$window',
     'pageCount',
     'eventCount',
+    'postCount',
 
-    function($scope, $window, pageCount, eventCount){
+    function($scope, $window, pageCount, eventCount, postCount){
 
       console.log('COUNTS', pageCount, eventCount);
       $scope.modules = [
@@ -21,6 +22,13 @@ angular.module('app')
           icon: 'icon-files-empty',
           count: pageCount,
           url: 'pages'
+        },
+
+        {
+          title: 'Posts',
+          icon: 'icon-files-empty',
+          count: postCount,
+          url: 'posts'
         },
 
         {

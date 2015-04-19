@@ -54,6 +54,7 @@ angular.module('app').config([
       controller: 'DashboardCtrl',
       resolve:{
         eventCount: ['Event', getCount],
+        postCount: ['Post', getCount],
         pageCount: ['Page', getCount]
       }
     })
