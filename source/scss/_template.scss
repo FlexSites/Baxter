@@ -1,3 +1,5 @@
+$bar-height: 50px;
+
 
 // Template
 @mixin transition($transition-property, $transition-time, $method) {
@@ -140,7 +142,7 @@ form{
     width: calc(100% - 60px);
     float: right;
     overflow-y: scroll;
-    height: calc(100% - 48px);
+    height: calc(100% - #{$bar-height});
     margin-top: 0;
     background-color: #e8e8e8;
     position: relative;
@@ -163,9 +165,9 @@ form{
     }
 }
 .sidebar-content{
-    height: calc(100% - 48px);
+    height: calc(100% - #{$bar-height});
     background-color: #555;
-    top: 48px;
+    top: $bar-height;
     padding-top: 10px;
 }
 .sidebar {
@@ -173,25 +175,51 @@ form{
     left: -140px;
     width: 200px;
     float: left;
-    height: calc(100% - 48px);
+    height: calc(100% - #{$bar-height});
     background-color: #fff;
-    top: 48px;
-    padding-top: 10px;
+    top: $bar-height;
     text-align: right;
+    border-right: 2px #fff solid;
     @extend .a250;
     &.sidebar-expanded{
         left: 0px;
+        .menu-toggle{
+          a{
+            i:before{
+              @include rotate(180deg);
+            }
+          }
+        }
     }
     ul {
         width: 100%;
         margin: 0;
-        padding: 10px 0px;
+        padding: 0px 0px 10px 0px;
         li {
             list-style-type: none;
         }
     }
     &_nav {
         li {
+          &.menu-toggle{
+            a{
+              background-color: #e8e8e8;
+              height: $bar-height;
+              line-height: $bar-height;
+              margin: 0px !important;
+              font-size: 10px;
+              text-transform: uppercase;
+              font-weight: bold;
+              i:before{
+                @include transition(all, 0.25s, ease-in-out 0.25s);
+                @include rotate(0deg);
+                display: inline-block;
+                font-size: 20px;
+                position: relative;
+                top: 5px;
+              }
+            }
+          }
             > a {
                 padding: 0 $space/2;
                 float: left;
@@ -201,12 +229,13 @@ form{
                 text-decoration: none;
                 color: #333;
                 line-height: 32px;
+                margin: 1px 0px;
                 i{
                     padding-left: 20px;
                 }
                 &:hover {
                     color: darken($color-primary,20%);
-                    background-color: #e8e8e8;
+                    @include gradient(left, #e8e8e8, #fff);
                 }
             }
         }
@@ -243,7 +272,7 @@ form{
             display: block;
             background-color: #fff;
             position: absolute;
-            top: 48px;
+            top: $bar-height;
             left: 0;
            }
         }
@@ -262,7 +291,7 @@ form{
         }
     }
     .header-bar{
-        height: 48px;
+        height: $bar-height;
         background-color: #fff;
         .user{
             padding: 10px 0;
@@ -270,8 +299,8 @@ form{
             float: right;
             &_image {
               margin: -10px 0 -10px 10px;
-              width: 48px;
-              height: 48px;
+              width: $bar-height;
+              height: $bar-height;
               float: right;
             }
             &_name {
@@ -292,7 +321,7 @@ form{
     }
 }
 .title-bar{
-  height: 48px;
+  height: $bar-height;
   background-color: #333;
   color: $color-primary;
   padding: 0px 20px;
@@ -300,8 +329,8 @@ form{
   float: right;
   width: 100%;
   .header-words{
-      float: left;
       position: relative;
+      width: 100%;
       .current-host{
           position: absolute;
           font-size: 12px;
@@ -312,17 +341,32 @@ form{
       }
       .current-header{
           font-size: 30px;
-          line-height: 48px;
-
+          line-height: $bar-height;
+          float: left;
       }
-  }
-  .header-actions{
-      float: right;
-      height: 48px;
-      padding: 10px;
       .button{
+        &:first-of-type{
+          float: left !important;
+          border: 0px transparent solid;
+          text-transform: uppercase;
+          padding-left: 30px;
+          color: darken($color-primary, 10%);
+          &:hover{
+            background-color: transparent;
+            color: $color-primary;
+          }
+          &:before{
+            content: ' \ea3c';
+            font-family: baxter;
+            @include rotate(180deg);
+            display: inline-block;
+            padding-left: 10px;
+          }
+        }
+        float: right;
         font-size: 10px;
-          margin-top: 5px;
+        margin-top: 8px;
+        font-weight: bold;
       }
   }
   h1{
@@ -350,7 +394,7 @@ form{
         color: $color-primary;
 
         &:hover{
-            background-color: darken($color-primary, 10%);
+            background-color: darken($color-primary, 15%);
             color: #333;
             border-color: transparent;
         }
