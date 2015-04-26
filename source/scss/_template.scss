@@ -79,7 +79,7 @@ form{
   &-count {
     position: absolute;
     top: 80px;
-    font-size: $bar-height;
+    font-size: 50px;
     width: 100%;
     left: 0;
   }
@@ -142,7 +142,7 @@ form{
     width: calc(100% - 60px);
     float: right;
     overflow-y: scroll;
-    height: calc(100% - 50px);
+    height: calc(100% - #{$bar-height});
     margin-top: 0;
     background-color: #e8e8e8;
     position: relative;
@@ -165,7 +165,7 @@ form{
     }
 }
 .sidebar-content{
-    height: calc(100% - 50px);
+    height: calc(100% - #{$bar-height});
     background-color: #555;
     top: $bar-height;
     padding-top: 10px;
@@ -175,7 +175,7 @@ form{
     left: -140px;
     width: 200px;
     float: left;
-    height: calc(100% - 50px);
+    height: calc(100% - #{$bar-height});
     background-color: #fff;
     top: $bar-height;
     text-align: right;
@@ -414,7 +414,7 @@ input, textarea, select{
     border: 0px transparent solid;
 }
 .site-select{
-    width: 2$bar-height;
+    width: 250px;
     display: inline-block;
     float: left;
     padding-left: 20px;
