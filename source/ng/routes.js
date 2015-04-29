@@ -1,3 +1,5 @@
+/* global angular */
+
 angular.module('app').config([
   '$stateProvider',
   '$urlRouterProvider',
@@ -7,7 +9,7 @@ angular.module('app').config([
 
     function resolve($stateParams, Resource){
       var id = $stateParams.id;
-      return id!=='new'?Resource.get({id: id}).$promise:new Resource();
+      return id!=='new'?Resource.get({id: id, 'filter[include]': 'media'}).$promise:new Resource();
     }
     function resolveList(Resource){
       return Resource.find({}).$promise;
@@ -154,7 +156,7 @@ angular.module('app').config([
       title: 'Edit Page',
       url: '/pages/:id',
       templateUrl: '/html/page/addEdit.html',
-      controller: instanceCtrl('Page'),
+      controller: 'PageCtrl',
       resolve: {
         page: ['$stateParams', 'Page', resolve]
       }
@@ -219,4 +221,5 @@ angular.module('app').config([
       templateUrl: '/html/error/404.html'
     });
 
+  $locationProvider.html5Mode(true);
 }]);

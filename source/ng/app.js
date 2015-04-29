@@ -2,7 +2,7 @@ angular.module('app', ['FlexSite', 'ui.router'])
   .run(['$rootScope', '$window', '$state', 'User', function($rootScope, $window, $state, User){
     var loginState = 'login';
     $rootScope.isAdmin = true;
-    $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams){
+    $rootScope.$on('$stateChangeStart', function(e, toState){
       var isLoggedIn = User.isAuthenticated()
         , toName = toState.name;
 
@@ -21,7 +21,7 @@ angular.module('app', ['FlexSite', 'ui.router'])
       console.log(err);
       $state.go('error', {err: err}, {location: false});
     });
-    $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams, fromState, fromParams, err) {
+    $rootScope.$on('$stateChangeSuccess', function(e, toState) {
       var title = toState.title
         , menu = JSON.parse(JSON.stringify(toState.menu || []));
       menu.unshift({text: 'Back to Dashboard', action: 'home'});

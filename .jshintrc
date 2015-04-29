@@ -16,6 +16,6 @@
   "laxbreak" : true,
   "laxcomma" : true,
 
-   "predef": [ "-Promise" ]
+   "predef": [ "-Promise", "angular", "Dropzone" ]
 
 }

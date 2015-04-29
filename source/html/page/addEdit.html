@@ -1,6 +1,9 @@
+
 <div ng-include="'/html/sub-header.html'"></div>
 
-<form name="page-form" ng-submit="savePage(page)" novalidate pages>
+<form dropzone="mediaChange(medium, isAdded)" class="dropzone"></form>
+
+<form name="page-form" ng-submit="savePage(page)" novalidate>
 	<label for="name">
 		<input type="text" id="name" ng-model="page.title" required="true">
 		<span>Name</span>

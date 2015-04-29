@@ -9,8 +9,8 @@
 }
 
 // Border Radius - All Equal
-@mixin border-radius ($radius: 5px) {
-  border-radius: $radius;
+@mixin border-radius ($border-radius: 5px) {
+  border-radius: $border-radius;
 }
 
 // Border Radius - Custom Sides
