@@ -182,6 +182,26 @@ angular.module('app').config([
         post: ['$stateParams', 'Post', resolve]
       }
     })
+    .state('contactMessages', {
+      title: 'Message List',
+      url: '/contactMessages',
+      templateUrl: '/html/message/list.html',
+      controller: listCtrl,
+      resolve: {
+        list: ['ContactMessage', resolveList]
+      },
+      menu: [
+      ]
+    })
+    .state('messageView', {
+      title: 'View Message',
+      url: '/contactMessages/:id',
+      templateUrl: '/html/message/view.html',
+      controller: instanceCtrl('ContactMessage'),
+      resolve: {
+        contactmessage: ['$stateParams', 'ContactMessage', resolve]
+      }
+    })
     .state('sections', {
       title: 'Section List',
       url: '/section',
