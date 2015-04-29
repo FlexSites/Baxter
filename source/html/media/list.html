@@ -1,28 +1,9 @@
-<div>
-	<div class="m">
-		<a href="/medium" class="btn">New Medium</a>
-	</div>
-	<table class="grid-full tabular">
-		<thead>
-			<tr>
-				<td>Source</td>
-				<td>Name</td>
-				<td>Description</td>
-				<td></td>
-			</tr>
-		</thead>
-		<tbody media>
-			<tr ng-repeat="medium in media">
-				<td>{{medium.src}}</td>
-				<td>{{medium.name}}</td>
-				<td>{{medium.description}}</td>
-				<td>
-					<a ng-href="/medium/{{medium.id}}" class="btn mini">Edit</a>
-					<a ng-click="delete(medium)" class="btn mini">Delete</a>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+<div ng-include="'/html/sub-header.html'"></div>
 
-<ui-view class="grid-12"></ui-view>
+<div class="grid-5" ng-repeat="medium in list">
+	<img ng-src="{{medium.src}}" width="150" height="150">
+	<!-- {{medium.name}} -->
+
+	<a ui-sref="mediaEdit({id: medium.id})" class="btn mini">Edit</a>
+	<a ng-click="delete(medium)" class="btn mini">Delete</a>
+</div>
