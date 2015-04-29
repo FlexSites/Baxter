@@ -1,0 +1,22 @@
+<div ng-include="'/html/sub-header.html'"></div>
+<div>
+  <label for="name" class="grid-third">
+    <input type="text" id="name" ng-model="contactmessage.name" disabled="true">
+    <span>Name</span>
+  </label>
+  <label for="email" class="grid-third">
+    <input type="text" id="email" ng-model="contactmessage.email" disabled="true">
+    <span>Email</span>
+  </label>
+  <label for="phone" class="grid-third">
+    <input type="text" id="phone" ng-model="contactmessage.phone" disabled="true">
+    <span>Phone</span>
+  </label>
+  <label for="message" class="grid-full">
+    <input type="textarea" id="message" ng-model="contactmessage.message" disabled="true">
+    <span>Message</span>
+  </label>
+</div>
+  <div class="form-actions">
+    <a ui-sref="contactMessages" class="btn orange">Back To List</a>
+  </div>

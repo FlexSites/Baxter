@@ -1,0 +1,21 @@
+<div ng-include="'/html/sub-header.html'"></div>
+
+<table class="flush-full tabular">
+  <tbody>
+    <tr ng-repeat="contactMessage in list">
+      <td>
+        Message from: {{contactMessage.name}} at {{contactMessage.email}}
+      </td>
+      <td>
+        <a ui-sref="messageView({id: contactMessage.id})" class="btn mini">✎</a>
+      </td>
+    </tr>
+    <tr ng-show="!list.length">
+      <td colspan="2">
+        No messages yet.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ui-view class="grid-12"></ui-view>
