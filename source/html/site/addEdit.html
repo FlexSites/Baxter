@@ -23,7 +23,7 @@
   </label>
 
   <div ng-show="isAdmin">
-    <h3>Admin Only</h3>
+    <h3 class="grid-full">Admin Only</h3>
     <label for="repo" class="grid-half">
       <input type="text" id="repo" ng-model="site.repo" placholder="git@bitbucket.org:omniorders/<repository-name>.git" required>
       <span>Repository URL (SSH-only)</span>
@@ -33,13 +33,13 @@
       <span>Analytics</span>
     </label>
 
-    <h3>Stylesheets</h3>
+    <h3 class="grid-full">Stylesheets</h3>
     <label for="styles{{$index}}" ng-repeat="style in site.styles" class="grid-full">
       <input type="text" id="styles{{$index}}" ng-model="style.value" placeholder="Stylesheet" ng-blur="site.styles = formatArray(site.styles)">
       <span></span>
     </label>
 
-    <h3>Scripts</h3>
+    <h3 class="grid-full">Scripts</h3>
     <label for="scripts{{$index}}" ng-repeat="script in site.scripts" class="grid-full">
       <input type="text" id="scripts{{$index}}" ng-model="script.value" placeholder="Script" ng-blur="site.scripts = formatArray(site.scripts)">
       <span></span>
