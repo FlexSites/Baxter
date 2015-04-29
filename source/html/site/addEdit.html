@@ -17,10 +17,6 @@
     <input type="tel" ng-model="site.contact.phone" placeholder="XXX-XXX-XXXX" required>
     <span>Contact Phone</span>
   </label>
-  <label for="host">
-    <input type="text" id="host" ng-model="site.host" placeholder="Host" required>
-    <span>Host</span>
-  </label>
 
   <div ng-show="isAdmin">
     <h3 class="grid-full">Admin Only</h3>
@@ -31,6 +27,15 @@
     <label for="analytics">
       <input type="text" ng-model="site.analytics" placeholder="UA-XXXXXXXX-X" required>
       <span>Analytics</span>
+    </label>
+
+    <label for="type">
+      <input type="text" id="type" ng-model="site.type" required>
+      <span>Type</span>
+    </label>
+    <label for="host">
+      <input type="text" id="host" ng-model="site.host" placeholder="Host" required>
+      <span>Host</span>
     </label>
 
     <h3 class="grid-full">Stylesheets</h3>
