@@ -9,7 +9,7 @@ angular.module('app').config([
 
     function resolve($stateParams, Resource){
       var id = $stateParams.id;
-      return id!=='new'?Resource.get({id: id, 'filter[include]': 'media'}).$promise:new Resource();
+      return id!=='new'?Resource.get({id: id}).$promise:new Resource();
     }
     function resolveList(Resource){
       return Resource.find({}).$promise;
@@ -54,6 +54,7 @@ angular.module('app').config([
       url: '/',
       templateUrl: '/html/home.html',
       controller: 'DashboardCtrl',
+      title: 'Dashboard',
       resolve:{
         eventCount: ['Event', getCount],
         postCount: ['Post', getCount],
@@ -209,15 +210,6 @@ angular.module('app').config([
       controller: listCtrl,
       resolve: {
         list: ['Section', resolveList]
-      }
-    })
-    .state('sites', {
-      title: 'Site List',
-      url: '/sites',
-      templateUrl: '/html/site/list.html',
-      controller: listCtrl,
-      resolve: {
-        list: ['Site', resolveList]
       }
     })
     .state('siteEdit', {
