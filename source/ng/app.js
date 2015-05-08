@@ -1,6 +1,6 @@
 angular.module('app', ['FlexSite', 'ui.router'])
   .value('session', {})
-  .run(['$rootScope', '$window', '$state', 'Site', 'User', 'session', function($rootScope, $window, $state, Site, User, session){
+  .run(['$rootScope', '$window', '$state', '$timeout', 'Site', 'User', 'session', function($rootScope, $window, $state, $timeout, Site, User, session){
     var loginState = 'login';
 
     // Is Admin Flag
@@ -9,6 +9,9 @@ angular.module('app', ['FlexSite', 'ui.router'])
     $rootScope.$on('$stateChangeStart', function(e, toState){
       var isLoggedIn = User.isAuthenticated()
         , toName = toState.name;
+
+      // For the body content animation
+      $rootScope.routeChange = true;
 
       if(!isLoggedIn && toName !== loginState){
         $window.sessionStorage.returnTo = toState.name;
@@ -23,9 +26,15 @@ angular.module('app', ['FlexSite', 'ui.router'])
 
     $rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, err) {
       console.log(err);
+      $timeout(function(){
+        $rootScope.routeChange = false;
+      }, 250);
       $state.go('error', {err: err}, {location: false});
     });
     $rootScope.$on('$stateChangeSuccess', function(e, toState) {
+      $timeout(function(){
+        $rootScope.routeChange = false;
+      }, 250);
       var title = toState.title
         , menu = JSON.parse(JSON.stringify(toState.menu || []));
 

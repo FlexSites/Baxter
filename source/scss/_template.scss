@@ -12,6 +12,7 @@ $bar-height: 50px;
 
 html {
     background-color: #f0f0f0;
+    overflow: hidden;
 }
 body {
     color: $color-black;
@@ -173,10 +174,10 @@ form{
     height: calc(100% - #{$bar-height});
     margin-top: 0;
     background-color: #e8e8e8;
-    position: relative;
-    right: 0px;
+    position: fixed;
+    top: $bar-height;
+    right: 0;
     padding-bottom: 100px;
-    @extend .a250;
     &.sidebar-expanded{
         width: calc(100% - 200px);
     }
@@ -192,17 +193,10 @@ form{
         background-color: lighten($color-primary, 10%);
     }
 }
-.sidebar-content{
-    height: calc(100% - #{$bar-height});
-    background-color: #555;
-    top: $bar-height;
-    padding-top: 10px;
-}
 .sidebar {
-    position: absolute;
+    position: fixed;
     left: -140px;
     width: 200px;
-    float: left;
     height: calc(100% - #{$bar-height});
     background-color: #fff;
     top: $bar-height;
