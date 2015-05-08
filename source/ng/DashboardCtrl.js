@@ -7,8 +7,6 @@ angular.module('app')
     'postCount',
 
     function($scope, $window, pageCount, eventCount, postCount){
-
-      console.log('COUNTS', pageCount, eventCount);
       $scope.modules = [
         {
           title: 'Events',

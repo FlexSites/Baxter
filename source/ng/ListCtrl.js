@@ -3,6 +3,5 @@ angular.module('app')
     $scope.list = list;
 
     $scope.remove = function(item){
-      console.log(item, item instanceof FlexSiteResource);
     };
   }]);

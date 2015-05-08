@@ -3,10 +3,8 @@ angular.module('app')
     $scope.page = page || new Page();
 
     $scope.mediaChange = function(medium, isAdded){
-      console.log('medium change', medium, isAdded);
       if(!$scope.page.mediumIds) $scope.page.mediumIds = [];
       $scope.page.mediumIds.push(medium.id);
-      console.log('medium change', $scope.page.mediumIds);
     };
 
     var lower = name.toLowerCase();

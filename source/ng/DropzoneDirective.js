@@ -51,7 +51,6 @@ angular.module('app')
                 });
 
                 medium.$create(function(){
-                  console.log('creating medium', medium);
                   scope.dropzone({
                     medium: medium,
                     isAdded: true

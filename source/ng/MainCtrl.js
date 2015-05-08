@@ -27,15 +27,13 @@ angular.module('app')
           .then(function(res){
             var sites = res.data;
             $scope.sites = sites;
-            if(/[a-f0-9]{24}/i.test($window.localStorage.site)) return setSite($window.localStorage.site);
-            setSite(sites[0].id);
+            if(!session.site) setSite(sites[0].id);
           });
       })
       .catch(function(err){
         if(err.status === 401){
           delete $window.localStorage.$FlexSite$currentUserId;
           delete $window.localStorage.$FlexSite$accessTokenId;
-          console.log('redirect login');
           $state.go('login');
         }
       });
@@ -50,23 +48,18 @@ angular.module('app')
     $scope.signOut = function(){
       $scope.user.$logout()
         .finally(function(){
-          console.log('Sign Out');
           $state.go('login');
         });
     };
 
     function setSite(id){
-      console.log('set site id', id);
-      session.site = $window.localStorage.site = $scope.currentSiteId = id;
+      if(id) session.site = $window.localStorage.site = $scope.currentSiteId = id;
     }
 
+    setSite($window.localStorage.site);
 
-
-    $scope.setSite = function(){
-      setSite($scope.currentSiteId);
+    $scope.setSite = function(id){
+      setSite(id);
       $state.reload();
     };
-
-    setSite();
-
   }]);

@@ -22,7 +22,6 @@ angular.module('app').config([
       $scope.remove = function(item){
         item.$delete(function(){
           // TODO: Actually remove things.
-          console.log('REMOVE');
         });
       };
     }];
