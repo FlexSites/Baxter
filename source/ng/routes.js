@@ -183,6 +183,27 @@ angular.module('app').config([
         post: ['$stateParams', 'Post', resolve]
       }
     })
+    .state('testimonials', {
+      title: 'Testimonial List',
+      url: '/testimonials',
+      templateUrl: '/html/testimonial/list.html',
+      controller: listCtrl,
+      resolve: {
+        list: ['Testimonial', resolveList]
+      },
+      menu: [
+        {action: 'testimonialEdit({id: "new"})', text: 'New Testimonial +'}
+      ]
+    })
+    .state('testimonialEdit', {
+      title: 'Edit Testimonial',
+      url: '/testimonials/:id',
+      templateUrl: '/html/testimonial/addEdit.html',
+      controller: instanceCtrl('Testimonial'),
+      resolve: {
+        testimonial: ['$stateParams', 'Testimonial', resolve]
+      }
+    })
     .state('contactMessages', {
       title: 'Message List',
       url: '/contactMessages',

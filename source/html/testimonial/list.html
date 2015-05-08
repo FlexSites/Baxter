@@ -1,0 +1,25 @@
+<div ng-include="'/html/sub-header.html'"></div>
+
+<table class="flush-full tabular">
+	<tbody>
+		<tr ng-repeat="testimonial in list | orderBy:'url'">
+			<td>
+				{{testimonial.author}}
+			</td>
+			<td>
+				{{testimonial.company}}
+			</td>
+			<td>
+				<a ui-sref="testimonialEdit({id: testimonial.id})" class="btn mini">✎</a>
+				<a ng-click="remove(testimonial)" class="btn mini">✖</a>
+			</td>
+		</tr>
+		<tr ng-show="!list.length">
+			<td colspan="2">
+				No testimonials yet. <a ui-sref="testimonialEdit({id: 'new'})">Click here to create one!</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<ui-view class="grid-12"></ui-view>
