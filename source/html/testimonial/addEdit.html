@@ -1,0 +1,21 @@
+
+<div ng-include="'/html/sub-header.html'"></div>
+
+<form name="testimonial-form" ng-submit="saveTestimonial(testimonial)" novalidate>
+	<label for="quote" class="grid-full">
+		<textarea id="quote" ng-model="testimonial.quote" required="true" rows="8"></textarea>
+		<span>Quote</span>
+	</label>
+	<label for="author" class="grid-half">
+		<input type="text" ng-model="testimonial.author">
+		<span>Author</span>
+	</label>
+	<label for="company" class="grid-half">
+		<input type="text" id="company" ng-model="testimonial.company" required="true">
+		<span>Company</span>
+	</label>
+
+  <div class="form-actions">
+    <button>Save</button><a ui-sref="testimonials" class="btn gray">Cancel</a>
+  </div>
+</form>
