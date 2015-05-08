@@ -41,6 +41,11 @@ angular.module('app')
       });
 
 
+      $scope.showSidebar = $window.localStorage.showSidebar === 'true';
+      $scope.toggleSidebar = function(){
+        $window.localStorage.showSidebar = $scope.showSidebar = !$scope.showSidebar;
+      };
+
 
     $scope.signOut = function(){
       $scope.user.$logout()
