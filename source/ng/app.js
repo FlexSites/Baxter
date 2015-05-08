@@ -1,7 +1,11 @@
 angular.module('app', ['FlexSite', 'ui.router'])
-  .run(['$rootScope', '$window', '$state', 'User', function($rootScope, $window, $state, User){
+  .value('session', {})
+  .run(['$rootScope', '$window', '$state', 'Site', 'User', 'session', function($rootScope, $window, $state, Site, User, session){
     var loginState = 'login';
-    $rootScope.isAdmin = true;
+
+    // Is Admin Flag
+    $rootScope.isAdmin = typeof $window.localStorage.isAdmin !== 'undefined';
+
     $rootScope.$on('$stateChangeStart', function(e, toState){
       var isLoggedIn = User.isAuthenticated()
         , toName = toState.name;
@@ -16,7 +20,7 @@ angular.module('app', ['FlexSite', 'ui.router'])
         $state.go('home');
       }
     });
-    $rootScope.user = User.get({id: $window.localStorage.$FlexSite$currentUserId});
+
     $rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, err) {
       console.log(err);
       $state.go('error', {err: err}, {location: false});
@@ -24,7 +28,8 @@ angular.module('app', ['FlexSite', 'ui.router'])
     $rootScope.$on('$stateChangeSuccess', function(e, toState) {
       var title = toState.title
         , menu = JSON.parse(JSON.stringify(toState.menu || []));
-      menu.unshift({text: 'Back to Dashboard', action: 'home'});
+
+      if(toState.name !== 'home') menu.unshift({text: 'Back to Dashboard', action: 'home'});
 
       $rootScope.header = title;
       $rootScope.subHeaderMenu = menu;
@@ -32,3 +37,7 @@ angular.module('app', ['FlexSite', 'ui.router'])
       $rootScope.title = title;
     });
   }]);
+
+function isAdmin(){
+  window.localStorage.isAdmin = true;
+}

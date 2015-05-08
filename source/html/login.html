@@ -1,16 +1,16 @@
-<h1>Please login to continue.</h1>
 
-<!-- <a href="http://localapi.comedian.io/auth/google" target="_self">
-	<img src="/img/google-sign-in.png">
-</a> -->
 
-<form ng-submit="login()">
-  {{me}}
-	<label for="username">
-		<input type="text" ng-model="user.email" placeholder="Username/Email">
-	</label>
-	<label for="password">
-		<input type="password" ng-model="user.password" placeholder="Password">
-	</label>
-  <button>Login</button>
-</form>
+<div class="login">
+
+
+  <form ng-submit="login()" class="login_form">
+    <img src="/img/logo-white.svg" class="login_logo">
+    <label for="username" class="grid-full">
+      <input type="text" ng-model="user.email" placeholder="Username/Email">
+    </label>
+    <label for="password" class="grid-full">
+      <input type="password" ng-model="user.password" placeholder="Password">
+    </label>
+    <button class="grid-full login_button">Login</button>
+  </form>
+</div>
