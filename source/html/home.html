@@ -1,6 +1,6 @@
 <div ng-include="'/html/sub-header.html'"></div>
 
-<div class="dashboard">
+<div class="dashboard grid-full no-mt">
   <a ng-repeat="module in modules" ui-sref="{{module.url}}" class="module">
     <span class="module-title">{{module.title}}</span>
     <b class="module-count">{{module.count}}</b>

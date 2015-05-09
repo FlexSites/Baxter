@@ -5,8 +5,9 @@ angular.module('app')
     'pageCount',
     'eventCount',
     'postCount',
+    'subscriberCount',
 
-    function($scope, $window, pageCount, eventCount, postCount){
+    function($scope, $window, pageCount, eventCount, postCount, subscriberCount){
       $scope.modules = [
         {
           title: 'Events',
@@ -32,6 +33,7 @@ angular.module('app')
         {
           title: 'Subscribers',
           icon: 'icon-file-text',
+          count: subscriberCount,
           url: 'subscribers'
         }
       ];

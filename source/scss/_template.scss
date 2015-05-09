@@ -178,7 +178,7 @@ form{
     top: $bar-height;
     right: 0;
     padding-bottom: 100px;
-    &.sidebar-expanded{
+    &.sidebar-expanded, &.sidebar-expanded .form-actions{
         width: calc(100% - 200px);
     }
 }
@@ -491,6 +491,7 @@ select.select {
     -webkit-transform: rotate(90deg);
 }
 .form-actions{
+    @extend .a250;
     padding: 0 10px;
     background-color: rgba(0,0,0,0.5);
     position: fixed;
