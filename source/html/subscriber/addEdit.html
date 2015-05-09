@@ -1,23 +1,32 @@
-<form subscribers ng-submit="save()">
-    <h1>Add/Edit Subscriber</h1>
+<div ng-include="'/html/sub-header.html'"></div>
 
-    <label for="name">
-        <input type="text" ng-model="subscriber.name">
-        <span>Name</span>
-    </label>
+<form ng-submit="save()" class="grid-full">
 
-    <label for="email">
-        <input type="email" id="email" ng-model="subscriber.email">
-        <span>Email Address</span>
-    </label>
-    <label for="zip">
-        <input type="text" id="zip" ng-model="subscriber.zip">
-        <span>Zip</span>
-    </label>
-    <label for="status">
-        <input type="text" id="status" ng-model="subscriber.status">
-        <span>Status</span>
-    </label>
+  <label for="name" class="grid-half">
+    <input type="text" ng-model="subscriber.name" disabled>
+    <span>Name</span>
+  </label>
 
-    <a ui-sref="subscribers" class="btn gray">Cancel</a><button>Submit</button>
+  <label for="email" class="grid-half">
+    <input type="email" id="email" ng-model="subscriber.email" disabled>
+    <span>Email Address</span>
+  </label>
+
+  <label for="zip" class="grid-half">
+    <input type="text" id="zip" ng-model="subscriber.zip" disabled>
+    <span>Zip</span>
+  </label>
+
+  <label for="status" class="grid-half">
+    <select id="status" ng-model="subscriber.status">
+      <option value="S">Subscribed</option>
+      <option value="U">Unsubscribed</option>
+      <option value="B">Bounced</option>
+    </select>
+    <span>Status</span>
+  </label>
+
+  <div class="form-actions">
+    <button>Save</button><a ui-sref="subscribers" class="btn gray">Cancel</a>
+  </div>
 </form>

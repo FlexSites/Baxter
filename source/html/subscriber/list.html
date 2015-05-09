@@ -1,28 +1,23 @@
+<div ng-include="'/html/sub-header.html'"></div>
 
-
-<h1>Email Subscribers</h1>
-<div class="m">
-    <a href="/subscriber" class="btn">New Subscriber</a>
-</div>
-<table class="grid-full tabular"> 
-    <tbody subscribers>
-        <tr ng-repeat="subscriber in subscribers | orderBy:'email'">
-            <td>
-                {{subscriber.name}}
-            </td>
-            <td>
-                {{subscriber.zip}}
-            </td>
-            <td>
-                {{subscriber.email}}
-            </td>
-            <td>
-                {{subscriber.status}}
-            </td>
-            <td>
-                <a ng-href="/subscriber/{{subscriber.id}}" class="btn mini">Edit</a>
-                <a ng-click="delete(subscriber)" class="btn mini">Delete</a>
-            </td>
-        </tr>
-    </tbody>
+<table class="flush-full tabular">
+  <tbody>
+    <tr ng-repeat="subscriber in list | orderBy:'email'">
+      <td>
+        {{subscriber.name}}
+      </td>
+      <td>
+        {{subscriber.zip}}
+      </td>
+      <td>
+        {{subscriber.email}}
+      </td>
+      <td>
+        {{subscriber.status}}
+      </td>
+      <td>
+        <a ui-sref="subscriberEdit({id: subscriber.id})" class="btn mini">Edit</a>
+      </td>
+    </tr>
+  </tbody>
 </table>

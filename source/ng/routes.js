@@ -57,7 +57,8 @@ angular.module('app').config([
       resolve:{
         eventCount: ['Event', getCount],
         postCount: ['Post', getCount],
-        pageCount: ['Page', getCount]
+        pageCount: ['Page', getCount],
+        subscriberCount: ['Subscriber', getCount]
       }
     })
     .state('login', {
@@ -242,9 +243,24 @@ angular.module('app').config([
       }
     })
     .state('subscribers', {
-      title: 'Add/Edit Site',
-      url: '/subscriber',
-      templateUrl: '/html/subscriber/list.html'
+      title: 'Subscriber List',
+      url: '/subscribers',
+      templateUrl: '/html/subscriber/list.html',
+      controller: listCtrl,
+      resolve: {
+        list: ['Subscriber', resolveList]
+      },
+      menu: [
+      ]
+    })
+    .state('subscriberEdit', {
+      title: 'Subscriber Edit',
+      url: '/subscribers/:id',
+      templateUrl: '/html/subscriber/addEdit.html',
+      controller: instanceCtrl('Subscriber'),
+      resolve: {
+        subscriber: ['$stateParams', 'Subscriber', resolve]
+      }
     })
 
     // ERROR STATES
