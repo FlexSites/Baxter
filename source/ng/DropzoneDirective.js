@@ -19,7 +19,7 @@ angular.module('app')
             },
             // autoProcessQueue: false,
             accept: function(file, done){
-              $http.get('http://<<env>>api.flexhub.io/media/sign?name='+file.name+'&type='+file.type, {
+              $http.get('http://<<env>>api.flexsites.io/media/sign?name='+file.name+'&type='+file.type, {
                 headers: {
                   'X-FlexSite': $window.localStorage.site
                 }
