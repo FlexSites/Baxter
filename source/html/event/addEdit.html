@@ -2,113 +2,105 @@
 
 <script type="text/ng-template" id="customTemplate.html">
   <a>
-      <img ng-src="http://upload.wikimedia.org/wikipedia/commons/thumb/{{match.model.flag}}" width="16">
-      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+    <img ng-src="http://upload.wikimedia.org/wikipedia/commons/thumb/{{match.model.flag}}" width="16">
+    <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
   </a>
 </script>
-<form name="eventForm" ng-submit="saveEvent()" class="flex" novalidate ng-controller="EventAddEdit">
-    <label for="custom-name">
-        <input type="text" ng-model="event._name" placeholder="Custom Name">
-        <span>Name</span>
-    </label>
-    <label for="entertainer">
-        <input type="text" ng-model="event.entertainer" placeholder="Entertainer" typeahead="entertainer for entertainer in getEntertainers($viewValue)"  typeahead-template-url="customTemplate.html">
-        <span>Entertainer</span>
-    </label>
+<form name="eventForm" ng-submit="saveEvent()" class="flex" novalidate>
+  <label for="custom-name" class="grid-7">
+    <input type="text" ng-model="event._name" placeholder="Custom Name">
+    <span>Name</span>
+  </label>
+  <label for="entertainer" class="grid-7">
+    <input type="text" ng-model="event.entertainer" placeholder="Entertainer" typeahead="entertainer for entertainer in getEntertainers($viewValue)"  typeahead-template-url="customTemplate.html">
+    <span>Entertainer</span>
+  </label>
+  <label for="venue" class="grid-6">
+    <select id="venue" ng-model="event.venue" placeholder="Venue" ng-disabled="venues.length === 1" ng-options="venue.id as venue.name for venue in venues" required>
+        <option value="">Select Venue</option>
+    </select>
+    <span data-errormessage="You must enter a venue for the event">Venue</span>
+  </label>
 
-    <label for="description" class="grid-full">
-        <textarea type="text" id="description" ng-model="event._description" placeholder="Description" rows="5"></textarea>
-        <span>Description</span>
-    </label>
-    <div venues>
-        <label for="title" class="grid-full">
-            <select id="venue" ng-model="event.venue" placeholder="Venue" ng-options="venue.id as venue.name for venue in venues" required>
-                <option value="">Select Venue</option>
-            </select>
-            <span data-errormessage="You must enter a venue for the event">Venue</span>
-        </label>
+  <label for="description" class="grid-full">
+    <textarea type="text" id="description" ng-model="event._description" placeholder="Description" rows="5"></textarea>
+    <span>Description</span>
+  </label>
+
+  <div id="showtimes" class="flush-half">
+
+    <h3 class="grid-full">Showtimes</h3>
+    <div class="showtime" ng-repeat="showtime in showtimes">
+      <label for="date{{$index}}" ng-class="{'no-pt': !!$index}">
+        <input type="text" id="date{{$index}}" class="stDate" ng-model="showtime.date" placeholder="Date">
+        <span ng-show="!$index">Date</span>
+      </label>
+      <label for="time{{$index}}" ng-class="{'no-pt': !!$index}">
+        <input type="text" id="time{{$index}}" ng-model="showtime.time" placeholder="Time" ng-blur="save(showtime, true)" required>
+        <span ng-show="!$index">Time</span>
+      </label>
+      <label for="removeShowtime{{$index}}" class="grid-full">
+        <button type="button">Remove</button>
+      </label>
     </div>
 
+    <button type="button" class="grid-full" ng-click="showtimes.push({event: event._id})">Add Show</button>
+  </div>
+  <div class="flush-half">
 
-    <div id="showtimes" class="flush-half">
-
-    <h3 class="c">Showtimes</h3>
-        <div class="showtime" ng-repeat="showtime in showtimes" showtimes="{event: event._id}">
-    ---{{showtimes | json}}----
-            <label for="date{{$index}}" ng-class="{'no-pt': !!$index}">
-                <input type="text" id="date{{$index}}" class="stDate" ng-model="showtime.date" placeholder="Date">
-                <span ng-show="!$index">Date</span>
-            </label>
-            <label for="time{{$index}}" ng-class="{'no-pt': !!$index}">
-                <input type="text" id="time{{$index}}" ng-model="showtime.time" placeholder="Time" ng-blur="save(showtime, true)" required>
-                <span ng-show="!$index">Time</span>
-            </label>
-            <label for="removeShowtime{{$index}}">
-                <button type="button">Remove</button>
-            </label>
-        </div>
-
-        <button type="button" class="m" ng-click="showtimes.push({event: event._id})">Add Show</button>
-    </div>
-    <div class="flush-half">
-
-    <h3>Pricing</h3>
-        <div sections class="mr ml">
-            <table ng-show="!!event.pricingTiers.length" style="table-layout: fixed">
-              <thead>
-                <tr>
-                  <td>Filter</td>
-                  <th ng-repeat="section in sections">{{section.name}}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="tier in event.pricingTiers">
-                    <td><input type="text" ng-model="tier.filter" placeholder="Filter" ng-disabled="!$index"></td>
-                    <td ng-repeat="section in tier.sections"><input type="text" ng-model="section.price" placeholder="{{section.name}}"></td>
-                </tr>
-              </tbody>
-            </table>
-            <button type="button" ng-click="addPricingTier()" class="mt">Add Pricing Tier</button>
-        </div>
-
-        <label for="dos-price">
-            <input type="text" ng-model="event.dayofshow" placeholder="5">
-            <span>Day of show price increase</span>
-        </label>
+  <h3 class="grid-full">Pricing</h3>
+    <div sections class="mr ml">
+      <table ng-show="!!event.pricingTiers.length" style="table-layout: fixed">
+        <thead>
+          <tr>
+            <td>Filter</td>
+            <th ng-repeat="section in sections">{{section.name}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="tier in event.pricingTiers">
+              <td><input type="text" ng-model="tier.filter" placeholder="Filter" ng-disabled="!$index"></td>
+              <td ng-repeat="section in tier.sections"><input type="text" ng-model="section.price" placeholder="{{section.name}}"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="button" class="grid-full" ng-click="addPricingTier()">Add Pricing Tier</button>
     </div>
 
-    <hr style="width: 100%; float: left; clear: both;">
-
-    <label for="facebook">
-        <input type="text" ng-model="event._facebook" placeholder="">
-        <span>Facebook Event Link</span>
+    <label for="dos-price">
+      <input type="text" ng-model="event.dayofshow" placeholder="5">
+      <span>Day of show price increase</span>
     </label>
+  </div>
 
-    <label for="video">
-        <input type="text" ng-model="event._video" placeholder="">
-        <span>Video Link</span>
-    </label>
+  <hr style="width: 100%; float: left; clear: both;">
 
-    <label for="eventLink" class="grid-full">
-        <input type="url" name="link" ng-model="event.link" id="eventLink" />
-        <span>Link</span>
-    </label>
+  <label for="facebook" class="grid-half">
+    <input type="text" ng-model="event._facebook" placeholder="">
+    <span>Facebook Event Link</span>
+  </label>
 
-    <label for="enabled">
-        <input type="text" ng-model="event.enabled" placeholder="Now">
-        <span>Enabled Date</span>
-    </label>
+  <label for="video" class="grid-half">
+    <input type="text" ng-model="event._video" placeholder="">
+    <span>Video Link</span>
+  </label>
 
-    <pre class="grid-full">
-    {{event | json}}
-    </pre>
+  <label for="eventLink" class="grid-full">
+    <input type="url" name="link" ng-model="event.link" id="eventLink" />
+    <span>Link</span>
+  </label>
 
-    <div class="fr m">
-        <a class="btn" ng-click="addShow()">Add show</a>
-        <a class="btn">Remove show</a>
-        <button type="submit" class="btn">Save</button>
-        <button type="submit" class="btn">Save & Next</button>
-    </div>
+  <label for="enabled">
+    <input type="text" ng-model="event.enabled" placeholder="Now">
+    <span>Enabled Date</span>
+  </label>
+
+  <div class="fr m">
+    <a class="btn" ng-click="addShow()">Add show</a>
+    <a class="btn">Remove show</a>
+    <button type="submit" class="btn">Save</button>
+    <button type="submit" class="btn">Save & Next</button>
+  </div>
 </form>
 
 

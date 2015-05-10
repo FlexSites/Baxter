@@ -83,8 +83,10 @@ angular.module('app').config([
       title: 'Add/Edit Event',
       url: '/events/:id',
       templateUrl: '/html/event/addEdit.html',
+      controller: 'EventCtrl',
       resolve: {
-        event: ['$stateParams', 'Event', resolve]
+        event: ['$stateParams', 'Event', resolve],
+        venues: ['Venue', resolveList]
       }
     })
     .state('entertainers', {
