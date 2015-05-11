@@ -528,6 +528,16 @@ select.select {
   background-color: #ccc;
 }
 
+.media-select-btn {
+  background-color: #ccc;
+  color: #666 !important;
+  display: block;
+  text-align: center;
+  padding: 50px;
+  &:hover {
+    background-color: #d0d0d0;
+  }
+}
 .media-grid {
   padding: 0 $space/2;
   > a {

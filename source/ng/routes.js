@@ -178,6 +178,17 @@ angular.module('app').config([
         page: ['$stateParams', 'Page', resolve]
       }
     })
+    .state('pageEdit.media', {
+      title: 'Select Image',
+      templateUrl: '/html/media/select.html',
+      controller: 'MediaSelectCtrl',
+      resolve: {
+        media: ['Medium', resolveList]
+      },
+      menu: [
+        {action: 'pageEdit({id: "new"})', text: 'New Page +'}
+      ]
+    })
     .state('posts', {
       title: 'Post List',
       url: '/posts',

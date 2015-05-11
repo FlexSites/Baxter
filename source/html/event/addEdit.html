@@ -4,8 +4,9 @@
 
   <form name="eventForm" ng-submit="saveEvent()" class="flex" novalidate>
     <div class="flush-7">
-      <a ui-sref="eventEdit.media" ng-hide="event.media[0]" class="grid-full" style="background-color: #ccc; color: #fff; width: 150px; height: 150px; display: block;">
-        Add Media
+      <a ui-sref="eventEdit.media" ng-hide="event.media[0]" class="grid-full media-select-btn">
+        <i class="icon-images"></i>
+        <div>Add Media</div>
       </a>
       <img ng-src="{{event.media[0].src}}" class="grid-full">
     </div>
