@@ -1,9 +1,12 @@
 <div ng-include="'/html/sub-header.html'"></div>
 
-<div class="grid-5" ng-repeat="medium in list">
-	<img ng-src="{{medium.src}}" width="150" height="150">
-	<!-- {{medium.name}} -->
+<div class="media-grid">
+  <a ng-repeat="medium in list | orderBy:'name' | orderBy:'type'" ui-sref="mediaEdit({id: medium.id})" title="{{medium.name}}" data-type="{{medium.type}}">
+  	<div class="media-preview" style="background-image: url({{medium.thumbnail || medium.src}})"></div>
+  	<span class="media-label">{{medium.name}}</span>
+  </a>
+</div>
 
-	<a ui-sref="mediaEdit({id: medium.id})" class="btn mini">Edit</a>
-	<a ng-click="delete(medium)" class="btn mini">Delete</a>
+<div class="grid-full" ng-show="!list.length">
+  No media yet. <a ui-sref="mediaEdit({id: 'new'})">Click here to upload one!</a>
 </div>

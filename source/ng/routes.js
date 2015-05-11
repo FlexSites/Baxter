@@ -89,6 +89,17 @@ angular.module('app').config([
         venues: ['Venue', resolveList]
       }
     })
+    .state('eventEdit.media', {
+      title: 'Select Image',
+      templateUrl: '/html/media/select.html',
+      controller: 'MediaSelectCtrl',
+      resolve: {
+        media: ['Medium', resolveList]
+      },
+      menu: [
+        {action: 'eventEdit({id: "new"})', text: 'New Event +'}
+      ]
+    })
     .state('entertainers', {
       title: 'Entertainer List',
       url: '/entertainers',
@@ -114,11 +125,14 @@ angular.module('app').config([
       controller: listCtrl,
       resolve: {
         list: ['Medium', resolveList]
-      }
+      },
+      menu: [
+        {action: 'mediaEdit({id: "new"})', text: 'New Media +'}
+      ]
     })
     .state('mediaEdit', {
       title: 'Add/Edit Medium',
-      controller: instanceCtrl('Medium'),
+      controller: 'MediumCtrl',
       url: '/media/:id',
       templateUrl: '/html/media/addEdit.html',
       resolve: {
