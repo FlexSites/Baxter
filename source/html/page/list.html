@@ -4,7 +4,10 @@
 	<tbody>
 		<tr ng-repeat="page in list | orderBy:'url'">
 			<td>
-				{{page.title}}
+				{{ page.title }}
+			</td>
+			<td>
+				{{ page.mediumIds.length ? 'Yes' : 'No' }}
 			</td>
 			<td>
 				<a ui-sref="pageEdit({id: page.id})" class="btn mini">✎</a>
