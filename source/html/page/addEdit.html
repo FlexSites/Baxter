@@ -1,14 +1,17 @@
 
 <div class="main-content" ng-class="{'flush-12': hasPanel(), 'flush-full': !hasPanel()}">
 	<div ng-include="'/html/sub-header.html'"></div>
-
+	<pre>{{page | json}}</pre>
 	<form name="page-form" ng-submit="savePage(page)" novalidate>
 	  <div class="flush-7">
 	    <a ui-sref="pageEdit.media" ng-hide="page.media[0]" class="grid-full media-select-btn">
 	      <i class="icon-images"></i>
         <div>Add Media</div>
 	    </a>
-	    <img ng-src="{{page.media[0].src}}" class="grid-full">
+	    <div class="grid-full media-thumb" ng-show="page.media[0]">
+	    	<a class="media-remove" ng-click="removeMedia()">✖</a>
+    		<img ng-src="{{page.media[0].src}}" class="flush-full">
+	    </div>
 	  </div>
 	  <div class="flush-13">
 			<label for="name">

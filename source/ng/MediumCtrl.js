@@ -11,7 +11,6 @@ angular.module('app')
       if(!$scope.medium.name) $scope.medium.name = medium.name;
     };
 
-    console.log('medium', medium);
     if(medium.type === 'video') {
       console.log('is video');
       // Youtube matching
@@ -26,11 +25,11 @@ angular.module('app')
 
     var lower = name.toLowerCase();
     $scope[lower] = medium || new Medium();
-    $scope['saveMedium'] = function(medium){
-      if(medium.id){
-        return medium.$upsert(done);
+    $scope.saveMedium = function(){
+      if($scope.medium.id){
+        return $scope.medium.$upsert(done);
       }
-      medium.$create(done);
+      $scope.medium.$create(done);
     };
     function done(){
       $state.go('media');

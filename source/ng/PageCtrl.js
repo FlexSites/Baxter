@@ -6,8 +6,12 @@ angular.module('app')
       page.media = page.mediumIds.map(function(id){
         return Medium.get({id: id});
       });
-      console.log('pages', page);
     }
+
+    $scope.removeMedia = function(){
+      $scope.page.media = [];
+      $scope.page.mediumIds = [];
+    };
 
     $scope.mediaChange = function(medium, isAdded){
       if(!$scope.page.mediumIds) $scope.page.mediumIds = [];
