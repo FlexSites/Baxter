@@ -14,6 +14,8 @@ $headerFontFamily: $baseFontFamily;
 
 // Colors
 $color-primary: #FF6700;
+$color-primary-lt: lighten($color-primary, 20%);
+$color-primary-dk: darken($color-primary, 20%);
 $dkMainColor: #C55000;
 
 $color-secondary: #104BA9;

@@ -1,0 +1,7 @@
+<h2 class="grid-full">Select an image</h2>
+<div class="media-grid">
+  <a ng-click="select(medium)" ng-class="{'selected': isSelect(medium)}" ng-repeat="medium in media | orderBy:'name' | filter:{'type': '!video'}" title="{{medium.name}}" data-type="{{medium.type}}">
+  	<div class="media-preview" style="background-image: url({{medium.thumbnail || medium.src}})"></div>
+  	<span class="media-label">{{medium.name}}</span>
+  </a>
+</div>

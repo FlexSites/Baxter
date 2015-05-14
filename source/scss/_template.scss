@@ -168,6 +168,7 @@ form{
     }
 }
 .body-content {
+    position: relative;
     width: calc(100% - 60px);
     float: right;
     overflow-y: scroll;
@@ -510,4 +511,96 @@ select.select {
             background-color: #555;
         }
     }
+}
+
+.main-content, .panel {
+  overflow: scroll;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding-bottom: 100px;
+}
+
+.panel {
+  left: auto;
+  right: 0;
+  background-color: #ccc;
+}
+
+.media-select-btn {
+  background-color: #ccc;
+  color: #666 !important;
+  display: block;
+  text-align: center;
+  padding: 50px;
+  &:hover {
+    background-color: #d0d0d0;
+  }
+}
+.media-thumb {
+  position: relative;
+}
+.media-remove {
+  background: $color-primary;
+  color: #fff;
+  padding: $space/4 $space/3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  &:hover {
+    background-color: $color-primary-lt;
+    color: #fff;
+  }
+}
+.media-grid {
+  padding: 0 $space/2;
+  > a {
+    display: block;
+    background-color: #ccc;
+    float: left;
+    margin: 5px;
+    padding: 5px;
+    width: 160px;
+    position: relative;
+    &:before {
+      content: attr(data-type);
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 0.5em;
+      background-color: $color-primary;
+      padding: 5px;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 0 #000;
+    }
+    &:hover {
+      background-color: $color-primary-lt;
+      color: #fff;
+    }
+    &.selected {
+      background-color: $color-primary;
+      color: #fff;
+    }
+    .media-preview {
+      background-size: cover;
+      display: block;
+      width: 150px;
+      height: 150px;
+      margin-bottom: 5px;
+    }
+    .media-label {
+      font-size: 0.5em;
+      width: 100%;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    &.selected {
+      background-color: $color-primary;
+    }
+  }
 }

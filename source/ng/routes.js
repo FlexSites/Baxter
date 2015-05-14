@@ -83,9 +83,22 @@ angular.module('app').config([
       title: 'Add/Edit Event',
       url: '/events/:id',
       templateUrl: '/html/event/addEdit.html',
+      controller: 'EventCtrl',
       resolve: {
-        event: ['$stateParams', 'Event', resolve]
+        event: ['$stateParams', 'Event', resolve],
+        venues: ['Venue', resolveList]
       }
+    })
+    .state('eventEdit.media', {
+      title: 'Select Image',
+      templateUrl: '/html/media/select.html',
+      controller: 'MediaSelectCtrl',
+      resolve: {
+        media: ['Medium', resolveList]
+      },
+      menu: [
+        {action: 'eventEdit({id: "new"})', text: 'New Event +'}
+      ]
     })
     .state('entertainers', {
       title: 'Entertainer List',
@@ -112,11 +125,14 @@ angular.module('app').config([
       controller: listCtrl,
       resolve: {
         list: ['Medium', resolveList]
-      }
+      },
+      menu: [
+        {action: 'mediaEdit({id: "new"})', text: 'New Media +'}
+      ]
     })
     .state('mediaEdit', {
       title: 'Add/Edit Medium',
-      controller: instanceCtrl('Medium'),
+      controller: 'MediumCtrl',
       url: '/media/:id',
       templateUrl: '/html/media/addEdit.html',
       resolve: {
@@ -161,6 +177,17 @@ angular.module('app').config([
       resolve: {
         page: ['$stateParams', 'Page', resolve]
       }
+    })
+    .state('pageEdit.media', {
+      title: 'Select Image',
+      templateUrl: '/html/media/select.html',
+      controller: 'MediaSelectCtrl',
+      resolve: {
+        media: ['Medium', resolveList]
+      },
+      menu: [
+        {action: 'pageEdit({id: "new"})', text: 'New Page +'}
+      ]
     })
     .state('posts', {
       title: 'Post List',
