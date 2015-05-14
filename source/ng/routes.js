@@ -67,6 +67,24 @@ angular.module('app').config([
       templateUrl: '/html/login.html',
       controller: 'LoginCtrl'
     })
+    .state('paymentInfo', {
+      title: 'Payment Information',
+      url: '/payment-info',
+      templateUrl: '/html/profile/payment.html',
+      resolve: {
+        token: ['Order', function(Order){
+          return Order.token().$promise
+            .then(function(res){
+              return res.token;
+            });
+        }]
+      },
+      controller: ['token', function(token){
+        braintree.setup(token, "dropin", {
+          container: "payment-form"
+        });
+      }]
+    })
     .state('events', {
       title: 'Event List',
       url: '/events',
