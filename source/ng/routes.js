@@ -80,8 +80,8 @@ angular.module('app').config([
         }]
       },
       controller: ['token', function(token){
-        braintree.setup(token, "dropin", {
-          container: "payment-form"
+        braintree.setup(token, "custom", {
+          id: "checkout"
         });
       }]
     })

@@ -1,4 +1,24 @@
-<form id="checkout" method="post" action="/checkout">
-  <div id="payment-form"></div>
+<form id="checkout" method="post" action="http://<<env>>api.flexsites.io/subscriptions">
+  <label for="number" class="grid-half">
+    <input id="number" data-braintree-name="number">
+    <span>Credit Card</span>
+  </label>
+  <label for="expDate" class="grid-half">
+    <input id="expDate" data-braintree-name="expiration_date">
+    <span>Experation Date</span>
+  </label>
+  <label for="CVV" class="grid-half">
+    <input id="CVV" data-braintree-name="cvv">
+    <span>CVV</span>
+  </label>
+  <label for="zipCode">
+    <input type="text" id="zipCode" data-braintree-name="postal_code">
+    <span>Zip Code</span>
+  </label>
+  <label for="street">
+    <input type="text" id="street" data-braintree-name="street_address">
+    <span>Street Address</span>
+  </label>
+
   <input type="submit" value="Pay $10">
 </form>
