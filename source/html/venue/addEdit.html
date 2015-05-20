@@ -12,7 +12,7 @@
 
 	<div class="flush-7">
 
-		<h3>Address</h3>
+		<h3 class="grid-full">Address</h3>
 
 		<label for="street" class="grid-full">
 			<input type="text" id="street" ng-model="venue.address.street" placeholder="Street" required>
@@ -64,22 +64,36 @@
 		</label>
 	</div>
 
-	<h3 style="width: 100%; float:left;">Sections</h3>
+	<h3 class="grid-full">Sections</h3>
 
 	<div ng-repeat="section in sections">
-		<label for="section-name-{{$index}}" class="grid-9">
-			<input type="text" id="section-name-{{$index}}" ng-model="section.name" placeholder="Section name" required>
-			<span>Name</span>
+		<label for="section-type-{{$index}}" class="grid-4">
+			<select id="section-type-{{$index}}" ng-model="section.type" placeholder="Section Type" required>
+				<option value="GA">General Admission</option>
+				<option value="DISABLITY">Handicapped</option>
+				<option value="ASSIGNED">Assigned</option>
+			</select>
+			<span>Type</span>
 		</label>
-		<label for="section-color-{{$index}}" class="grid-8">
-			<input type="text" id="section-color-{{$index}}" ng-model="section.color" placeholder="Section color" ng-blur="save(section, true)">
+		<label for="section-name-{{$index}}" class="grid-6">
+			<input type="text" id="section-name-{{$index}}" ng-model="section.name" placeholder="Section name" required>
+			<span>Label</span>
+		</label>
+		<label for="section-color-{{$index}}" class="grid-2">
+			<input type="text" id="section-color-{{$index}}" ng-model="section.color" placeholder="Section color">
 			<span>Color</span>
 		</label>
-		<label for="removeSection{{$index}}" class="grid-3">
-			<button type="button" id="removeSection{{$index}}" ng-click="remove($index,venue.sections)">Remove</button>
+
+		<label for="section-seatCount-{{$index}}" class="grid-3">
+			<input type="text" id="section-seatCount-{{$index}}" ng-model="section.seatCount" placeholder="Count" ng-show="section.type === 'GA'">
+			<span>Count</span>
+		</label>
+		<label for="removeSection{{$index}}" class="grid-5">
+			<button type="button" id="addSection{{$index}}" ng-click="saveSection(section,sections)">Save</button>
+			<button type="button" id="removeSection{{$index}}" ng-click="removeSection($index,sections)">Remove</button>
 		</label>
 	</div>
-	<button type="button" class="grid-full" ng-click="sections.push(add())">Add Section</button>
+	<button type="button" class="grid-full" ng-click="addSection()">Add Section</button>
 
 
 	<div class="form-actions">

@@ -35,6 +35,9 @@ angular.module('app').config([
           }
           item.$create(done);
         };
+        $scope['remove'+name] = function(){
+          console.log(arguments);
+        }
         function done(){
           $state.go(lower+'s');
         }
@@ -86,7 +89,14 @@ angular.module('app').config([
       controller: 'EventCtrl',
       resolve: {
         event: ['$stateParams', 'Event', resolve],
-        venues: ['Venue', resolveList]
+        venues: ['Venue', function(Venue){
+          return Venue.find({'filter[include]': 'sections'}).$promise;
+        }],
+        showtimes: ['$stateParams', 'Showtime', function($stateParams, Showtime){
+          var id = $stateParams.id;
+          if(id) return Showtime.find({'filter[where][eventId]': $stateParams.id}).$promise;
+          return [];
+        }]
       }
     })
     .state('eventEdit.media', {
@@ -152,9 +162,49 @@ angular.module('app').config([
       title: 'Add/Edit Venue',
       url: '/venues/:id',
       templateUrl: '/html/venue/addEdit.html',
-      controller: instanceCtrl('Venue'),
+      controller: ['$scope', '$state', 'Venue', 'Section', 'venue', 'sections', function($scope, $state, Resource, Section, item, sections){
+        $scope.venue = item || new Resource();
+        $scope.sections = sections;
+        $scope['save'+name] = function(item){
+          if(item.id){
+            return item.$upsert(done);
+          }
+          item.$create(done);
+        };
+        $scope.saveSection = function(item, arr){
+
+          var section = item instanceof Section ? item : new Section(item);
+          var idx = arr.indexOf(item);
+
+          if(section.id){
+            return section.$upsert(done);
+          }
+          section.$create(done);
+
+          function done(){
+            arr[idx] = section;
+          }
+        };
+        $scope.addSection = function(){
+          $scope.sections.push(new Section({venueId: item.id}));
+        }
+        $scope.removeSection = function(idx, arr){
+          var section = arr[idx];
+          if(!section) return;
+          section.$delete(function(){
+            arr.splice(idx, 1);
+          });
+        };
+        function done(){
+          $state.go(lower+'s');
+        }
+      }],
       resolve: {
-        venue: ['$stateParams', 'Venue', resolve]
+        venue: ['$stateParams', 'Venue', resolve],
+        sections: ['$stateParams', 'Section', function ($stateParams, Resource){
+          var id = $stateParams.id;
+          return id!=='new'?Resource.find({'filter[where][venueId]': id}).$promise:new Resource();
+        }]
       }
     })
     .state('pages', {
