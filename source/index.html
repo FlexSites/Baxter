@@ -1,24 +1,7 @@
 <<>ngHead>>
 <div ng-controller="MainCtrl">
-	<header class="header">
-		<div class="header-bar">
-
-			<a ui-sref="home" class="header_logo"></a>
-			<div class="site-select">
-				<label for="sites" class="fr no-pt select-wrapper" ng-show="sites.length > 1">
-					<select class="select" id="sites" ng-options="site.id as site.host for site in sites" ng-change="setSite(currentSiteId)" ng-model="currentSiteId">
-					</select>
-				</label>
-			</div>
-			<div class="user" ng-show="user.email">
-				<img ng-src="{{user.image}}" src="/img/default-profile.png" class="user_image">
-				<b class="user_name">{{user.email}}</b><br>
-				<a ui-sref="entertainer">Profile</a> |
-				<a ng-click="signOut()">Sign Out</a>
-			</div>
-		</div>
-	</header>
 	<nav class="sidebar" ng-class="{'sidebar-expanded' : showSidebar}">
+		<a ui-sref="home" class="sidebar_logo"></a>
 		<ul class="sidebar_nav">
 			<li class="menu-toggle"><a ng-click="toggleSidebar()">Hide Menu<i class="icon-arrow-right2"></i></a></li>
 
@@ -34,7 +17,25 @@
 			<li><a ui-sref="subscribers">Subscribers<i class="icon-file-text"></i></a></li>
 		</ul>
 	</nav>
-	<div ui-view class="body-content" ng-class="{'a250': !routeChange, 'sidebar-expanded' : showSidebar}"></div>
+	<div class="body-content" ng-class="{'a250': !routeChange, 'sidebar-expanded' : showSidebar}">
+		<header class="header">
+			<div class="header-bar">
+				<div class="site-select">
+					<label for="sites" class="fr no-pt select-wrapper" ng-show="sites.length > 1">
+						<select class="select" id="sites" ng-options="site.id as site.host for site in sites" ng-change="setSite(currentSiteId)" ng-model="currentSiteId">
+						</select>
+					</label>
+				</div>
+				<div class="user" ng-show="user.email">
+					<img ng-src="{{user.image}}" src="/img/default-profile.png" class="user_image">
+					<b class="user_name">{{user.email}}</b><br>
+					<a ui-sref="entertainer">Profile</a> |
+					<a ng-click="signOut()">Sign Out</a>
+				</div>
+			</div>
+		</header>
+		<div ui-view></div>
+	</div>
 </div>
 
 <<>foot>>
