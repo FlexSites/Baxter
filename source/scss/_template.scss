@@ -275,8 +275,7 @@ form{
                     padding-left: 20px;
                 }
                 &:hover {
-                    color: darken($color-primary,20%);
-                    @include gradient(left, $color-primary-lt, $color-primary);
+                    background-color: lighten($color-primary, 7.5);
                 }
             }
         }
