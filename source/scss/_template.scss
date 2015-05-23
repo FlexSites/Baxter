@@ -517,7 +517,7 @@ select.select {
   overflow: scroll;
   display: block;
   position: absolute;
-  top: 0;
+  top: $bar-height;
   left: 0;
   height: 100%;
   padding-bottom: 100px;
@@ -527,6 +527,18 @@ select.select {
   left: auto;
   right: 0;
   background-color: #ccc;
+}
+
+.error {
+  &_status, &_message {
+    color: #666;
+    margin-bottom: 0;
+  }
+  &_status {
+    margin-top: 10vh;
+    font-size: 72px;
+    font-weight: bold;
+  }
 }
 
 .media-select-btn {
