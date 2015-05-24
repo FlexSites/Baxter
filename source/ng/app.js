@@ -1,5 +1,10 @@
 angular.module('app', ['FlexSite', 'ui.router'])
   .value('session', {})
+  .filter('idToDate', function() {
+    return function(input){
+      return new Date(parseInt(input.toString().slice(0,8), 16)*1000);
+    }
+  })
   .run(['$rootScope', '$window', '$state', '$timeout', 'Site', 'User', 'session', function($rootScope, $window, $state, $timeout, Site, User, session){
     var loginState = 'login';
 
