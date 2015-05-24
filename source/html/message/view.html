@@ -1,5 +1,6 @@
 <div ng-include="'/html/sub-header.html'"></div>
 <div>
+  <p class="grid-full">This message was originally sent on: {{contactmessage.id | idToDate | date:"MMMM dd, yyyy 'at' hh:mm a"}}</p>
   <label for="name" class="grid-third">
     <input type="text" id="name" ng-model="contactmessage.name" disabled="true">
     <span>Name</span>
