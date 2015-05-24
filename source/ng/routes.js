@@ -273,10 +273,21 @@ angular.module('app').config([
       title: 'Edit Post',
       url: '/posts/:id',
       templateUrl: '/html/blog/addEdit.html',
-      controller: instanceCtrl('Post'),
+      controller: 'PostCtrl',
       resolve: {
         post: ['$stateParams', 'Post', resolve]
       }
+    })
+    .state('postEdit.media', {
+      title: 'Select Image',
+      templateUrl: '/html/media/select.html',
+      controller: 'MediaSelectCtrl',
+      resolve: {
+        media: ['Medium', resolveList]
+      },
+      menu: [
+        {action: 'postEdit({id: "new"})', text: 'New Post +'}
+      ]
     })
     .state('testimonials', {
       title: 'Testimonial List',

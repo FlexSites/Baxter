@@ -1,18 +1,31 @@
 <div ng-include="'/html/sub-header.html'"></div>
 
-  <form name="post-form" ng-submit="savePost(post)" novalidate posts>
-	<label for="name">
-		<input type="text" id="name" ng-model="post.title" required="true">
-		<span>Name</span>
-	</label>
-	<label for="publishedDate">
-		<input type="date" id="publishedDate" ng-model="post.publishedDate">
-		<span>Searchable</span>
-	</label>
-	<label for="description" class="grid-full">
-		<textarea id="description" ng-model="post.description" rows="5"></textarea>
-		<span class="icon-left-circle">Description</span>
-	</label>
+<form name="post-form" ng-submit="savePost(post)" novalidate posts>
+
+	<div class="flush-7">
+	  <a ui-sref="postEdit.media" ng-hide="post.media[0]" class="grid-full media-select-btn">
+	    <i class="icon-images"></i>
+	    <div>Add Media</div>
+	  </a>
+	  <div class="grid-full media-thumb" ng-show="post.media[0]">
+	  	<a class="media-remove" ng-click="removeMedia()">✖</a>
+			<img ng-src="{{post.media[0].src}}" class="flush-full">
+	  </div>
+	</div>
+	<div class="flush-13">
+		<label for="name">
+			<input type="text" id="name" ng-model="post.title" required="true">
+			<span>Name</span>
+		</label>
+		<label for="publishedDate">
+			<input type="date" id="publishedDate" ng-model="post.publishedDate">
+			<span>Publish Date</span>
+		</label>
+		<label for="description" class="grid-full">
+			<textarea id="description" ng-model="post.description" rows="5"></textarea>
+			<span class="icon-left-circle">Description</span>
+		</label>
+	</div>
 	<label for="content" class="grid-full">
 		<textarea id="content" ng-model="post.content" rows="20"></textarea>
 		<span>Content</span>
@@ -30,3 +43,5 @@
     <button>Save</button><a ui-sref="posts" class="btn gray">Cancel</a>
   </div>
 </form>
+
+<div class="panel flush-8" ng-show="hasPanel()" ui-view></div>
