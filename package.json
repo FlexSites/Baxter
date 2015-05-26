@@ -5,6 +5,10 @@
   "scripts": {
     "start": "gulp"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FlexSites/Baxter.git"
+  },
   "devDependencies": {
     "gulp": "^3.8.11"
   },
