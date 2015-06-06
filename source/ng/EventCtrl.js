@@ -50,7 +50,7 @@ angular.module('app')
     $scope.saveEvent = saveEvent;
 
     if(!event.venue && venues.length){
-      event.venue = venues[0].id;
+      $scope.event.venueId = event.venueId = venues[0].id;
       changeVenue();
     }
     if(!$scope.event.pricingTiers) addTier();
@@ -88,7 +88,7 @@ angular.module('app')
       });
       if(!$scope.event.pricingTiers) $scope.event.pricingTiers = [];
       $scope.event.pricingTiers.push(tier);
-    };
+    }
 
     function addShowtime(force){
       if(!$scope.showtimes) $scope.showtimes = [];
