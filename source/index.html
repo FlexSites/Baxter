@@ -1,4 +1,25 @@
 <<>ngHead>>
+
+<div class="splash" ng-cloak>
+	<div class="spinner">
+		<span class="spinner__dot"></span>
+		<span class="spinner__dot"></span>
+		<span class="spinner__dot"></span>
+	</div>
+
+  <form ng-submit="login()" class="login_form">
+    <img src="/img/logo-white.svg" class="login_logo">
+    <label for="username" class="grid-full">
+      <input type="text" ng-model="user.email" placeholder="Username/Email">
+    </label>
+    <label for="password" class="grid-full">
+      <input type="password" ng-model="user.password" placeholder="Password">
+    </label>
+    <button class="grid-full login_button">Login</button>
+    {{routeChange}}
+  </form>
+</div>
+
 <div ng-controller="MainCtrl">
 	<nav class="sidebar" ng-class="{'sidebar-expanded' : showSidebar}">
 		<a ui-sref="home" class="sidebar_logo"></a>

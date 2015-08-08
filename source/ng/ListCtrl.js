@@ -3,5 +3,6 @@ angular.module('app')
     $scope.list = list;
 
     $scope.remove = function(item){
+      console.log('ran removed!', item);
     };
   }]);

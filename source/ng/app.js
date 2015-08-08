@@ -3,9 +3,9 @@ angular.module('app', ['FlexSite', 'ui.router'])
   .filter('idToDate', function() {
     return function(input){
       return new Date(parseInt(input.toString().slice(0,8), 16)*1000);
-    }
+    };
   })
-  .run(['$rootScope', '$window', '$state', '$timeout', 'Site', 'User', 'session', function($rootScope, $window, $state, $timeout, Site, User, session){
+  .run(['$rootScope', '$window', '$state', '$timeout', 'Site', 'User', function($rootScope, $window, $state, $timeout, Site, User){
     var loginState = 'login';
 
     // Is Admin Flag
@@ -51,7 +51,3 @@ angular.module('app', ['FlexSite', 'ui.router'])
       $rootScope.title = title;
     });
   }]);
-
-function isAdmin(){
-  window.localStorage.isAdmin = true;
-}

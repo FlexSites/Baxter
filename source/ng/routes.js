@@ -19,9 +19,10 @@ angular.module('app').config([
       //   return $state.go(pluralize(list[0].modelName.toLowerCase()) + '.edit', {id: list[0].id});
       // }
       $scope.list = list;
-      $scope.remove = function(item){
+      $scope.remove = function(item, arr){
         item.$delete(function(){
           // TODO: Actually remove things.
+          arr.splice(arr.indexOf(item), 1);
         });
       };
     }];
@@ -59,7 +60,7 @@ angular.module('app').config([
       title: 'Dashboard',
       resolve:{
         eventCount: ['Event', getCount],
-        postCount: ['Post', getCount],
+        postCount: function(){return 1},//['Post', getCount],
         pageCount: ['Page', getCount],
         subscriberCount: ['Subscriber', getCount]
       }

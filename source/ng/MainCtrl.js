@@ -14,19 +14,16 @@ angular.module('app')
 
 
     // Get the currently logged in (hopefully) user
-    User.get({id: $window.localStorage.$FlexSite$currentUserId}).$promise
+    User.get().$promise
       .then(function(user){
         $scope.user = user;
-        var url = '/sites';
-        if(!$scope.isAdmin){
-          url = '/users/' + user.id + url;
-        }
 
         // Replace with SDK version if we can figure out relations and REST
-        $http.get(apiBase + url)
+        $http.get(apiBase + '/sites')
           .then(function(res){
             var sites = res.data;
             $scope.sites = sites;
+            console.log('sites', sites);
             if(!session.site) setSite(sites[0].id);
           });
       })
