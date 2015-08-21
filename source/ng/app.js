@@ -5,28 +5,37 @@ angular.module('app', ['FlexSite', 'ui.router'])
       return new Date(parseInt(input.toString().slice(0,8), 16)*1000);
     };
   })
-  .run(['$rootScope', '$window', '$state', '$timeout', 'Site', 'User', function($rootScope, $window, $state, $timeout, Site, User){
+  .run(['$rootScope', '$window', '$state', '$timeout', 'Site', 'Session', function($rootScope, $window, $state, $timeout, Site, Session){
     var loginState = 'login';
 
-    // Is Admin Flag
-    $rootScope.isAdmin = typeof $window.localStorage.isAdmin !== 'undefined';
-
     $rootScope.$on('$stateChangeStart', function(e, toState){
-      var isLoggedIn = User.isAuthenticated()
-        , toName = toState.name;
+
+      var toName = toState.name;
 
       // For the body content animation
       $rootScope.routeChange = true;
 
-      if(!isLoggedIn && toName !== loginState){
-        $window.sessionStorage.returnTo = toState.name;
-        e.preventDefault();
-        $state.go(loginState);
-      }
-      else if(isLoggedIn && toName === loginState){
-        e.preventDefault();
-        $state.go('home');
-      }
+      return Session.query().$promise
+        .then(function(session) {
+          if(!session.length) throw new Error('Unauthenticated!');
+          if(!$rootScope.user) {
+            $rootScope.user = session[0];
+            // Is Admin Flag
+            $rootScope.isAdmin = $rootScope.user.isAdmin;
+          }
+          if(toName === loginState){
+            $rootScope.user = session[0];
+            e.preventDefault();
+            $state.go('home');
+          }
+        })
+        .catch(function() {
+          if (toName !== loginState){
+            $window.sessionStorage.returnTo = toState.name;
+            e.preventDefault();
+            // $window.location.href = '/login';
+          }
+        });
     });
 
     $rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, err) {
