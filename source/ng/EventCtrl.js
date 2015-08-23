@@ -71,14 +71,14 @@ angular.module('app')
     }
 
     function getVenue(){
-      return $scope.venueMap[$scope.event.venue] || {};
+      return $scope.venueMap[$scope.event.venueId] || {};
     }
 
 
     function addTier(){
-      console.log('add tier');
       var tier = {};
       var venue = getVenue();
+      console.log('add tier for %s', venue.name, venue);
       if(!venue || !venue.sections) return;
       venue.sections.forEach(function(section){
         if(!tier.sections) tier.sections = [];
@@ -93,10 +93,9 @@ angular.module('app')
     function addShowtime(force){
       if(!$scope.showtimes) $scope.showtimes = [];
 
-      var showtimes = $scope.showtimes;
-      var showtime = new Showtime({eventId: event.id});
-      var last = showtimes[showtimes.length-1];
-      console.log(!showtimes.length, force, (last.date && last.time));
+      var showtimes = $scope.showtimes
+        , showtime = new Showtime({eventId: event.id})
+        , last = showtimes[showtimes.length-1] || showtime;
       if(!showtimes.length || (force && last.date && last.time)) $scope.showtimes.push(showtime);
       return showtime;
     }

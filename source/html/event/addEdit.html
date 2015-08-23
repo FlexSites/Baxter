@@ -19,7 +19,7 @@
         <span>Entertainer</span>
       </label>
       <label for="venue" class="grid-full">
-        <select id="venue" ng-model="event.venue" placeholder="Venue" ng-change="changeVenue()" ng-disabled="event.venue" ng-options="venue.id as venue.name for venue in venues" required>
+        <select id="venue" ng-model="event.venueId" placeholder="Venue" ng-change="changeVenue()" ng-disabled="event.venue" ng-options="venue.id as venue.name for venue in venues" required>
             <option value="">Select Venue</option>
         </select>
         <span data-errormessage="You must enter a venue for the event">Venue</span>

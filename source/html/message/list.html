@@ -2,7 +2,7 @@
 
 <table class="flush-full tabular">
   <tbody>
-    <tr ng-repeat="contactMessage in list">
+    <tr ng-repeat="contactMessage in list | orderBy: 'id'">
       <td>
         Message from: {{contactMessage.name}} at {{contactMessage.email}}
       </td>
