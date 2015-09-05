@@ -2,12 +2,12 @@
 
 <form ng-submit="saveSite(site)" style="max-width: 980px">
   <label for="title" class="grid-full">
-    <input type="text" id="title" ng-model="site.title" placeholder="Title" maxlength="60" required>
+    <input type="text" id="title" ng-model="site.title" placeholder="Title" required>
     <span>Default Title ({{60 - site.title.length}} characters left)</span>
   </label>
   <label for="description" class="grid-half">
-    <textarea id="description" ng-model="site.description" placeholder="Description" rows="5" maxlength="160" required></textarea>
-    <span>Default Description ({{160- site.description.length}} characters left)</span>
+    <textarea id="description" ng-model="site.description" placeholder="Description" rows="5" required></textarea>
+    <span>Default Description ({{160 - site.description.length}} characters left)</span>
   </label>
   <label for="email" class="grid-half">
     <input type="email" ng-model="site.contact.email" placeholder="you@example.com" required>
@@ -44,16 +44,16 @@
       <span>Host</span>
     </label>
 
-    <h3 class="grid-full">Stylesheets</h3>
-    <label for="styles{{$index}}" ng-repeat="style in site.styles" class="grid-full">
-      <input type="text" id="styles{{$index}}" ng-model="style.value" placeholder="Stylesheet" ng-blur="site.styles = formatArray(site.styles)">
-      <span></span>
+    <div class="grid-full"></div>
+
+    <label for="styles" class="grid-half">
+      <textarea id="styles" ng-model="site.styles" placeholder="Stylesheet" rows="7" style="white-space: nowrap;"></textarea>
+      <span>Styles <small>(One per line)</small></span>
     </label>
 
-    <h3 class="grid-full">Scripts</h3>
-    <label for="scripts{{$index}}" ng-repeat="script in site.scripts" class="grid-full">
-      <input type="text" id="scripts{{$index}}" ng-model="script.value" placeholder="Script" ng-blur="site.scripts = formatArray(site.scripts)">
-      <span></span>
+    <label for="scripts" class="grid-half">
+      <textarea id="scripts" ng-model="site.scripts" placeholder="Script" rows="7" style="white-space: nowrap;"></textarea>
+      <span>Scripts <small>(One per line)</small></span>
     </label>
   </div>
   <div class="form-actions">
