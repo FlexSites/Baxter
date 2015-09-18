@@ -634,7 +634,7 @@ select.select {
     float: left;
     margin: 5px;
     padding: 5px;
-    width: 160px;
+    width: 110px;
     position: relative;
     &:before {
       content: attr(data-type);
@@ -659,8 +659,8 @@ select.select {
     .media-preview {
       background-size: cover;
       display: block;
-      width: 150px;
-      height: 150px;
+      width: 100px;
+      height: 100px;
       margin-bottom: 5px;
     }
     .media-label {

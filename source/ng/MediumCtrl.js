@@ -5,10 +5,19 @@ angular.module('app')
     $scope.medium = medium;
 
     $scope.mediaChange = function(medium, isAdded){
-      console.log('MEDIA CHANGE CALLED!');
       $scope.medium.id = medium.id;
       $scope.medium.src = medium.src;
       if(!$scope.medium.name) $scope.medium.name = medium.name;
+      $scope.$digest();
+    };
+
+    $scope.isUpload = function(){
+      if (!$scope.medium.src) return false;
+      return /flex-*sites/i.test($scope.medium.src);
+    };
+
+    $scope.remove = function(medium) {
+      medium.$delete(done);
     };
 
     if(medium.type === 'video') {

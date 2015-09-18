@@ -11,9 +11,21 @@
 		<span>Name</span>
 	</label>
 
-	<label for="src" class="grid-full">
+	<label for="src" class="grid-full" ng-hide="isUpload()">
 		<input type="text" id="src" ng-model="medium.src" placeholder="Source">
 		<span>Source</span>
+	</label>
+
+	<label for="type" class="grid-full">
+		<select id="type" ng-model="medium.type" placeholder="Type" ng-required="true">
+			<option value="profile">Profile</option>
+			<option value="hero">Hero/Banner</option>
+			<option value="ad">Promo</option>
+			<option value="background">Background</option>
+			<option value="video">Video</option>
+			<option value="other">Other</option>
+		</select>
+		<span>Type</span>
 	</label>
 
 	<label for="desc" class="grid-full">
@@ -22,6 +34,6 @@
 	</label>
 
   <div class="form-actions">
-    <button>Save</button><a ui-sref="media" class="btn gray">Cancel</a>
+    <button>Save</button><a ng-click="remove(medium)">Delete</a><a ui-sref="media" class="btn gray">Cancel</a>
   </div>
 </form>

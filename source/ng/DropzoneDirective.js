@@ -45,16 +45,14 @@ angular.module('app')
 
               this.on('success', function(file) {
                 var medium = new Medium({
-                  type: file.type,
+                  filetype: file.type,
                   name: file.name,
                   src: file.s3_url.split('?')[0]
                 });
 
-                medium.$create(function(){
-                  scope.dropzone({
-                    medium: medium,
-                    isAdded: true
-                  });
+                scope.dropzone({
+                  medium: medium,
+                  isAdded: true
                 });
               });
             }
