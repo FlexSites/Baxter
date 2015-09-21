@@ -34,7 +34,7 @@
     <div id="showtimes" class="flush-half">
 
       <h3 class="grid-full">Showtimes</h3>
-      <div class="showtime" ng-repeat="showtime in showtimes">
+      <div class="showtime" ng-repeat="showtime in event.showtimes">
         <label for="date{{$index}}" class="grid-8" ng-class="{'no-pt': $index}">
           <input type="text" id="date{{$index}}" class="stDate" ng-model="showtime.date" placeholder="Date">
           <span ng-show="!$index">Date</span>
@@ -74,7 +74,7 @@
                 <input type="text" ng-model="section.price" required>
               </td>
               <td>
-                <button type="button" ng-click="removeTier($index)">✖</button>
+                <button type="button" ng-show="$index" ng-click="removeTier($index)">✖</button>
               </td>
             </tr>
           </tbody>
@@ -110,7 +110,7 @@
 
     <div class="form-actions">
       <button>Save</button>
-      <button>Save & Next</button><a ui-sref="pages" class="btn gray">Cancel</a>
+      <button>Save & Next</button><a ui-sref="events" class="btn gray">Cancel</a>
     </div>
   </form>
 </div>

@@ -10,21 +10,17 @@ angular.module('app')
     'Showtime',
     'event',
     'venues',
-    'showtimes',
 
-  function($window, $http, $scope, $state, $q, Event, Medium, Showtime, event, venues, showtimes){
+  function($window, $http, $scope, $state, $q, Event, Medium, Showtime, event, venues){
 
     // Variables
     $scope.event = event || new Event();
     $scope.venues = venues;
-    $scope.showtimes = showtimes;
     $scope.editShowtime = new Showtime();
     $scope.venueMap = venues.reduce(function(prev,curr){
       prev[curr.id] = curr;
       return prev;
     }, {});
-
-    console.log(event);
 
     // Functions
 
@@ -49,7 +45,7 @@ angular.module('app')
     $scope.saveEvent = saveEvent;
 
     if(!event.venue && venues.length){
-      $scope.event.venue = event.venue = venues[0].id;
+      $scope.event.venue = event.venue = venues[0];
       changeVenue();
     }
     if(!$scope.event.pricingTiers) addTier();
@@ -62,7 +58,6 @@ angular.module('app')
 
 
     function selectMedia(media){
-      console.log('select media', media);
       if(!$scope.event.media) $scope.event.media = [];
       $scope.event.media.push(media);
       $state.go('eventEdit');
@@ -70,8 +65,7 @@ angular.module('app')
 
     function addTier(){
       var tier = {};
-      var venue = $scope.event.venue
-      console.log('add tier for %s', venue.name, venue);
+      var venue = $scope.event.venue;
       if(!venue || !venue.sections) return;
       venue.sections.forEach(function(section){
         if(!tier.sections) tier.sections = [];
@@ -84,19 +78,19 @@ angular.module('app')
     }
 
     function addShowtime(force){
-      if(!$scope.showtimes) $scope.showtimes = [];
+      if(!$scope.event.showtimes) $scope.event.showtimes = [];
 
-      var showtimes = $scope.showtimes
+      var showtimes = $scope.event.showtimes
         , showtime = new Showtime({event: event.id})
         , last = showtimes[showtimes.length-1] || showtime;
-      if(!showtimes.length || (force && last.date && last.time)) $scope.showtimes.push(showtime);
+      if(!showtimes.length || (force && last.date && last.time)) $scope.event.showtimes.push(showtime);
       return showtime;
     }
 
     function saveShowtime(showtime, cb){
       if(!(showtime instanceof Showtime)) showtime = new Showtime(showtime);
       if(!event.id) return;
-      showtime.eventId = event.id;
+      showtime.event = event.id;
       if(showtime.id){
         return showtime.$upsert(cb);
       }
@@ -108,51 +102,52 @@ angular.module('app')
       showtime.$delete(done);
 
       function done(){
-        $scope.showtimes = $scope.showtimes.filter(function(showtime){
+        $scope.event.showtimes = $scope.event.showtimes.filter(function(showtime){
           return showtime !== showtime && showtime.id !== showtime.id;
         });
         addShowtime();
       }
     }
 
-    function getSections(tier){
+    function getSections(){
       var event = $scope.event;
       var venues = $scope.venues;
       if(!event.venue || !venues) return [];
 
-      console.log('here', event.venue);
       for(var i = 0, len = venues.length; i < len; i++){
         if(venues[i].id !== event.venue) continue;
-        console.log(venues[i]);
         return venues[i].sections;
       }
     }
 
     function removeTier(idx){
       $scope.event.pricingTiers.splice(idx,1);
-      console.log('remove tier', idx);
     }
 
     function hasPanel() {
       return $state.is('eventEdit.media');
     }
 
-    function mediaChange(medium, isAdded){
+    function mediaChange(medium){
       if(!$scope.event.mediumIds) $scope.event.medium = [];
       $scope.event.medium.push(medium.id);
     }
 
     function saveEvent(){
-      if($scope.event.id){
-        return $scope.event.$upsert(done);
-      }
-      $scope.event.$create(done);
-      function done(data){
-        console.log(data);
-        $q.all($scope.showtimes.map(function(showtime){
-          return saveShowtime(showtime);
-        }));
+      $q.all($scope.event.showtimes.map(saveShowtime))
+        .then(function(showtimes){
+          var venue = $scope.event.venue;
+          if (typeof venue === 'object') $scope.event.venue = venue._id || venue.id;
+
+          $scope.event.showtimes = showtimes;
+          if($scope.event.id){
+            return $scope.event.$upsert(eventDone);
+          }
+          $scope.event.$create(eventDone);
+        });
+
+      function eventDone(){
         $state.go('events');
       }
-    };
+    }
   }]);

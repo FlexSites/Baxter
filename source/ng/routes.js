@@ -118,23 +118,18 @@ angular.module('app').config([
       resolve: {
         event: ['$stateParams', 'Event', function resolve($stateParams, Event){
           var id = $stateParams.id;
-          if (id === 'new') return new Event();
           return Event.get({
             id: id,
             'filter[include][media]': true,
             'filter[include][venue]': true,
             'filter[include][venue.sections]': true,
+            'filter[include][showtimes]': true,
             'filter[include][entertainers]': true
           }).$promise;
         }],
         venues: ['Venue',
         function(Venue){
           return Venue.find({'filter[include]': 'sections'}).$promise;
-        }],
-        showtimes: ['$stateParams', 'Showtime', function($stateParams, Showtime){
-          var id = $stateParams.id;
-          if(id) return Showtime.find({'filter[where][eventId]': $stateParams.id}).$promise;
-          return [];
         }]
       }
     })
