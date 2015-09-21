@@ -66,7 +66,7 @@
 
 	<h3 class="grid-full">Sections</h3>
 
-	<div ng-repeat="section in sections">
+	<div ng-repeat="section in venue.sections">
 		<label for="section-type-{{$index}}" class="grid-4">
 			<select id="section-type-{{$index}}" ng-model="section.type" placeholder="Section Type" required>
 				<option value="GA">General Admission</option>
@@ -89,8 +89,8 @@
 			<span>Count</span>
 		</label>
 		<label for="removeSection{{$index}}" class="grid-5">
-			<button type="button" id="addSection{{$index}}" ng-click="saveSection(section,sections)">Save</button>
-			<button type="button" id="removeSection{{$index}}" ng-click="removeSection($index,sections)">Remove</button>
+			<button type="button" id="addSection{{$index}}" ng-click="saveSection(section)">Save</button>
+			<button type="button" id="removeSection{{$index}}" ng-click="removeSection($index)">Remove</button>
 		</label>
 	</div>
 	<button type="button" class="grid-full" ng-click="addSection()">Add Section</button>

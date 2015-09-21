@@ -30,7 +30,6 @@ angular.module('app')
 
     // Venue
     $scope.changeVenue = changeVenue;
-    $scope.getVenue = getVenue;
     $scope.getSections = getSections;
 
     $scope.selectMedia = selectMedia;
@@ -50,7 +49,7 @@ angular.module('app')
     $scope.saveEvent = saveEvent;
 
     if(!event.venue && venues.length){
-      $scope.event.venueId = event.venueId = venues[0].id;
+      $scope.event.venue = event.venue = venues[0].id;
       changeVenue();
     }
     if(!$scope.event.pricingTiers) addTier();
@@ -58,26 +57,20 @@ angular.module('app')
     addShowtime();
 
     function changeVenue(){
+
     }
 
 
     function selectMedia(media){
       console.log('select media', media);
-      if(!$scope.event.mediumIds) $scope.event.mediumIds = [];
       if(!$scope.event.media) $scope.event.media = [];
-      $scope.event.mediumIds.push(media.id);
       $scope.event.media.push(media);
       $state.go('eventEdit');
     }
 
-    function getVenue(){
-      return $scope.venueMap[$scope.event.venueId] || {};
-    }
-
-
     function addTier(){
       var tier = {};
-      var venue = getVenue();
+      var venue = $scope.event.venue
       console.log('add tier for %s', venue.name, venue);
       if(!venue || !venue.sections) return;
       venue.sections.forEach(function(section){
@@ -94,7 +87,7 @@ angular.module('app')
       if(!$scope.showtimes) $scope.showtimes = [];
 
       var showtimes = $scope.showtimes
-        , showtime = new Showtime({eventId: event.id})
+        , showtime = new Showtime({event: event.id})
         , last = showtimes[showtimes.length-1] || showtime;
       if(!showtimes.length || (force && last.date && last.time)) $scope.showtimes.push(showtime);
       return showtime;
@@ -110,13 +103,13 @@ angular.module('app')
       return showtime.$create(cb);
     }
 
-    function removeShowtime(shtime){
-      if(!shtime.id) return done();
-      shtime.$delete(done);
+    function removeShowtime(showtime){
+      if(!showtime.id) return done();
+      showtime.$delete(done);
 
       function done(){
         $scope.showtimes = $scope.showtimes.filter(function(showtime){
-          return showtime !== shtime && showtime.id !== shtime.id;
+          return showtime !== showtime && showtime.id !== showtime.id;
         });
         addShowtime();
       }
@@ -145,8 +138,8 @@ angular.module('app')
     }
 
     function mediaChange(medium, isAdded){
-      if(!$scope.event.mediumIds) $scope.event.mediumIds = [];
-      $scope.event.mediumIds.push(medium.id);
+      if(!$scope.event.mediumIds) $scope.event.medium = [];
+      $scope.event.medium.push(medium.id);
     }
 
     function saveEvent(){

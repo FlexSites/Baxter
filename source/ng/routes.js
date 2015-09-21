@@ -19,11 +19,13 @@ angular.module('app').config([
       //   return $state.go(pluralize(list[0].modelName.toLowerCase()) + '.edit', {id: list[0].id});
       // }
       $scope.list = list;
-      $scope.remove = function(item, arr){
-        item.$delete(function(){
-          // TODO: Actually remove things.
-          arr.splice(arr.indexOf(item), 1);
-        });
+      $scope.remove = function(item, arr, name){
+        if (window.confirm('Are you sure you want to delete ' + (name || 'this item') + '?')) {
+          item.$delete(function(){
+            // TODO: Actually remove things.
+            arr.splice(arr.indexOf(item), 1);
+          });
+        }
       };
     }];
     function instanceCtrl(name){
@@ -95,7 +97,14 @@ angular.module('app').config([
       templateUrl: '/html/event/list.html',
       controller: listCtrl,
       resolve: {
-        list: ['Event', resolveList]
+        list: ['Event', function(Event){
+          return Event.query({
+            'filter[include][media]': true,
+            'filter[include][venue]': true,
+            'filter[include][venue.sections]': true,
+            'filter[include][entertainers]': true
+          }).$promise;
+        }]
       },
       menu: [
         {action: 'eventEdit({id: "new"})', text: 'New Event +'}
@@ -107,8 +116,19 @@ angular.module('app').config([
       templateUrl: '/html/event/addEdit.html',
       controller: 'EventCtrl',
       resolve: {
-        event: ['$stateParams', 'Event', resolve],
-        venues: ['Venue', function(Venue){
+        event: ['$stateParams', 'Event', function resolve($stateParams, Event){
+          var id = $stateParams.id;
+          if (id === 'new') return new Event();
+          return Event.get({
+            id: id,
+            'filter[include][media]': true,
+            'filter[include][venue]': true,
+            'filter[include][venue.sections]': true,
+            'filter[include][entertainers]': true
+          }).$promise;
+        }],
+        venues: ['Venue',
+        function(Venue){
           return Venue.find({'filter[include]': 'sections'}).$promise;
         }],
         showtimes: ['$stateParams', 'Showtime', function($stateParams, Showtime){
@@ -181,45 +201,16 @@ angular.module('app').config([
       title: 'Add/Edit Venue',
       url: '/venues/:id',
       templateUrl: '/html/venue/addEdit.html',
-      controller: ['$scope', '$state', 'Venue', 'Section', 'venue', 'sections', function($scope, $state, Resource, Section, item, sections){
-        $scope.venue = item || new Resource();
-        $scope.sections = sections;
-        $scope['save'+name] = function(item){
-          if(item.id){
-            return item.$upsert(done);
-          }
-          item.$create(done);
-        };
-        $scope.saveSection = function(item, arr){
-
-          var section = item instanceof Section ? item : new Section(item);
-          var idx = arr.indexOf(item);
-
-          if(section.id){
-            return section.$upsert(done);
-          }
-          section.$create(done);
-
-          function done(){
-            arr[idx] = section;
-          }
-        };
-        $scope.addSection = function(){
-          $scope.sections.push(new Section({venueId: item.id}));
-        }
-        $scope.removeSection = function(idx, arr){
-          var section = arr[idx];
-          if(!section) return;
-          section.$delete(function(){
-            arr.splice(idx, 1);
-          });
-        };
-        function done(){
-          $state.go(lower+'s');
-        }
-      }],
+      controller: 'VenueCtrl',
       resolve: {
-        venue: ['$stateParams', 'Venue', resolve],
+        venue: ['$stateParams', 'Venue', function($stateParams, Venue){
+          var id = $stateParams.id;
+          if (id === 'new') return new Venue();
+          return Venue.get({
+            id: id,
+            'filter[include][sections]': true
+          }).$promise;
+        }],
         sections: ['$stateParams', 'Section', function ($stateParams, Resource){
           var id = $stateParams.id;
           return id!=='new'?Resource.find({'filter[where][venueId]': id}).$promise:new Resource();
