@@ -44,7 +44,7 @@
 			<div class="header-bar">
 				<div class="site-select">
 					<label for="sites" class="fr no-pt select-wrapper" ng-show="sites.length > 1">
-						<select class="select" id="sites" ng-options="site.id as site.host for site in sites" ng-change="setSite(currentSiteId)" ng-model="currentSiteId">
+						<select class="select" id="sites" ng-options="site.id as site.host for site in sites | orderBy:'host'" ng-change="setSite(currentSiteId)" ng-model="currentSiteId">
 						</select>
 					</label>
 				</div>
