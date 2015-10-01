@@ -14,6 +14,7 @@ angular.module('app')
   function($window, $http, $scope, $state, $q, Event, Medium, Showtime, event, venues){
 
     // Variables
+    var calendar;
     $scope.event = event || new Event();
     $scope.venues = venues;
     $scope.editShowtime = new Showtime();
@@ -21,6 +22,77 @@ angular.module('app')
       prev[curr.id] = curr;
       return prev;
     }, {});
+
+
+
+    $scope.selectedDate = new Date().toISOString();
+    if ($scope.event.showtimes && $scope.event.showtimes.length) {
+      $scope.selectedDate = $scope.event.showtimes[0].datetime;
+    }
+    $scope.availableTimes = getTimes();
+    $scope.selectedTime = $scope.availableTimes[0].value;
+
+    $(function(){
+      calendar = $('#calendar').fullCalendar({
+        timezone: 'local',
+        editable: false,
+        eventRender: function(event, element) {
+          console.log(element.html());
+          return element;
+        },
+        events: function( start, end, timezone, callback ) {
+          callback($scope.event.showtimes.map(function(show) {
+            return {
+              id: show._id,
+              // title: show.formats.time,
+              start: show.datetime,
+              url: '/events/' + event.id
+            };
+          }));
+        },
+
+        // events: {
+        //   url: '/api/v1/showtimes',
+        //   type: 'GET',
+        //   // startParam: 'filter[where][datetime][$gte]',
+        //   // endParam: 'filter[where][datetime][$lte]',
+        //   data: {
+        //     'filter[where][event]': event.id
+        //   },
+        //   eventDataTransform: function(data) {
+        //     console.log({
+        //       id: data._id,
+        //       title: data.formats.time,
+        //       allDay: false,
+        //       start: data.datetime,
+        //       url: '/events/' + event.id
+        //     });
+        //     return {
+        //       id: data._id,
+        //       // title: data.formats.time,
+        //       start: data.datetime,
+        //       url: '/events/' + event.id
+        //     };
+        //   },
+        //   error: function() {
+        //     alert('there was an error while fetching events!');
+        //   },
+        //   color: '#FF6700',   // a non-ajax option
+        //   textColor: 'white' // a non-ajax option
+        // },
+        dayClick: function(date, jsEvent, view) {
+          console.log(jsEvent.target, view, date);
+          $('.dumbClass').removeClass("dumbClass");
+          $(jsEvent.target).find('.fc-day').addClass("dumbClass");
+          $scope.selectedDate = date.format();
+          calendar.fullCalendar('render');
+          $scope.$digest();
+        },
+        dayRender: function (date, cell) {
+          console.log('day render', date, cell);
+        }
+      });
+    });
 
     // Functions
 
@@ -50,8 +122,6 @@ angular.module('app')
     }
     if(!$scope.event.pricingTiers) addTier();
 
-    addShowtime();
-
     function changeVenue(){
 
     }
@@ -77,13 +147,17 @@ angular.module('app')
       $scope.event.pricingTiers.push(tier);
     }
 
-    function addShowtime(force){
+    function addShowtime(){
       if(!$scope.event.showtimes) $scope.event.showtimes = [];
 
-      var showtimes = $scope.event.showtimes
-        , showtime = new Showtime({event: event.id})
-        , last = showtimes[showtimes.length-1] || showtime;
-      if(!showtimes.length || (force && last.date && last.time)) $scope.event.showtimes.push(showtime);
+      var parts = $scope.selectedTime.split(':');
+      var datetime = moment($scope.selectedDate);
+      datetime.set('hour', parts[0]);
+      datetime.set('minute', parts[1]);
+
+      var showtime = new Showtime({event: event.id, datetime: datetime.toISOString()});
+      $scope.event.showtimes.push(showtime);
+      calendar.fullCalendar('refetchEvents');
       return showtime;
     }
 
@@ -150,4 +224,51 @@ angular.module('app')
         $state.go('events');
       }
     }
-  }]);
+  }])
+  .filter("showtimesOnDay", function() {
+    return function(items, from) {
+      console.log('items', items, from);
+      var start = moment(new Date(from));
+      return items.filter(function(item){
+        console.log('difference', start.diff(moment(item.datetime)));
+      });
+    };
+  })
+  .directive('editTime', function () {
+    return {
+      restrict: 'A',
+      require: 'ngModel',
+      link: function (scope, element, attrs, ngModel) {
+
+        //format text going to user (model to view)
+        ngModel.$formatters.push(function(value) {
+          console.log('format', value);
+          return moment(value).format('LT');
+        });
+
+        //format text from the user (view to model)
+        ngModel.$parsers.push(function(value) {
+          console.log('parse', value);
+          console.log(arguments);
+          return value;
+        });
+      }
+    }
+  });
+
+  function getTimes(){
+    var start = moment();
+    start.set('hour', 11);
+    start.set('minute', 45);
+
+    var startDay = start.day();
+    var results = [];
+
+    while (startDay === start.day()) {
+      results.push({
+        key: start.add(15, 'minute').format('LT'),
+        value: start.format('HH:mm')
+      });
+    }
+    return results;
+  }

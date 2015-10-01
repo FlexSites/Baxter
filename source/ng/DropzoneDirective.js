@@ -54,6 +54,7 @@ angular.module('app')
                   medium: medium,
                   isAdded: true
                 });
+                scope.$digest();
               });
             }
           });

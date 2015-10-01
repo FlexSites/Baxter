@@ -190,7 +190,10 @@ angular.module('app').config([
       controller: listCtrl,
       resolve: {
         list: ['Venue', resolveList]
-      }
+      },
+      menu: [
+        {action: 'venueEdit({id: "new"})', text: 'New Venue +'}
+      ]
     })
     .state('venueEdit', {
       title: 'Add/Edit Venue',
