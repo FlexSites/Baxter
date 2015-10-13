@@ -8,6 +8,11 @@ angular.module('app')
       });
     }
 
+    if (!page.data.length) {
+      $scope.page.data = [];
+      $scope.page.data.push({});
+    }
+
     $scope.removeMedia = function(){
       $scope.page.media = [];
       $scope.page.mediumIds = [];
