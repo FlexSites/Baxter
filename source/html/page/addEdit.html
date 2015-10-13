@@ -46,6 +46,14 @@
 			</select>
 			<span>Type</span>
 		</label>
+    <div class="grid-full" ng-repeat="data in page.data">
+      <label for="name{{$index}}" class="grid-half">
+        <input type="text" id="name{{$index}}" ng-model="data.name" placeholder="Name">
+      </label>
+      <label for="value{{$index}}" class="grid-half">
+        <input type="text" id="value{{$index}}" ng-model="data.query" placeholder="Query">
+      </label>
+    </div>
 
 	  <div class="form-actions">
 	    <button>Save</button><a ui-sref="pages" class="btn gray">Cancel</a>

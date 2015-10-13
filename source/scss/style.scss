@@ -22,10 +22,10 @@ $color-secondary: #104BA9;
 
 $link-color: #C55000;
 @import "icon";
-@import "/www/global/scss/core/variables/color";
-@import "/www/global/scss/core/helper";
-@import "/www/global/scss/core/grid";
-@import "/www/global/scss/core/typography";
+@import "core/variables/color";
+@import "core/helper";
+@import "core/grid";
+@import "core/typography";
 
 @mixin print(){
 	@media print {
@@ -34,18 +34,18 @@ $link-color: #C55000;
 }
 
 // Define fonts
-// @import "/www/global/scss/font/comedicon";
+// @import "font/comedicon";
 
 // Base styles
-@import "/www/global/scss/core/base";
+@import "core/base";
 
 
 // @import "typography";
 // @import "partials/backgroundColor";
 
 //Element partials. Order doesn't matter.
- @import "/www/global/scss/core/form";
- @import "/www/global/scss/components/buttons/button";
+ @import "core/form";
+ @import "components/buttons/button";
 
 //Specific template
 @import "mixins";
