@@ -9,7 +9,7 @@ angular.module('app')
     }
 
     console.log(page);
-    if (!page.data.length) {
+    if (page.data && !page.data.length) {
       $scope.page.data = [];
       $scope.page.data.push({});
     }
