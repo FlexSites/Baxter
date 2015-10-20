@@ -26,9 +26,7 @@ angular.module('app')
 
     $scope.selectMedia = function(media){
       console.log('select media', media);
-      if(!$scope.page.mediumIds) $scope.page.mediumIds = [];
       if(!$scope.page.media) $scope.page.media = [];
-      $scope.page.mediumIds.push(media.id);
       $scope.page.media.push(media);
       $state.go('pageEdit');
     };
@@ -40,7 +38,6 @@ angular.module('app')
     var lower = name.toLowerCase();
       $scope[lower] = page || new Page();
       $scope['savePage'] = function(page){
-        delete page.media
         if(page.id){
           return page.$upsert(done);
         }

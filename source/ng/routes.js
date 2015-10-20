@@ -233,7 +233,14 @@ angular.module('app').config([
       templateUrl: '/html/page/addEdit.html',
       controller: 'PageCtrl',
       resolve: {
-        page: ['$stateParams', 'Page', resolve]
+        page: ['$stateParams', 'Page', function($stateParams, Page){
+          var id = $stateParams.id;
+          if (id === 'new') return new Page();
+          return Page.get({
+            id: id,
+            'filter[include][media]': true
+          }).$promise;
+        }]
       }
     })
     .state('pageEdit.media', {
