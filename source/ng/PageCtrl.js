@@ -8,11 +8,15 @@ angular.module('app')
       });
     }
 
-    console.log(page);
-    if (page.data && !page.data.length) {
-      $scope.page.data = [];
+    $scope.addData = function(){
+      if (!$scope.page.data) $scope.page.data = [];
+      $scope.page.data = $scope.page.data.filter(function(d) {
+        return !!d.name;
+      });
       $scope.page.data.push({});
     }
+
+    $scope.addData();
 
     $scope.removeMedia = function(){
       $scope.page.media = [];
@@ -37,7 +41,8 @@ angular.module('app')
 
     var lower = name.toLowerCase();
       $scope[lower] = page || new Page();
-      $scope['savePage'] = function(page){
+      $scope.savePage = function(page){
+        page.data = page.data.filter(function(d){ return !!d.name; });
         if(page.id){
           return page.$upsert(done);
         }
