@@ -3,7 +3,8 @@
   "version": "1.0.3",
   "scripts": {
     "watch": "gulp",
-    "build": "gulp build"
+    "build": "gulp build",
+    "prebuild": "bower i"
   },
   "repository": {
     "type": "git",
@@ -12,6 +13,7 @@
   "devDependencies": {
     "babel-core": "^5.8.25",
     "bluebird": "^2.10.2",
+    "bower": "^1.6.3",
     "cli-color": "^1.0.0",
     "del": "^2.0.2",
     "event-stream": "^3.3.1",
